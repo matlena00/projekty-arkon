@@ -1,0 +1,183 @@
+/* Fonty ładowane w index.html (preconnect + link) zamiast @import,
+   żeby nie blokować renderowania łańcuchem CSS -> Google CSS -> font. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 10% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 220 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 10% 10%;
+
+    --primary: 220 10% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 220 5% 94%;
+    --secondary-foreground: 220 10% 10%;
+
+    --muted: 220 5% 94%;
+    --muted-foreground: 220 5% 50%;
+
+    --accent: 38 35% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 10% 90%;
+    --input: 220 10% 90%;
+    --ring: 38 35% 55%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --charcoal: 220 10% 12%;
+    --graphite: 220 8% 20%;
+    --concrete: 220 5% 75%;
+    --warm-white: 40 20% 97%;
+    --gold: 38 35% 55%;
+    --gold-light: 38 40% 70%;
+    --wood: 30 30% 40%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 10% 7%;
+    --foreground: 0 0% 95%;
+    --card: 220 10% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 10% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 220 10% 10%;
+    --secondary: 220 8% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 8% 15%;
+    --muted-foreground: 220 5% 55%;
+    --accent: 38 35% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 8% 18%;
+    --input: 220 8% 18%;
+    --ring: 38 35% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Przyciski panelu admina */
+  .btn-admin-primary {
+    @apply inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 text-sm font-semibold uppercase tracking-wider hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 disabled:opacity-50;
+  }
+  .btn-admin-secondary {
+    @apply inline-flex items-center gap-2 border border-border text-foreground px-4 py-2 text-sm font-semibold hover:border-accent/60 transition-colors disabled:opacity-50;
+  }
+  .btn-admin-icon {
+    @apply p-2 text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-20 xl:px-32;
+  }
+
+  .heading-display {
+    @apply font-display font-700 tracking-[-0.02em] leading-[1.05];
+  }
+
+  .heading-serif {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .heading-serif-italic {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px -15px hsl(var(--gold) / 0.15);
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .overlay-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--charcoal) / 0.7) 0%,
+      hsl(var(--charcoal) / 0.4) 40%,
+      hsl(var(--charcoal) / 0.8) 100%
+    );
+  }
+
+  .gold-line {
+    @apply h-px w-12 bg-gradient-to-r from-transparent via-accent to-transparent;
+  }
+
+  .gold-line-wide {
+    @apply h-px w-24 bg-gradient-to-r from-accent via-accent/60 to-transparent;
+  }
+
+  .section-number {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-style: italic;
+    color: hsl(var(--accent) / 0.25);
+  }
+}

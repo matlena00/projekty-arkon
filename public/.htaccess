@@ -1,0 +1,26 @@
+# SPA fallback dla Apache (cPanel / DirectAdmin / typowy hosting współdzielony)
+# Każdy adres (np. /uslugi, /galeria, /blog/..., /admin) ma serwować index.html,
+# żeby routing React Router działał po wejściu bezpośrednim i po odświeżeniu.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Istniejące pliki i katalogi (assety: js, css, obrazy) serwuj normalnie
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Cała reszta → index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Lekki cache dla zasobów z hashem w nazwie (Vite hashuje pliki w /assets)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+</IfModule>
