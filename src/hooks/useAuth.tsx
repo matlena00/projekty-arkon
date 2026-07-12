@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 
 interface AuthContextValue {
   session: Session | null;
@@ -17,32 +17,47 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!supabase) {
+    if (!isSupabaseConfigured) {
       setLoading(false);
       return;
     }
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
+    let cancelled = false;
+    let subscription: { unsubscribe: () => void } | null = null;
+    getSupabase().then((client) => {
+      if (!client || cancelled) {
+        setLoading(false);
+        return;
+      }
+      client.auth.getSession().then(({ data }) => {
+        if (cancelled) return;
+        setSession(data.session);
+        setLoading(false);
+      });
+      const { data: sub } = client.auth.onAuthStateChange((_event, newSession) => {
+        if (!cancelled) setSession(newSession);
+      });
+      subscription = sub.subscription;
     });
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession);
-    });
-    return () => sub.subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      subscription?.unsubscribe();
+    };
   }, []);
 
   const signIn: AuthContextValue["signIn"] = async (email, password) => {
-    if (!supabase) return { error: "Supabase nie jest skonfigurowany (.env.local)." };
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const client = await getSupabase();
+    if (!client) return { error: "Supabase nie jest skonfigurowany (.env.local)." };
+    const { error } = await client.auth.signInWithPassword({ email, password });
     return { error: error ? error.message : null };
   };
 
   const signOut = async () => {
-    if (supabase) await supabase.auth.signOut();
+    const client = await getSupabase();
+    if (client) await client.auth.signOut();
   };
 
   return (
-    <AuthContext.Provider value={{ session, loading, configured: Boolean(supabase), signIn, signOut }}>
+    <AuthContext.Provider value={{ session, loading, configured: isSupabaseConfigured, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

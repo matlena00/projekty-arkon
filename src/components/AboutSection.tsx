@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, Heart, Handshake, Clock } from "lucide-react";
 import { useRef } from "react";
-import aboutImg from "@/assets/about-terrace.webp";
+import aboutImg from "@/assets/about-terrace-thumb.webp";
 
 const values = [
   { icon: Award, title: "Kompleksowo i solidnie", desc: "Zapewniamy kompleksowe podejście do każdego projektu od A do Z." },
@@ -33,6 +33,8 @@ const AboutSection = () => {
               alt="Wizualizacja domu ArKon"
               className="w-full h-full object-cover"
               style={{ y: imgY, scale: imgScale }}
+              loading="lazy"
+              decoding="async"
             />
           </motion.div>
 

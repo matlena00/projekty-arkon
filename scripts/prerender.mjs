@@ -108,7 +108,35 @@ async function main() {
           for (const s of slugs) if (!done.has(s) && !queue.includes(s)) queue.push(s);
         }
 
-        const html = await page.content();
+        // Zdejmij "zamrożone" stany animacji framer-motion (opacity<1 + transform),
+        // żeby treść w snapshotcie była widoczna bez JS. Po hydracji animacje i tak
+        // odpalą się od nowa po stronie klienta.
+        await page.evaluate(() => {
+          document.querySelectorAll("[style]").forEach((el) => {
+            const st = el.style;
+            const op = parseFloat(st.opacity);
+            if (!Number.isNaN(op) && op < 1) {
+              st.removeProperty("opacity");
+              st.removeProperty("transform");
+              if (!el.getAttribute("style")) el.removeAttribute("style");
+            }
+          });
+        });
+
+        let html = await page.content();
+
+        // Preload hero dotyczy tylko strony głównej (i nagłówka /uslugi, który używa
+        // pełnego wariantu niezależnie od szerokości) — na pozostałych trasach usuwamy,
+        // żeby nie pobierać ~90KB nieużywanego obrazu.
+        const heroPreloadRe = /\s*<link rel="preload" as="image"[^>]*hero-night[^>]*>/g;
+        if (route === "/uslugi") {
+          const full = (html.match(heroPreloadRe) || []).find((l) => !l.includes("hero-night-mobile"));
+          html = html.replace(heroPreloadRe, "");
+          if (full) html = html.replace("</title>", `</title>${full.replace(/ media="[^"]*"/, "")}`);
+        } else if (route !== "/") {
+          html = html.replace(heroPreloadRe, "");
+        }
+
         writeFileSync(outPath(route), html, "utf8");
         console.log(`[prerender] ✓ ${route}`);
       } catch (e) {

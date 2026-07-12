@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -14,6 +14,17 @@ if (!isSupabaseConfigured) {
   );
 }
 
-export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(url as string, anonKey as string)
-  : null;
+// Klient ładowany dynamicznie, żeby ~55KB gz biblioteki nie blokowało
+// pierwszego renderu — chunk supabase pobiera się dopiero przy pierwszym
+// zapytaniu CMS (albo wcale, gdy klucze nie są skonfigurowane).
+let clientPromise: Promise<SupabaseClient | null> | null = null;
+
+export function getSupabase(): Promise<SupabaseClient | null> {
+  if (!isSupabaseConfigured) return Promise.resolve(null);
+  if (!clientPromise) {
+    clientPromise = import("@supabase/supabase-js").then(({ createClient }) =>
+      createClient(url as string, anonKey as string)
+    );
+  }
+  return clientPromise;
+}

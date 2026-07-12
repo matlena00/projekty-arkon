@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 import type { Project, ProjectImage, Post } from "./types";
 
 const REALIZACJE_BUCKET = "realizacje";
@@ -10,8 +10,9 @@ const BLOG_BUCKET = "blog";
 // ============================================================
 
 export async function fetchPublishedProjects(): Promise<Project[]> {
-  if (!supabase) return [];
-  const { data, error } = await supabase
+  const db = await getSupabase();
+  if (!db) return [];
+  const { data, error } = await db
     .from("projekty")
     .select("*, zdjecia:projekt_zdjecia(*)")
     .eq("published", true)
@@ -21,8 +22,9 @@ export async function fetchPublishedProjects(): Promise<Project[]> {
 }
 
 export async function fetchPublishedPosts(): Promise<Post[]> {
-  if (!supabase) return [];
-  const { data, error } = await supabase
+  const db = await getSupabase();
+  if (!db) return [];
+  const { data, error } = await db
     .from("wpisy")
     .select("*")
     .eq("published", true)
@@ -32,8 +34,9 @@ export async function fetchPublishedPosts(): Promise<Post[]> {
 }
 
 export async function fetchPostBySlug(slug: string): Promise<Post | null> {
-  if (!supabase) return null;
-  const { data, error } = await supabase.from("wpisy").select("*").eq("slug", slug).maybeSingle();
+  const db = await getSupabase();
+  if (!db) return null;
+  const { data, error } = await db.from("wpisy").select("*").eq("slug", slug).maybeSingle();
   if (error) throw error;
   return (data as Post) ?? null;
 }
@@ -43,7 +46,7 @@ export async function fetchPostBySlug(slug: string): Promise<Post | null> {
 // ============================================================
 
 export async function fetchAllProjects(): Promise<Project[]> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { data, error } = await db
     .from("projekty")
     .select("*, zdjecia:projekt_zdjecia(*)")
@@ -53,7 +56,7 @@ export async function fetchAllProjects(): Promise<Project[]> {
 }
 
 export async function fetchAllPosts(): Promise<Post[]> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { data, error } = await db.from("wpisy").select("*").order("data_publikacji", { ascending: false });
   if (error) throw error;
   return (data ?? []) as Post[];
@@ -72,7 +75,7 @@ export interface ProjectInput {
 }
 
 export async function createProject(input: ProjectInput): Promise<Project> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { data, error } = await db
     .from("projekty")
     .insert(input)
@@ -83,13 +86,13 @@ export async function createProject(input: ProjectInput): Promise<Project> {
 }
 
 export async function updateProject(id: string, input: Partial<ProjectInput>): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { error } = await db.from("projekty").update(input).eq("id", id);
   if (error) throw error;
 }
 
 export async function deleteProject(id: string): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { data: imgs } = await db.from("projekt_zdjecia").select("url").eq("projekt_id", id);
   const paths = (imgs ?? [])
     .map((i: { url: string }) => storagePathFromUrl(i.url, REALIZACJE_BUCKET))
@@ -100,7 +103,7 @@ export async function deleteProject(id: string): Promise<void> {
 }
 
 export async function uploadProjectImage(projektId: string, file: File): Promise<ProjectImage> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const path = `${projektId}/${Date.now()}-${sanitizeFileName(file.name)}`;
   const { error: upErr } = await db.storage.from(REALIZACJE_BUCKET).upload(path, file, { upsert: false });
   if (upErr) throw upErr;
@@ -115,7 +118,7 @@ export async function uploadProjectImage(projektId: string, file: File): Promise
 }
 
 export async function deleteProjectImage(image: ProjectImage): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const path = storagePathFromUrl(image.url, REALIZACJE_BUCKET);
   if (path) await db.storage.from(REALIZACJE_BUCKET).remove([path]);
   const { error } = await db.from("projekt_zdjecia").delete().eq("id", image.id);
@@ -123,7 +126,7 @@ export async function deleteProjectImage(image: ProjectImage): Promise<void> {
 }
 
 export async function setCoverImage(projektId: string, imageId: string): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   await db.from("projekt_zdjecia").update({ is_cover: false }).eq("projekt_id", projektId);
   const { error } = await db.from("projekt_zdjecia").update({ is_cover: true }).eq("id", imageId);
   if (error) throw error;
@@ -147,26 +150,26 @@ export interface PostInput {
 }
 
 export async function createPost(input: PostInput): Promise<Post> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { data, error } = await db.from("wpisy").insert(input).select().single();
   if (error) throw error;
   return data as Post;
 }
 
 export async function updatePost(id: string, input: Partial<PostInput>): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { error } = await db.from("wpisy").update(input).eq("id", id);
   if (error) throw error;
 }
 
 export async function deletePost(id: string): Promise<void> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const { error } = await db.from("wpisy").delete().eq("id", id);
   if (error) throw error;
 }
 
 export async function uploadBlogImage(file: File): Promise<string> {
-  const db = requireSupabase();
+  const db = await requireSupabase();
   const path = `${Date.now()}-${sanitizeFileName(file.name)}`;
   const { error } = await db.storage.from(BLOG_BUCKET).upload(path, file, { upsert: false });
   if (error) throw error;
@@ -177,9 +180,10 @@ export async function uploadBlogImage(file: File): Promise<string> {
 //  HELPERY
 // ============================================================
 
-function requireSupabase(): SupabaseClient {
-  if (!supabase) throw new Error("Supabase nie jest skonfigurowany — uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.");
-  return supabase;
+async function requireSupabase(): Promise<SupabaseClient> {
+  const db = await getSupabase();
+  if (!db) throw new Error("Supabase nie jest skonfigurowany — uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.");
+  return db;
 }
 
 function withSortedImages(projects: Project[]): Project[] {

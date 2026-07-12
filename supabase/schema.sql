@@ -3,7 +3,13 @@
 --  Jak użyć:
 --   1. Supabase Dashboard → SQL Editor → New query → wklej całość → Run
 --   2. Authentication → Users → Add user → utwórz konto admina (e-mail + hasło)
---      (publiczna rejestracja jest wyłączona — admina dodaje się tylko tutaj)
+--   2a. WAŻNE (bezpieczeństwo): Authentication → Sign In / Up → wyłącz
+--      "Allow new users to sign up". Polityki RLS dają prawo zapisu KAŻDEMU
+--      zalogowanemu, a klucz anon jest publiczny — przy włączonej rejestracji
+--      dowolna osoba mogłaby założyć konto i edytować treści!
+--      (Opcjonalne zaostrzenie: ogranicz zapis do konkretnego e-maila,
+--      zamieniając w politykach "to authenticated using (true)" na
+--      using (auth.jwt() ->> 'email' = 'twoj-admin@email.pl').)
 --   3. Project Settings → API → skopiuj "Project URL" i "anon public" key
 --      i prześlij je deweloperowi (trafią do .env.local). NIE wysyłaj service_role.
 -- =============================================================

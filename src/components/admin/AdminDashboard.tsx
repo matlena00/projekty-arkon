@@ -73,6 +73,9 @@ const AdminDashboard = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [editedPost, setEditedPost] = useState<Post | null>(null);
   const [postForm, setPostForm] = useState<PostInput | null>(null);
+  // Tekst pola "Tagi" trzymamy osobno — parsowanie split(",") przy każdym znaku
+  // uniemożliwiałoby wpisanie przecinka (kontrolowany input by go "zjadał").
+  const [tagiText, setTagiText] = useState("");
 
   const [busy, setBusy] = useState(false);
 
@@ -181,13 +184,14 @@ const AdminDashboard = () => {
       toast.error("Tytuł i adres (slug) są wymagane");
       return;
     }
+    const payload = { ...postForm, tagi: tagiText.split(",").map((t) => t.trim()).filter(Boolean) };
     setBusy(true);
     try {
       if (editedPost) {
-        await updatePost(editedPost.id, postForm);
+        await updatePost(editedPost.id, payload);
         toast.success("Zapisano zmiany");
       } else {
-        await createPost(postForm);
+        await createPost(payload);
         toast.success("Utworzono wpis");
       }
       await reloadPosts();
@@ -227,6 +231,7 @@ const AdminDashboard = () => {
 
   const openPostForm = (p: Post | null) => {
     setEditedPost(p);
+    setTagiText((p?.tagi ?? []).join(", "));
     setPostForm(
       p
         ? {
@@ -561,13 +566,8 @@ const AdminDashboard = () => {
                     <label className={labelCls}>Tagi (po przecinku)</label>
                     <input
                       className={inputCls}
-                      value={postForm.tagi.join(", ")}
-                      onChange={(e) =>
-                        setPostForm({
-                          ...postForm,
-                          tagi: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
-                        })
-                      }
+                      value={tagiText}
+                      onChange={(e) => setTagiText(e.target.value)}
                     />
                   </div>
                 </div>
