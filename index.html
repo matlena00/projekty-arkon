@@ -3,31 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Tytuł/opis/canonical oraz zmienne OG ustawia per-podstrona react-helmet-async (komponent <Seo/>). Poniżej tylko wartości stałe/domyślne. -->
     <title>ArKon - Biuro Projektowe | Architektura i Konstrukcja</title>
     <meta name="author" content="Biuro Projektowe ArKon" />
 
-    <!-- Google Tag Manager — podmień GTM-XXXXXXX na ID swojego kontenera -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-XXXXXXX");
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TCSHD868');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- Preload obrazu hero (LCP) — media identyczne jak <picture> w HeroSection;
-         Vite podmienia ścieżki na zhashowane przy budowaniu -->
     <link rel="preload" as="image" href="/src/assets/hero-night-mobile.webp" media="(max-width: 640px)" />
     <link rel="preload" as="image" href="/src/assets/hero-night.webp" media="(min-width: 641px)" />
 
-    <!-- Fonty: preconnect + jeden arkusz z przyciętymi wagami (zamiast @import w CSS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,7 +24,6 @@
       rel="stylesheet"
     />
 
-    <!-- Stałe Open Graph / Twitter (zmienne per-strona dokłada <Seo/>) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Biuro Projektowe ArKon" />
     <meta property="og:locale" content="pl_PL" />
@@ -47,7 +35,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://projekty-arkon.pl/og-image.png" />
 
-    <!-- Globalne dane strukturalne: WebSite + LocalBusiness (SEO lokalne) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -122,15 +109,9 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) — podmień GTM-XXXXXXX jak wyżej -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCSHD868"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
