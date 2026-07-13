@@ -4,7 +4,7 @@ const partners = [
   { name: "ARCHETON", style: "font-display font-800 tracking-[0.15em] text-xl md:text-2xl" },
   { name: "archon+", style: "font-serif italic font-light text-2xl md:text-3xl" },
   { name: "dom.pl", style: "font-display font-700 text-xl md:text-2xl lowercase" },
-  { name: "HomeCONCEPT", style: "font-body font-300 tracking-[0.2em] text-lg md:text-xl uppercase" },
+  { name: "homekoncept", style: "font-body font-300 tracking-[0.2em] text-lg md:text-xl uppercase" },
   { name: "murator.pl", style: "font-display font-800 text-xl md:text-2xl" },
 ];
 
