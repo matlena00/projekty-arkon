@@ -6,18 +6,13 @@ import lukaszPhoto from "@/assets/team/lukasz-thumb.webp";
 import annaPhoto from "@/assets/team/anna-thumb.webp";
 import paulinaPhoto from "@/assets/team/paulina-thumb.webp";
 import katarzynaObierzynskaPhoto from "@/assets/team/katarzyna-obierzynska-thumb.webp";
-import klaudiaPhoto from "@/assets/team/klaudia-thumb.webp";
-import katarzynaJaniczekPhoto from "@/assets/team/katarzyna-janiczek-thumb.webp";
-import krzysztofPhoto from "@/assets/team/krzysztof-thumb.webp";
 
+// Strona główna pokazuje tylko pierwsze 4 osoby — pełna lista jest na /o-nas (AboutPage).
 const team = [
   { name: "Łukasz Matlęga", role: "Właściciel", photo: lukaszPhoto },
   { name: "Anna Odroniec", role: "Kierownik Biura", photo: annaPhoto },
   { name: "Katarzyna Obierzyńska", role: "Główny Architekt", photo: katarzynaObierzynskaPhoto },
   { name: "Paulina Matlęga", role: "Młodszy Architekt", photo: paulinaPhoto },
-  { name: "Klaudia Ziaja", role: "Architekt", photo: klaudiaPhoto },
-  { name: "Katarzyna Janiczek", role: "Specjalista ds. PZT", photo: katarzynaJaniczekPhoto },
-  { name: "Krzysztof Grabias", role: "Geodeta", photo: krzysztofPhoto },
 ];
 
 const TeamSection = () => (
