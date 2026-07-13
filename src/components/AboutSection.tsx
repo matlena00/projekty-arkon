@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, Heart, Handshake, Clock } from "lucide-react";
 import { useRef } from "react";
-import aboutImg from "@/assets/about-terrace-thumb.webp";
+import aboutImg from "@/assets/about-osiedle.webp";
+import aboutImgThumb from "@/assets/about-osiedle-thumb.webp";
 
 const values = [
   { icon: Award, title: "Kompleksowo i solidnie", desc: "Zapewniamy kompleksowe podejście do każdego projektu od A do Z." },
@@ -30,7 +31,9 @@ const AboutSection = () => {
           >
             <motion.img
               src={aboutImg}
-              alt="Wizualizacja domu ArKon"
+              srcSet={`${aboutImgThumb} 900w, ${aboutImg} 1920w`}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              alt="Wizualizacja osiedla ArKon"
               className="w-full h-full object-cover"
               style={{ y: imgY, scale: imgScale }}
               loading="lazy"
