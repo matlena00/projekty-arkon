@@ -16,11 +16,11 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 // Klucz Web3Forms (publiczny — jak klucz anon trafia do front-endu).
-// Domyślny powiązany z biuro@projekty-arkon.pl; można nadpisać przez .env.local.
+// Klucz z konta właściciela, powiązany z biuro@projekty-arkon.pl; można nadpisać przez .env.local.
 // Uwaga: `||` zamiast `??` — pusta wartość w .env.local też ma użyć domyślnego klucza.
 const ACCESS_KEY =
   (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined)?.trim() ||
-  "ca8a3741-28e6-4f0b-9da3-344fbe11d5ae";
+  "6d788105-daef-44e4-9649-4e0cb7f4af85";
 
 const inputBase =
   "w-full bg-background border border-border/50 px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition-colors";
