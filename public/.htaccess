@@ -24,3 +24,16 @@
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
 </IfModule>
+
+<IfModule mod_headers.c>
+  # HTML (w tym prerenderowane podstrony) NIGDY nie może być cache'owany długo —
+  # inaczej po wdrożeniu przeglądarki trzymają stare strony wskazujące na stare
+  # pliki JS i użytkownicy widzą nieaktualną wersję (albo błędy).
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Zasoby z hashem w nazwie — rok + immutable
+  <FilesMatch "\.(js|css|webp|png|jpe?g|svg|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
