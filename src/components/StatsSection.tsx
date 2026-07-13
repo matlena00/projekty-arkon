@@ -2,10 +2,9 @@ import { motion, useInView, useMotionValue, useTransform, animate } from "framer
 import { useRef, useEffect, useState } from "react";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Zrealizowanych zleceń" },
-  { value: 300, suffix: "+", label: "Pozwoleń na budowę" },
+  { value: 600, suffix: "+", label: "Zrealizowanych zleceń" },
+  { value: 350, suffix: "+", label: "Pozwoleń na budowę" },
   { value: 8, suffix: "", label: "Lat doświadczenia" },
-  { value: 500, suffix: "+", label: "Zadowolonych klientów" },
   { value: 250, suffix: "+", label: "Budów pod nadzorem" },
 ];
 
@@ -50,7 +49,7 @@ const StatsSection = () => {
           <h2 className="heading-display text-primary-foreground text-2xl md:text-3xl">Nasze doświadczenie</h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -58,7 +57,7 @@ const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`text-center ${i === stats.length - 1 ? "col-span-2 lg:col-span-1" : ""}`}
+              className="text-center"
             >
               <AnimatedNumber value={stat.value} suffix={stat.suffix} inView={inView} />
               <div className="gold-line-wide mx-auto mt-4 mb-3" />
