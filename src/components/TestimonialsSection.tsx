@@ -3,7 +3,8 @@ import { Star, Award, Quote } from "lucide-react";
 
 // Ocena i liczba opinii (Google) — aktualizuj okresowo.
 const RATING = "5,0";
-const REVIEW_COUNT = 70;
+const REVIEW_COUNT = 71;
+const GOOGLE_PROFILE_URL = "https://share.google/F1YgSEUiCP3j0a6W0";
 
 const testimonials = [
   {
@@ -58,7 +59,7 @@ const TestimonialsSection = () => (
         <div className="flex items-center gap-3">
           <Stars />
           <span className="text-primary-foreground font-display font-700 text-lg">{RATING}</span>
-          <span className="text-concrete text-sm">na podstawie {REVIEW_COUNT} opinii</span>
+          <span className="text-concrete text-sm">na podstawie {REVIEW_COUNT} opinii Google</span>
         </div>
         <span className="hidden sm:block w-px h-8 bg-concrete/20" />
         <div className="flex items-center gap-2.5 text-primary-foreground">
@@ -91,6 +92,25 @@ const TestimonialsSection = () => (
           </motion.figure>
         ))}
       </div>
+
+      {/* Link do wizytówki Google */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mt-12 md:mt-14"
+      >
+        <a
+          href={GOOGLE_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+        >
+          <Star size={18} className="fill-accent text-accent" />
+          Zobacz wszystkie opinie w Google
+        </a>
+      </motion.div>
     </div>
   </section>
 );

@@ -33,8 +33,13 @@ const HomeLightboxGallery = () => {
   const [paused, setPaused] = useState(false);
 
   const { data: projects = [] } = useQuery({ queryKey: ["public-projects"], queryFn: fetchPublishedProjects });
+  // Po jednym zdjęciu głównym (cover — sortowane jako pierwsze) z każdej realizacji, max 6 slajdów.
   const cmsImages = useMemo(
-    () => projects.flatMap((p) => p.zdjecia.map((z) => ({ src: z.url, thumb: z.url, title: p.tytul }))).slice(0, 8),
+    () =>
+      projects
+        .filter((p) => p.zdjecia.length > 0)
+        .slice(0, 6)
+        .map((p) => ({ src: p.zdjecia[0].url, thumb: p.zdjecia[0].url, title: p.tytul })),
     [projects]
   );
   const images = cmsImages.length > 0 ? cmsImages : fallbackImages;

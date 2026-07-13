@@ -26,7 +26,7 @@ const contactInfo = [
     icon: Mail,
     label: "Napisz Do Nas Maila",
     type: "mail",
-    lines: ["biuro.arkon.projekty@gmail.com"],
+    lines: ["biuro@projekty-arkon.pl"],
   },
   {
     icon: Clock,

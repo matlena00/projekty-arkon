@@ -4,7 +4,7 @@ import { Phone, Mail } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const PHONE = "+48888899366";
-const EMAIL = "biuro.arkon.projekty@gmail.com";
+const EMAIL = "biuro@projekty-arkon.pl";
 
 /**
  * Pasek kontaktowy widoczny tylko na mobile.

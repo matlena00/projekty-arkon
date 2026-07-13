@@ -1,26 +1,24 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CalendarDays, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
-import officeLobby from "@/assets/office-lobby-thumb.webp";
-import officeReception from "@/assets/office-reception-thumb.webp";
-import officeDesk from "@/assets/office-desk-thumb.webp";
-import officeReal2 from "@/assets/office-real-2-thumb.webp";
-import biuro from "@/assets/biuro01-thumb.webp";
+import biuro01 from "@/assets/biuro01.webp";
+import biuro01Thumb from "@/assets/biuro01-thumb.webp";
+import biuro02 from "@/assets/biuro02.webp";
+import biuro02Thumb from "@/assets/biuro02-thumb.webp";
 
-// Największy kafelek (2x2) to zdjęcie biura (src/assets/biuro01.jpg).
-const images: { src: string; alt: string; span: string }[] = [
-  { src: biuro, alt: "Biuro ArKon", span: "col-span-2 row-span-2" },
-  { src: officeLobby, alt: "Lobby biura ArKon", span: "col-span-1 row-span-1" },
-  { src: officeReception, alt: "Recepcja ArKon", span: "col-span-1 row-span-1" },
-  { src: officeReal2, alt: "Recepcja biura", span: "col-span-1 row-span-1" },
-  { src: officeDesk, alt: "Stanowisko pracy", span: "col-span-1 row-span-1" },
-];
+const OfficeSection = () => {
+  // Parallax: dwa przesunięte względem siebie zdjęcia płyną w przeciwnych kierunkach.
+  const galleryRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: galleryRef, offset: ["start end", "end start"] });
+  const y1 = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
+  const y2 = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
 
-const OfficeSection = () => (
+  return (
   <>
     {/* Office Gallery */}
-    <section className="py-24 md:py-32 bg-warm-white">
+    <section className="py-24 md:py-32 bg-warm-white overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -40,23 +38,43 @@ const OfficeSection = () => (
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[180px] md:auto-rows-[220px]">
-          {images.map((img, i) => (
-            <motion.div
-              key={img.alt}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`${img.span} overflow-hidden group`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </motion.div>
-          ))}
+        <div ref={galleryRef} className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            style={{ y: y1 }}
+            className="md:w-[62%]"
+          >
+            <img
+              src={biuro01}
+              srcSet={`${biuro01Thumb} 900w, ${biuro01} 1920w`}
+              sizes="(min-width: 768px) 62vw, 100vw"
+              alt="Recepcja biura ArKon"
+              className="w-full aspect-[4/3] object-cover shadow-xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            style={{ y: y2 }}
+            className="mt-6 md:w-[55%] md:ml-auto md:-mt-[23%] relative z-10"
+          >
+            <img
+              src={biuro02}
+              srcSet={`${biuro02Thumb} 900w, ${biuro02} 1920w`}
+              sizes="(min-width: 768px) 55vw, 100vw"
+              alt="Zespół ArKon przy pracy w biurze"
+              className="w-full aspect-[4/3] object-cover shadow-2xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
         </div>
       </div>
     </section>
@@ -152,6 +170,7 @@ const OfficeSection = () => (
       </div>
     </section>
   </>
-);
+  );
+};
 
 export default OfficeSection;

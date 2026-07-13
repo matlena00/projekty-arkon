@@ -32,7 +32,7 @@ const ContactSection = () => (
             icon: Mail,
             label: "Napisz do nas",
             type: "mail",
-            lines: ["biuro.arkon.projekty@gmail.com"],
+            lines: ["biuro@projekty-arkon.pl"],
           },
           {
             icon: MapPin,

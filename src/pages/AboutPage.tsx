@@ -17,7 +17,7 @@ import officeDesk from "@/assets/office-desk-thumb.webp";
 import teamGroup from "@/assets/team-group.webp";
 import lukaszPhoto from "@/assets/team/lukasz-thumb.webp";
 import annaPhoto from "@/assets/team/anna-thumb.webp";
-import justynaPhoto from "@/assets/team/justyna-thumb.webp";
+import paulinaPhoto from "@/assets/team/paulina-thumb.webp";
 import katarzynaObierzynskaPhoto from "@/assets/team/katarzyna-obierzynska-thumb.webp";
 import klaudiaPhoto from "@/assets/team/klaudia-thumb.webp";
 import katarzynaJaniczekPhoto from "@/assets/team/katarzyna-janiczek-thumb.webp";
@@ -41,7 +41,7 @@ const team = [
   { name: "Łukasz Matlęga", role: "Właściciel", photo: lukaszPhoto },
   { name: "Anna Odroniec", role: "Kierownik Biura", photo: annaPhoto },
   { name: "Katarzyna Obierzyńska", role: "Główny Architekt", photo: katarzynaObierzynskaPhoto },
-  { name: "Justyna Nieć", role: "Obsługa Projektowa", photo: justynaPhoto },
+  { name: "Paulina Matlęga", role: "Młodszy Architekt", photo: paulinaPhoto },
   { name: "Klaudia Ziaja", role: "Architekt", photo: klaudiaPhoto },
   { name: "Katarzyna Janiczek", role: "Specjalista ds. PZT", photo: katarzynaJaniczekPhoto },
   { name: "Krzysztof Grabias", role: "Geodeta", photo: krzysztofPhoto },
