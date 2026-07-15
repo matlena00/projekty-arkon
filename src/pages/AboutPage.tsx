@@ -187,11 +187,10 @@ const AboutPage = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`relative flex flex-col md:flex-row items-center gap-6 mb-12 ${
-                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              className="relative flex flex-col md:flex-row items-center gap-6 mb-12"
             >
-              <div className="md:w-1/2 text-right md:pr-12">
+              {/* Desktop: treść naprzemiennie po jednej stronie osi */}
+              <div className="hidden md:block md:w-1/2 text-right md:pr-12">
                 {i % 2 === 0 && (
                   <div>
                     <span className="text-accent font-display font-800 text-lg">{item.year}</span>
@@ -200,22 +199,18 @@ const AboutPage = () => (
                 )}
               </div>
               <div className="w-4 h-4 bg-accent rounded-full z-10 shrink-0 hidden md:block" />
-              <div className="md:w-1/2 md:pl-12">
+              <div className="hidden md:block md:w-1/2 md:pl-12">
                 {i % 2 !== 0 && (
                   <div>
                     <span className="text-accent font-display font-800 text-lg">{item.year}</span>
                     <p className="text-muted-foreground mt-2 text-sm">{item.text}</p>
                   </div>
                 )}
-                {i % 2 === 0 && <div className="hidden md:block" />}
               </div>
+              {/* Mobile: pojedyncza wyśrodkowana kolumna */}
               <div className="md:hidden text-center">
-                {i % 2 !== 0 && (
-                  <>
-                    <span className="text-accent font-display font-800 text-lg">{item.year}</span>
-                    <p className="text-muted-foreground mt-2 text-sm">{item.text}</p>
-                  </>
-                )}
+                <span className="text-accent font-display font-800 text-lg">{item.year}</span>
+                <p className="text-muted-foreground mt-2 text-sm">{item.text}</p>
               </div>
             </motion.div>
           ))}
