@@ -25,6 +25,7 @@ import justynaPhoto from "@/assets/team/justyna-thumb.webp";
 import sylwiaPhoto from "@/assets/team/sylwia-thumb.webp";
 import annaMatlegaPhoto from "@/assets/team/anna-matlega-thumb.webp";
 import paulinaWrochniakPhoto from "@/assets/team/paulina-wrochniak-thumb.webp";
+import juliaPhoto from "@/assets/team/julia-thumb.webp";
 import martynaPhoto from "@/assets/team/martyna-thumb.webp";
 import krzysztofPhoto from "@/assets/team/krzysztof-thumb.webp";
 
@@ -51,8 +52,7 @@ const team = [
   { name: "Justyna Pałka", role: "Konstruktor", photo: justynaPhoto },
   { name: "Sylwia Pietras", role: "Projektant", photo: sylwiaPhoto },
   { name: "Klaudia Ziaja", role: "Projektant", photo: klaudiaPhoto },
-  // Julia tymczasowo ze zdjęciem Pauliny (do czasu dostarczenia własnego)
-  { name: "Julia Matlęga", role: "Młodszy Architekt", photo: paulinaPhoto },
+  { name: "Julia Matlęga", role: "Młodszy Architekt", photo: juliaPhoto },
   { name: "Anna Matlęga", role: "Specjalista ds. księgowości", photo: annaMatlegaPhoto },
   { name: "Paulina Wrochniak", role: "Asystent Projektanta", photo: paulinaWrochniakPhoto },
   { name: "Martyna Kępa", role: "Asystent Projektanta", photo: martynaPhoto },
