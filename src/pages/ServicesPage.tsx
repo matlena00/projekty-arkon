@@ -15,6 +15,7 @@ const services = [
   {
     icon: Compass,
     title: "Projekty indywidualne",
+    href: "/uslugi/projekty-indywidualne",
     short: "Tworzymy unikalne projekty od podstaw, dopasowane do Twoich potrzeb, charakteru działki i otoczenia. Od pierwszej koncepcji po fotorealistyczną wizualizację — każdy detal jest przemyślany.",
     details: [
       { name: "Koncepcja", desc: "Opracowujemy wstępną koncepcję projektu, uwzględniając Twoje potrzeby, budżet i możliwości działki. Analizujemy warunki zabudowy i plan miejscowy, aby zaproponować optymalne rozwiązanie." },
@@ -27,6 +28,7 @@ const services = [
   {
     icon: FileCheck,
     title: "Adaptacje projektów",
+    href: "/uslugi/adaptacja-projektu",
     short: "Posiadasz już projekt gotowy? Dostosujemy go do Twojej działki, przepisów lokalnych i indywidualnych preferencji. Oferujemy również sprzedaż sprawdzonych projektów katalogowych.",
     details: [
       { name: "Adaptacja projektów gotowych", desc: "Dostosowujemy projekty typowe do warunków lokalnych, strefy klimatycznej, warunków gruntowo-wodnych i przepisów planu miejscowego. Dbamy o zgodność z obowiązującymi normami." },
@@ -61,6 +63,7 @@ const services = [
   {
     icon: HardHat,
     title: "Nadzór budowy",
+    href: "/uslugi/kierownik-budowy",
     short: "Wieloletnie doświadczenie na placach budowy pozwala nam skutecznie nadzorować realizację inwestycji. Zapewniamy kierownika budowy, inspektora nadzoru oraz profesjonalne doradztwo.",
     details: [
       { name: "Kierownik budowy", desc: "Dzięki wieloletniemu doświadczeniu potrafimy zaplanować prawidłową realizację inwestycji i pilnować harmonogramu. Sprawdzamy jakość robót i zgodność z projektem." },
@@ -117,9 +120,10 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
+const ServiceCard = ({ service, index }: { service: (typeof services)[number]; index: number }) => {
   const [expanded, setExpanded] = useState(false);
   const num = String(index + 1).padStart(2, "0");
+  const href = "href" in service ? service.href : undefined;
 
   return (
     <motion.div
@@ -144,6 +148,16 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
             <div>
               <h3 className="font-display font-700 text-lg md:text-xl text-foreground mb-2">{service.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{service.short}</p>
+              {href && (
+                <Link
+                  to={href}
+                  onClick={(e) => e.stopPropagation()}
+                  className="mt-3 inline-flex items-center gap-2 text-accent text-sm font-semibold uppercase tracking-wider hover:gap-3 transition-all"
+                >
+                  Zobacz stronę usługi
+                  <ArrowRight size={15} />
+                </Link>
+              )}
             </div>
           </div>
           <motion.div

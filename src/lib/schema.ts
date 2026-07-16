@@ -29,6 +29,24 @@ export const webPageLd = (opts: { type?: string; name: string; path: string; des
   inLanguage: "pl-PL",
 });
 
+/** Miejscowości obsługiwane przez biuro — używane w areaServed stron usługowych/lokalnych. */
+export const AREA_CITIES = ["Bochnia", "Limanowa", "Brzesko", "Wieliczka", "Gdów", "Żegocina"];
+
+export const serviceLd = (opts: {
+  name: string;
+  description: string;
+  path: string;
+  areaServed?: string[];
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: opts.name,
+  description: opts.description,
+  url: abs(opts.path),
+  provider: { "@id": ORG_ID },
+  areaServed: (opts.areaServed ?? AREA_CITIES).map((name) => ({ "@type": "City", name })),
+});
+
 export const faqLd = (faqs: { q: string; a: string }[]) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",

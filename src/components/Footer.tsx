@@ -4,7 +4,7 @@ import logoWhite from "@/assets/logo-white.png";
 const Footer = () => (
   <footer className="bg-charcoal py-16">
     <div className="section-padding max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
         <div className="md:col-span-1">
           <Link to="/">
             <img src={logoWhite} alt="ArKon Logo" className="h-10 mb-4" />
@@ -43,14 +43,26 @@ const Footer = () => (
         <div>
           <h5 className="font-display font-700 text-primary-foreground mb-4 text-sm uppercase tracking-wider">Usługi</h5>
           <div className="space-y-2 text-concrete text-sm">
-            <p>Projekty indywidualne</p>
-            <p>Adaptacje projektów</p>
+            <Link to="/uslugi/projekty-indywidualne" className="block hover:text-accent transition-colors">Projekty indywidualne</Link>
+            <Link to="/uslugi/adaptacja-projektu" className="block hover:text-accent transition-colors">Adaptacje projektów</Link>
+            <Link to="/uslugi/kierownik-budowy" className="block hover:text-accent transition-colors">Kierownik budowy</Link>
             <p>Projekty branżowe</p>
             <p>Geodezja</p>
             <p>Nadzór budowy</p>
             <p>Obsługa inwestycji</p>
             <p>Projekty wnętrz</p>
             <p>Ekspertyzy i opinie</p>
+          </div>
+        </div>
+
+        <div>
+          <h5 className="font-display font-700 text-primary-foreground mb-4 text-sm uppercase tracking-wider">Obszar działania</h5>
+          <div className="space-y-2 text-concrete text-sm">
+            <Link to="/biuro-projektowe-bochnia" className="block hover:text-accent transition-colors">Bochnia</Link>
+            <Link to="/biuro-projektowe-limanowa" className="block hover:text-accent transition-colors">Limanowa</Link>
+            <Link to="/biuro-projektowe-brzesko" className="block hover:text-accent transition-colors">Brzesko</Link>
+            <Link to="/biuro-projektowe-wieliczka" className="block hover:text-accent transition-colors">Wieliczka</Link>
+            <Link to="/biuro-projektowe-gdow" className="block hover:text-accent transition-colors">Gdów</Link>
           </div>
         </div>
       </div>

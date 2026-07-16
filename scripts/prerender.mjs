@@ -20,7 +20,23 @@ const PORT = 4178;
 const ORIGIN = `http://localhost:${PORT}`;
 
 // Trasy startowe (bez /admin — to panel, nie treść). /blog/:slug dokrywane z linków.
-const ROUTES = ["/", "/o-nas", "/uslugi", "/galeria", "/blog", "/kontakt"];
+const ROUTES = [
+  "/",
+  "/o-nas",
+  "/uslugi",
+  "/uslugi/kierownik-budowy",
+  "/uslugi/adaptacja-projektu",
+  "/uslugi/projekty-indywidualne",
+  "/biuro-projektowe-bochnia",
+  "/biuro-projektowe-limanowa",
+  "/biuro-projektowe-brzesko",
+  "/biuro-projektowe-wieliczka",
+  "/biuro-projektowe-gdow",
+  "/galeria",
+  "/blog",
+  "/kontakt",
+  "/404", // trasa nie istnieje → renderuje NotFound; zapisywana jako dist/404.html (ErrorDocument)
+];
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -43,6 +59,8 @@ const MIME = {
 
 function outPath(route) {
   if (route === "/") return join(DIST, "index.html");
+  // Strona błędu dla Apache ErrorDocument (SEOHOST) — plik 404.html w katalogu głównym
+  if (route === "/404") return join(DIST, "404.html");
   const dir = join(DIST, route);
   mkdirSync(dir, { recursive: true });
   return join(dir, "index.html");

@@ -1,17 +1,29 @@
-# SPA fallback dla Apache (cPanel / DirectAdmin / typowy hosting współdzielony)
-# Każdy adres (np. /uslugi, /galeria, /blog/..., /admin) ma serwować index.html,
-# żeby routing React Router działał po wejściu bezpośrednim i po odświeżeniu.
+# Apache/LiteSpeed (SEOHOST). Strona jest w pełni prerenderowana — każda trasa ma
+# swój plik dist/<trasa>/index.html, więc NIE przepisujemy wszystkiego na index.html.
+# Nieistniejące adresy zwracają prawdziwy status 404 (fix soft-404 z audytu SEO).
+
+# Statyczna strona błędu (generowana przez prerender jako dist/404.html)
+ErrorDocument 404 /404.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Istniejące pliki i katalogi (assety: js, css, obrazy) serwuj normalnie
+  # --- 301: stare adresy z poprzedniej wersji strony (wiszą w indeksie Google) ---
+  RewriteRule ^projekty/?$ /uslugi [R=301,L]
+  RewriteRule ^kolejne-uslugi-dostepne/?$ /uslugi [R=301,L]
+
+  # --- Istniejące pliki i katalogi (prerender, assety) serwuj normalnie ---
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Cała reszta → index.html
-  RewriteRule ^ index.html [L]
+  # --- SPA fallback TYLKO dla treści dynamicznych (status 200 jest tu zamierzony) ---
+  # /admin — panel CMS; /blog/* — wpisy dodane w CMS po ostatnim buildzie
+  RewriteRule ^admin(/.*)?$ index.html [L]
+  RewriteRule ^blog/.+$ index.html [L]
+
+  # Cała reszta: brak pliku → Apache zwraca 404 + /404.html (ErrorDocument wyżej)
 </IfModule>
 
 # Lekki cache dla zasobów z hashem w nazwie (Vite hashuje pliki w /assets)

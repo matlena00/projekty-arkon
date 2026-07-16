@@ -20,6 +20,14 @@ const GalleryPage = lazy(() => import("./pages/GalleryPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Admin = lazy(() => import("./pages/Admin.tsx"));
 
+// Podstrony usługowe (SEO) — /uslugi/*
+const KierownikBudowyPage = lazy(() => import("./pages/uslugi/KierownikBudowyPage.tsx"));
+const AdaptacjaProjektuPage = lazy(() => import("./pages/uslugi/AdaptacjaProjektuPage.tsx"));
+const ProjektyIndywidualnePage = lazy(() => import("./pages/uslugi/ProjektyIndywidualnePage.tsx"));
+
+// Strony lokalne — wspólny szablon, treść per miasto w src/data/localPages.ts
+const LocalOfficePage = lazy(() => import("./pages/LocalOfficePage.tsx"));
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -34,6 +42,14 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/o-nas" element={<AboutPage />} />
           <Route path="/uslugi" element={<ServicesPage />} />
+          <Route path="/uslugi/kierownik-budowy" element={<KierownikBudowyPage />} />
+          <Route path="/uslugi/adaptacja-projektu" element={<AdaptacjaProjektuPage />} />
+          <Route path="/uslugi/projekty-indywidualne" element={<ProjektyIndywidualnePage />} />
+          <Route path="/biuro-projektowe-bochnia" element={<LocalOfficePage city="bochnia" />} />
+          <Route path="/biuro-projektowe-limanowa" element={<LocalOfficePage city="limanowa" />} />
+          <Route path="/biuro-projektowe-brzesko" element={<LocalOfficePage city="brzesko" />} />
+          <Route path="/biuro-projektowe-wieliczka" element={<LocalOfficePage city="wieliczka" />} />
+          <Route path="/biuro-projektowe-gdow" element={<LocalOfficePage city="gdow" />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
