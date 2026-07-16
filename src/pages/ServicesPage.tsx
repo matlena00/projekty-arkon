@@ -123,7 +123,6 @@ const services = [
 const ServiceCard = ({ service, index }: { service: (typeof services)[number]; index: number }) => {
   const [expanded, setExpanded] = useState(false);
   const num = String(index + 1).padStart(2, "0");
-  const href = "href" in service ? service.href : undefined;
 
   return (
     <motion.div
@@ -148,16 +147,6 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[number]; i
             <div>
               <h3 className="font-display font-700 text-lg md:text-xl text-foreground mb-2">{service.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{service.short}</p>
-              {href && (
-                <Link
-                  to={href}
-                  onClick={(e) => e.stopPropagation()}
-                  className="mt-3 inline-flex items-center gap-2 text-accent text-sm font-semibold uppercase tracking-wider hover:gap-3 transition-all"
-                >
-                  Zobacz stronę usługi
-                  <ArrowRight size={15} />
-                </Link>
-              )}
             </div>
           </div>
           <motion.div
