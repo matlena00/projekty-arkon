@@ -17,6 +17,7 @@ const BlogPage = lazy(() => import("./pages/BlogPage.tsx"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage.tsx"));
 const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage.tsx"));
+const FaqPage = lazy(() => import("./pages/FaqPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Admin = lazy(() => import("./pages/Admin.tsx"));
 
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/biuro-projektowe-gdow" element={<LocalOfficePage city="gdow" />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/faq" element={<FaqPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
           <Route path="/galeria" element={<GalleryPage />} />
           <Route path="/admin" element={<Admin />} />

@@ -34,6 +34,7 @@ const ROUTES = [
   "/biuro-projektowe-gdow",
   "/galeria",
   "/blog",
+  "/faq",
   "/kontakt",
   "/404", // trasa nie istnieje → renderuje NotFound; zapisywana jako dist/404.html (ErrorDocument)
 ];

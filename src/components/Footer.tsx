@@ -25,6 +25,7 @@ const Footer = () => (
             <Link to="/uslugi" className="block hover:text-accent transition-colors">Usługi</Link>
             <Link to="/galeria" className="block hover:text-accent transition-colors">Galeria</Link>
             <Link to="/blog" className="block hover:text-accent transition-colors">Blog</Link>
+            <Link to="/faq" className="block hover:text-accent transition-colors">FAQ</Link>
             <Link to="/kontakt" className="block hover:text-accent transition-colors">Kontakt</Link>
           </div>
         </div>
