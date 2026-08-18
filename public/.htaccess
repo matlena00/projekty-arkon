@@ -9,9 +9,30 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
+  # --- Kanoniczny host: https + bez www, jednym skokiem 301 ---
+  # (http i www serwowały dotąd własne kopie strony — duplikaty dla Google)
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
   # --- 301: stare adresy z poprzedniej wersji strony (wiszą w indeksie Google) ---
   RewriteRule ^projekty/?$ /uslugi [R=301,L]
   RewriteRule ^kolejne-uslugi-dostepne/?$ /uslugi [R=301,L]
+
+  # --- Kanonicznie BEZ końcowego slasha (sitemapa, canonicale i linki są bez) ---
+  # Bez tych reguł mod_dir robił 301 /kontakt -> /kontakt/, przez co każdy adres
+  # z sitemapy kosztował Googlebota 2 żądania (drugie często kończyło się 429
+  # od limitera SEOHOST -> "błąd przekierowania" w GSC), a strona pod /kontakt/
+  # deklarowała canonical /kontakt, który przekierowywał z powrotem — błędne koło.
+
+  # a) wersję ze slashem przekieruj na kanoniczną bez slasha
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # b) adres bez slasha serwuj wprost z prerenderu — status 200, zero przekierowań
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+)$ $1/index.html [L]
 
   # --- Istniejące pliki i katalogi (prerender, assety) serwuj normalnie ---
   RewriteCond %{REQUEST_FILENAME} -f [OR]
