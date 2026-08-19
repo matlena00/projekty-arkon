@@ -35,11 +35,15 @@ const faqs = [
   },
   {
     q: "Ile trwa adaptacja i uzyskanie pozwolenia?",
-    a: "Sama adaptacja to zwykle 3–6 tygodni (najwięcej czasu zajmują dokumenty wyjściowe: mapa, warunki przyłączy). Urząd ma 65 dni na wydanie pozwolenia. Realnie od podpisania umowy do prawomocnego pozwolenia mija 2–4 miesiące.",
+    a: "Sama adaptacja to zwykle około dwóch miesięcy. Do czasu oczekiwania należy doliczyć czas potrzebny na wykonanie mapy czy uzyskanie warunków przyłączy — również około dwa miesiące. Urząd ma kolejne 65 dni na wydanie decyzji o pozwoleniu na budowę. Tak więc realnie należy zakładać około 6 miesięcy.",
+  },
+  {
+    q: "Czy można zakupić projekt w Waszym biurze?",
+    a: "Można, a nawet warto. Nasze biuro współpracuje z większością pracowni w Polsce, dlatego kupując projekt za naszym pośrednictwem możecie liczyć na dodatkowe rabaty.",
   },
   {
     q: "Jakie zmiany można wprowadzić w projekcie gotowym?",
-    a: "Większość: lustrzane odbicie, układ ścianek działowych, okna i drzwi, kąt dachu, podpiwniczenie, garaż, materiały. Zakres dopuszczalnych zmian określa autor projektu w zgodzie dołączonej do dokumentacji — sprawdzamy to przed zakupem projektu.",
+    a: "W zasadzie każdą zmianę jesteśmy w stanie wprowadzić: lustrzane odbicie, układ ścianek działowych, okna i drzwi, kąt dachu, podpiwniczenie, garaż, materiały. Przy dużych zmianach należy się jednak zastanowić, czy nie warto wybrać projektu indywidualnego.",
   },
   {
     q: "Czy każdy projekt z katalogu da się zaadaptować na mojej działce?",

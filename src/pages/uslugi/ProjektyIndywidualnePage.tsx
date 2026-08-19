@@ -26,26 +26,57 @@ const catalogWhen = [
 ];
 
 const steps = [
-  { title: "Poznajemy Was i działkę", desc: "Rozmowa o potrzebach, budżecie i stylu życia + analiza działki: MPZP, media, nasłonecznienie, ukształtowanie terenu." },
-  { title: "Koncepcja", desc: "Rzuty i bryła w 2–3 wariantach, wizualizacje 3D. Pracujemy, aż powiecie „to jest to” — koncepcję zatwierdzacie przed dalszymi etapami." },
-  { title: "Projekt budowlany", desc: "Architektura + konstrukcja + projekty branżowe (instalacje) w jednym biurze. Bez podwykonawców, których trzeba gonić." },
-  { title: "Formalności", desc: "Mapa do celów projektowych (własna geodezja), uzgodnienia, wniosek o pozwolenie na budowę i pilotowanie sprawy w starostwie." },
+  {
+    title: "Poznajemy Was i działkę",
+    desc: "Spotkanie, ankieta i rozmowa o potrzebach i stylu życia + analiza działki: MPZP, media, nasłonecznienie, ukształtowanie terenu.",
+  },
+  {
+    title: "Koncepcja",
+    desc: "Rzuty i bryła w 2–3 wariantach, wizualizacje 3D. Pracujemy, aż powiecie „to jest to” — koncepcję zatwierdzacie przed dalszymi etapami.",
+  },
+  {
+    title: "Projekt budowlany",
+    desc: "Projekt zagospodarowania + architektura — tworzymy kompletną i szczegółową dokumentację potrzebną do złożenia w starostwie.",
+  },
+  {
+    title: "Projekt techniczny",
+    desc: "Konstrukcja + projekty branżowe w jednym biurze. Bez podwykonawców, których trzeba organizować. Powstaje w trakcie uzyskiwania pozwolenia na budowę.",
+  },
+  {
+    title: "Formalności",
+    desc: "Wniosek o pozwolenie na budowę i pilotowanie sprawy w starostwie, wyłączenie gruntów z produkcji rolnej, uzgodnienia czy warunki techniczne przyłączy — wszystko załatwimy za Was.",
+  },
+  {
+    title: "Budowa",
+    desc: (
+      <>
+        Na życzenie prowadzimy też budowę —{" "}
+        <Link to="/uslugi/kierownik-budowy" className="text-accent font-semibold hover:underline underline-offset-4">
+          kierownik budowy z uprawnieniami
+        </Link>{" "}
+        z naszego zespołu. Autor projektu jest wtedy zawsze pod ręką i dba o każdy szczegół.
+      </>
+    ),
+  },
 ];
 
+// Zdjęcia do podpięcia z galerii (bucket „realizacje” w Supabase) — mapowanie
+// slot → plik jest w notatkach z uwag klienta.
 const portfolio = [
-  { caption: "FOTO: dom Sobolów", title: "Dom jednorodzinny, Sobolów", desc: "[1–2 zdania: co było wyzwaniem, co się udało]" },
-  { caption: "FOTO: dom Połom Duży", title: "Dom z widokiem, Połom Duży", desc: "[1–2 zdania]" },
-  { caption: "FOTO: 600 m n.p.m.", title: "Dom 600 m n.p.m. z widokiem na Tatry", desc: "[1–2 zdania — macie już o nim wpis na blogu, podlinkować]", href: "/blog/600-mnpm-i-widok-na-tatry" },
-  { caption: "FOTO: osiedle", title: "Osiedle domów, Bochnia Nowy Świat", desc: "[1–2 zdania]" },
-  { caption: "FOTO: baza piłkarska", title: "Baza piłkarska", desc: "[1–2 zdania]" },
-  { caption: "FOTO: szkoła Bytomsko", title: "Szkoła w Bytomsku", desc: "[1–2 zdania]" },
+  { caption: "FOTO: Kocmyrzów", title: "Dom jednorodzinny, Kocmyrzów", desc: "Wymagający projekt na działce z dużym spadkiem. Inwestor chciał ponadto wykorzystać piękny widok z działki na Kraków." },
+  { caption: "FOTO: Łazany", title: "Dom jednorodzinny, Łazany", desc: "Jeden z największych i najciekawszych projektów. Trzy kondygnacje idealnie wkomponowane w działkę ze spadkiem." },
+  { caption: "FOTO: Brzezie", title: "Dom jednorodzinny, Brzezie", desc: "Piękna parterówka z unikalnym układem pomieszczeń — możemy śmiało powiedzieć, że to projekt uszyty pod wymagania Inwestorów." },
+  { caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa", desc: "Miało być nowocześnie, ale nie zrujnować portfela — i z całą pewnością się udało! Projekt, któremu poświęciliśmy bardzo dużo czasu, ale ostatecznie wyszła piękna i unikalna bryła." },
+  { caption: "FOTO: Bochnia", title: "Osiedle domów, Bochnia", desc: "Osiedle budynków w zabudowie szeregowej — wymagający projekt, który udało się nam zrealizować w ekspresowym czasie." },
+  { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów", desc: "Nietypowy budynek pod nietypowe wymagania Inwestorów. Koncepcje zmienialiśmy kilkanaście razy, ale w efekcie powstał budynek, który w pełni będzie odpowiadał potrzebom Klientów." },
 ];
 
 const deliverables = [
-  "koncepcję z wizualizacjami 3D (warianty do wyboru),",
-  "kompletny projekt budowlany: architektura, konstrukcja, instalacje,",
-  "projekt zagospodarowania terenu,",
-  "charakterystykę energetyczną,",
+  "koncepcję + na życzenie wizualizacje 3D (warianty do wyboru),",
+  "projekt zagospodarowania działki,",
+  "kompletny projekt architektoniczno-budowlany,",
+  "projekt techniczny: konstrukcja, instalacje i elektryka,",
+  "charakterystykę energetyczną, projekty przyłączy zewnętrznych,",
   "komplet uzgodnień i złożony wniosek o pozwolenie na budowę,",
   "nadzór autorski w trakcie budowy.",
 ];
@@ -53,19 +84,23 @@ const deliverables = [
 const faqs = [
   {
     q: "Ile trwa wykonanie projektu indywidualnego?",
-    a: "Koncepcja to zwykle 3–6 tygodni (zależnie od liczby iteracji), projekt budowlany z branżami kolejne 6–10 tygodni. Razem z pozwoleniem na budowę realnie 4–7 miesięcy. Warto zacząć jesienią lub zimą, żeby na wiosnę wchodzić na budowę.",
+    a: "Koncepcja to zwykle 3–6 tygodni (zależnie od liczby iteracji), projekt architektoniczno-budowlany wraz z projektem zagospodarowania to kolejne 4–6 tygodni. Projekt techniczny to kolejnych 4–6 tygodni pracy, jednak projektujemy to równolegle z innymi procedurami. Prace rozpoczynamy około 2–3 miesiące przed umówionym terminem złożenia wniosku o pozwolenie na budowę.",
   },
   {
     q: "Ile kosztuje projekt indywidualny w porównaniu z gotowym?",
-    a: "Projekt indywidualny jest droższy na etapie dokumentacji, ale projektujemy pod Wasz budżet budowy — dobrze zaprojektowany dom potrafi odrobić tę różnicę na etapie budowy (prostsza konstrukcja, brak przeróbek, tańsze fundamenty dopasowane do gruntu).",
+    a: "Projekt indywidualny jest droższy na etapie dokumentacji, ale projektujemy pod Wasz budżet budowy — dobrze zaprojektowany dom potrafi odrobić tę różnicę na etapie budowy (prostsza konstrukcja, brak przeróbek, tańsze fundamenty dopasowane do terenu). Zazwyczaj projekt indywidualny jest około 3–5 tys. droższy niż adaptacja typówki.",
   },
   {
     q: "Czy projektujecie domy na działkach ze spadkiem?",
-    a: "Tak — to nasza specjalność. Pracujemy na Pogórzu, gdzie płaska działka to rzadkość. Dom dopasowany do spadku często wychodzi taniej niż niwelacja terenu pod projekt katalogowy.",
+    a: "Tak — to nasza specjalność. Pracujemy na Pogórzu, gdzie płaska działka to rzadkość. Dom dopasowany do działki ze spadkiem często wychodzi taniej niż niwelacja terenu pod projekt katalogowy.",
   },
   {
     q: "Czy zajmiecie się też wnętrzami?",
     a: "Tak, wykonujemy projekty wnętrz — najlepiej równolegle z projektem domu, wtedy instalacje od razu trafiają tam, gdzie staną meble.",
+  },
+  {
+    q: "Czy wykonujecie też wizualizacje 3D?",
+    a: "Oczywiście, bardzo często już na etapie koncepcji proponujemy wykonanie modelu 3D — tak aby Inwestorom łatwiej było wyobrazić sobie, jak będzie wyglądała bryła ich wymarzonego domu. Mając wykonany model, bardzo łatwo później dobierać kolorystykę czy materiały na elewację.",
   },
 ];
 
@@ -246,31 +281,6 @@ const ProjektyIndywidualnePage = () => (
                 </div>
               </motion.div>
             ))}
-            {/* krok 5 z linkiem do kierownika budowy */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-              className="relative flex gap-8"
-            >
-              <div className="relative z-10 shrink-0 w-12 h-12 flex items-center justify-center border border-accent bg-warm-white text-accent font-display font-700">
-                5
-              </div>
-              <div className="pt-2">
-                <h3 className="font-display font-700 text-foreground text-lg mb-2">Budowa</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Na życzenie prowadzimy też budowę —{" "}
-                  <Link
-                    to="/uslugi/kierownik-budowy"
-                    className="text-accent font-semibold hover:underline underline-offset-4"
-                  >
-                    kierownik budowy z uprawnieniami
-                  </Link>{" "}
-                  z naszego zespołu. Autor projektu jest wtedy zawsze pod ręką.
-                </p>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>
@@ -284,19 +294,7 @@ const ProjektyIndywidualnePage = () => (
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.map((project, i) => {
-            const card = (
-              <>
-                <PhotoPlaceholder className="aspect-[4/3] w-full" caption={project.caption} />
-                <div className="p-6">
-                  <h3 className="font-display font-700 text-foreground text-lg mb-2 group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{project.desc}</p>
-                </div>
-              </>
-            );
-            const cls =
-              "group block border border-border/60 bg-background hover:border-accent/50 transition-colors duration-500";
+            const cls = "group block border border-border/60 bg-background transition-colors duration-500";
             return (
               <motion.div
                 key={project.title}
@@ -305,13 +303,13 @@ const ProjektyIndywidualnePage = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
               >
-                {project.href ? (
-                  <Link to={project.href} className={cls}>
-                    {card}
-                  </Link>
-                ) : (
-                  <div className={cls}>{card}</div>
-                )}
+                <div className={cls}>
+                  <PhotoPlaceholder className="aspect-[4/3] w-full" caption={project.caption} />
+                  <div className="p-6">
+                    <h3 className="font-display font-700 text-foreground text-lg mb-2">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{project.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             );
           })}
@@ -345,8 +343,9 @@ const ProjektyIndywidualnePage = () => (
               ))}
             </ul>
             <p className="text-muted-foreground leading-relaxed">
-              Cena projektu indywidualnego zależy od powierzchni i stopnia skomplikowania — konkretną kwotę
-              podajemy po pierwszej (bezpłatnej) rozmowie o koncepcji.
+              Cena projektu indywidualnego zależy od powierzchni, liczby kondygnacji i stopnia
+              skomplikowania, a także instalacji wewnętrznych — konkretną kwotę podajemy po pierwszej
+              rozmowie o koncepcji.
             </p>
           </motion.div>
           <motion.div

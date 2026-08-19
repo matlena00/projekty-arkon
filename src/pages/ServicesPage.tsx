@@ -19,9 +19,10 @@ const services = [
     short: "Tworzymy unikalne projekty od podstaw, dopasowane do Twoich potrzeb, charakteru działki i otoczenia. Od pierwszej koncepcji po fotorealistyczną wizualizację — każdy detal jest przemyślany.",
     details: [
       { name: "Koncepcja", desc: "Opracowujemy wstępną koncepcję projektu, uwzględniając Twoje potrzeby, budżet i możliwości działki. Analizujemy warunki zabudowy i plan miejscowy, aby zaproponować optymalne rozwiązanie." },
-      { name: "Projekt zagospodarowania działki", desc: "Dostosowujemy budynek do działki inwestycyjnej — ustalamy lokalizację, wysokość budynku, dojazd i dojście, zgodnie z Miejscowym Planem Zagospodarowania Przestrzennego lub Warunkami Zabudowy." },
+      { name: "Projekt zagospodarowania działki", desc: "Dostosowujemy budynek do działki Inwestorów — ustalamy lokalizację, poziom posadowienia, dojazd i dojście, zgodnie z MPZP lub Warunkami Zabudowy. Projektujemy przyłącza mediów oraz teren wokół budynku." },
       { name: "Projekty architektoniczne", desc: "Pełna dokumentacja architektoniczna budynku wraz z detalami wykończeniowymi, rzutami kondygnacji, przekrojami i elewacjami." },
-      { name: "Projekty techniczne", desc: "Kompletna dokumentacja techniczna obejmująca konstrukcję, instalacje i szczegóły wykonawcze — wszystko, czego potrzebuje wykonawca na budowie." },
+      { name: "Projekty techniczne", desc: "Kompletna dokumentacja techniczna obejmująca kilka branż. Obliczamy konstrukcję budynku zgodnie z Europejskimi Normami. Projektujemy wewnętrzne instalacje sanitarne i elektryczne w konsultacji z Inwestorem, dzięki czemu dom jest zaprojektowany pod Was." },
+      { name: "Projekty wykonawcze", desc: "Przygotowujemy szczegółowe projekty wykonawcze dla każdej z branż — wszystko, czego potrzebuje wykonawca na budowie. Projekty wykonawcze zawierają zestawienia materiałów i szczegółowe rozwiązania techniczne." },
       { name: "Wizualizacja", desc: "Fotorealistyczne wizualizacje 3D, które pozwolą Ci zobaczyć przyszły dom jeszcze przed wbiciem pierwszej łopaty. Pomagamy w podejmowaniu decyzji materiałowych i kolorystycznych." },
     ],
   },
@@ -31,21 +32,45 @@ const services = [
     href: "/uslugi/adaptacja-projektu",
     short: "Posiadasz już projekt gotowy? Dostosujemy go do Twojej działki, przepisów lokalnych i indywidualnych preferencji. Oferujemy również sprzedaż sprawdzonych projektów katalogowych.",
     details: [
-      { name: "Adaptacja projektów gotowych", desc: "Dostosowujemy projekty typowe do warunków lokalnych, strefy klimatycznej, warunków gruntowo-wodnych i przepisów planu miejscowego. Dbamy o zgodność z obowiązującymi normami." },
+      { name: "Adaptacja projektów gotowych", desc: "Dostosowujemy projekty typowe do warunków lokalnych, stref śniegowych i wiatrowych, warunków gruntowo-wodnych i przepisów planu miejscowego. Dbamy o zgodność z obowiązującymi normami." },
       { name: "Zmiany w projektach typowych", desc: "Wprowadzamy modyfikacje do gotowych projektów — zmiana układu pomieszczeń, materiałów wykończeniowych, kąta nachylenia dachu czy rodzaju ogrzewania." },
       { name: "Sprzedaż projektów gotowych", desc: "Oferujemy szeroki wybór sprawdzonych projektów gotowych od wiodących pracowni — od domów jednorodzinnych po obiekty usługowe." },
+      { name: "Projekt zagospodarowania działki", desc: "Dostosowujemy budynek do działki Inwestorów — ustalamy lokalizację, poziom posadowienia, dojazd i dojście, zgodnie z MPZP lub Warunkami Zabudowy. Projektujemy przyłącza mediów oraz teren wokół budynku." },
     ],
   },
   {
     icon: Route,
     title: "Projekty branżowe",
-    short: "Kompleksowa dokumentacja branżowa: drogi, zjazdy, przyłącza mediów, legalizacje i rozbiórki. Załatwiamy wszystkie formalności z zarządcami dróg i gestorami sieci.",
+    short: "Kompleksowa dokumentacja branżowa: drogi i zjazdy, przyłącza mediów, rozbudowy i przebudowy sieci, przydomowe oczyszczalnie. Załatwiamy wszystkie formalności z zarządcami dróg i gestorami sieci.",
     details: [
       { name: "Projekty drogowe", desc: "Projekty dróg i zjazdów z każdej klasy drogi — gminnych, powiatowych, wojewódzkich i krajowych. Projekty organizacji ruchu, zabezpieczamy formalności z zarządcami dróg." },
-      { name: "Projekty przyłączy wod-kan i gaz", desc: "Kompletna dokumentacja projektowa przyłączy wodociągowych, kanalizacyjnych i gazowych wraz z uzgodnieniami z gestorami sieci." },
-      { name: "Zmiany sposobu użytkowania", desc: "Dokumentacja niezbędna do zmiany sposobu użytkowania obiektu budowlanego — od analizy przepisów po uzyskanie stosownych pozwoleń." },
-      { name: "Legalizacja samowoli budowlanych", desc: "Pomagamy w procesie legalizacji samowoli budowlanych — przygotowujemy wymaganą dokumentację i prowadzimy przez procedurę administracyjną." },
-      { name: "Projekty rozbiórki", desc: "Dokumentacja projektowa dla prac rozbiórkowych — od inwentaryzacji obiektu po plan organizacji rozbiórki." },
+      { name: "Projekty przyłączy wod-kan", desc: "Kompletna dokumentacja projektowa przyłączy wodociągowych i kanalizacyjnych wraz z uzgodnieniami z gestorami sieci. Projekty są wykonywane w różnych zakresach w zależności od gminy — dzięki naszemu doświadczeniu masz pewność, że będą wykonane prawidłowo." },
+      { name: "Projekty rozbudowy sieci", desc: "Przygotowujemy projekty rozbudowy sieci wodociągowych i kanalizacyjnych. Kompletujemy dokumentację, uzgadniamy projekty z zarządcami sieci, zapewniamy pełną obsługę w starostwie włącznie z Zespołem Uzgadniania Dokumentacji Projektowej." },
+      { name: "Projekty przebudowy kolizji sieci", desc: "Przez Twoją działkę przechodzi sieć, która koliduje z planowaną budową? Nic nie szkodzi — przygotujemy dokumentację projektową przebudowy każdej sieci: wodociągowej, kanalizacyjnej, gazowej, energii elektrycznej oraz teletechnicznej." },
+      { name: "Projekty przyłączy gazowych", desc: "Zaprojektujemy dla Ciebie wewnętrzną instalację gazową i uzyskamy pozwolenie na budowę. Projektujemy również zewnętrzne odcinki przyłączy na działce, a także przebudowy przyłączy." },
+      { name: "Projekty przydomowej oczyszczalni", desc: "Przygotowujemy kompletną dokumentację potrzebną do zgłoszenia przydomowych oczyszczalni ścieków. Uzgadniamy inwestycję z Wodami Polskimi oraz obsługujemy wniosek w starostwie." },
+    ],
+  },
+  {
+    icon: LandPlot,
+    title: "Analizy działek",
+    short: "Weryfikujemy potencjał działek przed ich zakupem. Dokładnie sprawdzamy lokalne przepisy i analizujemy możliwości zabudowy, pomagając Ci podjąć w pełni świadomą i bezpieczną decyzję.",
+    details: [
+      { name: "Badanie chłonności działki", desc: "Sprawdzamy, jaka zabudowa zmieści się na działce — powierzchnia, liczba budynków i układ zagospodarowania terenu." },
+      { name: "Przedzakupowa analiza terenu", desc: "Analizujemy działkę przed zakupem — dostęp do drogi, media, ukształtowanie terenu i potencjalne ograniczenia." },
+      { name: "Ocena możliwości zabudowy", desc: "Oceniamy, co i w jakich parametrach można wybudować — wysokość, geometria dachu, linie zabudowy, wskaźniki intensywności." },
+      { name: "Weryfikacja przepisów lokalnych", desc: "Sprawdzamy zapisy Miejscowego Planu Zagospodarowania Przestrzennego lub warunki zabudowy oraz inne ograniczenia formalno-prawne." },
+    ],
+  },
+  {
+    icon: Sofa,
+    title: "Projekty wnętrz",
+    short: "Projektujemy wnętrza, które łączą funkcjonalność z estetyką — od układu pomieszczeń, przez dobór materiałów i kolorystyki, po pełną wizualizację 3D. Tworzymy przestrzenie dopasowane do Twojego stylu życia.",
+    details: [
+      { name: "Projekt funkcjonalny", desc: "Optymalny układ pomieszczeń i stref — projektujemy przestrzeń pod Twoje codzienne potrzeby i przyzwyczajenia." },
+      { name: "Dobór materiałów i kolorystyki", desc: "Pomagamy dobrać materiały wykończeniowe, kolory i faktury tak, aby tworzyły spójną i ponadczasową całość." },
+      { name: "Wizualizacja 3D wnętrz", desc: "Fotorealistyczne wizualizacje pozwalają zobaczyć efekt końcowy jeszcze przed rozpoczęciem prac wykończeniowych." },
+      { name: "Meble na wymiar", desc: "Projektujemy zabudowy i meble na wymiar, idealnie dopasowane do bryły wnętrza i Twoich potrzeb." },
     ],
   },
   {
@@ -67,7 +92,7 @@ const services = [
     short: "Wieloletnie doświadczenie na placach budowy pozwala nam skutecznie nadzorować realizację inwestycji. Zapewniamy kierownika budowy, inspektora nadzoru oraz profesjonalne doradztwo.",
     details: [
       { name: "Kierownik budowy", desc: "Dzięki wieloletniemu doświadczeniu potrafimy zaplanować prawidłową realizację inwestycji i pilnować harmonogramu. Sprawdzamy jakość robót i zgodność z projektem." },
-      { name: "Kontrola firm budowlanych", desc: "Weryfikujemy jakość wykonywanych prac budowlanych, kontrolujemy zgodność z projektem i obowiązującymi normami." },
+      { name: "Kontrola i dobór firm budowlanych", desc: "Weryfikujemy jakość wykonywanych prac budowlanych, kontrolujemy zgodność z projektem i obowiązującymi normami. Pomagamy też w wyborze ekip na poszczególne etapy." },
       { name: "Doradztwo techniczne i materiałowe", desc: "Profesjonalne doradztwo w doborze materiałów budowlanych i rozwiązań technicznych — pomagamy wybrać optymalne rozwiązania cenowo i jakościowo." },
       { name: "Inspektor nadzoru inwestorskiego", desc: "Reprezentujemy interesy inwestora na placu budowy — kontrolujemy jakość, terminy i koszty realizacji." },
       { name: "Odbiory budynków", desc: "Przeprowadzamy odbiory budynków z należytą starannością, sporządzamy protokoły i wskazujemy ewentualne usterki." },
@@ -86,36 +111,17 @@ const services = [
     ],
   },
   {
-    icon: Sofa,
-    title: "Projekty wnętrz",
-    short: "Projektujemy wnętrza, które łączą funkcjonalność z estetyką — od układu pomieszczeń, przez dobór materiałów i kolorystyki, po pełną wizualizację 3D. Tworzymy przestrzenie dopasowane do Twojego stylu życia.",
-    details: [
-      { name: "Projekt funkcjonalny", desc: "Optymalny układ pomieszczeń i stref — projektujemy przestrzeń pod Twoje codzienne potrzeby i przyzwyczajenia." },
-      { name: "Dobór materiałów i kolorystyki", desc: "Pomagamy dobrać materiały wykończeniowe, kolory i faktury tak, aby tworzyły spójną i ponadczasową całość." },
-      { name: "Wizualizacja 3D wnętrz", desc: "Fotorealistyczne wizualizacje pozwalają zobaczyć efekt końcowy jeszcze przed rozpoczęciem prac wykończeniowych." },
-      { name: "Meble na wymiar", desc: "Projektujemy zabudowy i meble na wymiar, idealnie dopasowane do bryły wnętrza i Twoich potrzeb." },
-    ],
-  },
-  {
     icon: FileSearch,
-    title: "Ekspertyzy i opinie techniczne",
-    short: "Profesjonalne ekspertyzy i opinie techniczne dotyczące stanu obiektów budowlanych. Oceniamy, doradzamy i wskazujemy bezpieczne rozwiązania — poparte wiedzą i doświadczeniem.",
+    title: "Inne usługi",
+    short: "Wszystko, co nie mieści się w standardowej ścieżce projektowej: inwentaryzacje, świadectwa energetyczne, opinie i ekspertyzy, zmiany sposobu użytkowania, rozbiórki oraz legalizacje samowoli.",
     details: [
-      { name: "Ocena stanu technicznego", desc: "Oceniamy stan techniczny budynku lub jego elementów i wskazujemy zakres niezbędnych prac." },
-      { name: "Ekspertyzy konstrukcyjne", desc: "Analizujemy konstrukcję obiektu — przydatne przy przebudowach, zmianach sposobu użytkowania i zakupie nieruchomości." },
-      { name: "Opinie techniczne", desc: "Sporządzamy opinie niezbędne w procesach administracyjnych, przy zgłoszeniach robót i w sytuacjach spornych." },
-      { name: "Inwentaryzacja budowlana", desc: "Wykonujemy inwentaryzacje istniejących obiektów — podstawa do projektów przebudowy i adaptacji." },
-    ],
-  },
-  {
-    icon: LandPlot,
-    title: "Analizy działek",
-    short: "Weryfikujemy potencjał działek przed ich zakupem. Dokładnie sprawdzamy lokalne przepisy i analizujemy możliwości zabudowy, pomagając Ci podjąć w pełni świadomą i bezpieczną decyzję.",
-    details: [
-      { name: "Badanie chłonności działki", desc: "Sprawdzamy, jaka zabudowa zmieści się na działce — powierzchnia, liczba budynków i układ zagospodarowania terenu." },
-      { name: "Przedzakupowa analiza terenu", desc: "Analizujemy działkę przed zakupem — dostęp do drogi, media, ukształtowanie terenu i potencjalne ograniczenia." },
-      { name: "Ocena możliwości zabudowy", desc: "Oceniamy, co i w jakich parametrach można wybudować — wysokość, geometria dachu, linie zabudowy, wskaźniki intensywności." },
-      { name: "Weryfikacja przepisów lokalnych", desc: "Sprawdzamy zapisy Miejscowego Planu Zagospodarowania Przestrzennego lub warunki zabudowy oraz inne ograniczenia formalno-prawne." },
+      { name: "Inwentaryzacja budowlana", desc: "Wykonujemy inwentaryzacje istniejących obiektów — podstawa do projektów przebudowy i adaptacji czy zmian sposobów użytkowania. Tworzymy rysunki 2D lub 3D z wizualizacjami." },
+      { name: "Świadectwa charakterystyki energetycznej", desc: "Dokumentacja wymagana przy odbiorze budynku, sprzedaży i wynajmie nieruchomości lub przy dofinansowaniach w programie „Moje Ciepło”." },
+      { name: "Opinie techniczne", desc: "Sporządzamy opinie niezbędne w procesach administracyjnych, przy zgłoszeniach robót i w sytuacjach spornych. Oceniamy stan techniczny budynku lub jego elementów i wskazujemy zakres niezbędnych prac. Przeprowadzamy analizy możliwości działalności inwestycyjnych w istniejących obiektach." },
+      { name: "Ekspertyzy konstruktorskie", desc: "Analizujemy konstrukcję obiektu — przydatne przy przebudowach, zmianach sposobu użytkowania i zakupie nieruchomości. Wykonujemy pełną dokumentację potrzebną w procesach administracyjnych." },
+      { name: "Zmiany sposobu użytkowania", desc: "Dokumentacja niezbędna do zmiany sposobu użytkowania obiektu budowlanego — od analizy przepisów po uzyskanie stosownych pozwoleń." },
+      { name: "Projekty rozbiórki", desc: "Dokumentacja projektowa dla prac rozbiórkowych — od inwentaryzacji obiektu poprzez plan organizacji rozbiórki i zgłoszenie w starostwie. Ponadto oferujemy usługę usunięcia budynków z rejestrów." },
+      { name: "Legalizacja samowoli budowlanych", desc: "Pomagamy w procesie legalizacji samowoli budowlanych — przygotowujemy wymaganą dokumentację i prowadzimy przez procedurę administracyjną w Nadzorze Budowlanym." },
     ],
   },
 ];
@@ -184,7 +190,7 @@ const ServicesPage = () => (
   <main className="overflow-x-hidden">
     <Seo
       title="Usługi — projekty, nadzór, obsługa inwestycji | ArKon"
-      description="Projekty indywidualne, adaptacje, projekty branżowe, geodezja, projekty wnętrz, ekspertyzy oraz nadzór i kompleksowa obsługa inwestycji. Poznaj ofertę ArKon."
+      description="Projekty indywidualne, adaptacje, projekty branżowe, analizy działek, projekty wnętrz, geodezja oraz nadzór i kompleksowa obsługa inwestycji. Poznaj ofertę ArKon."
       path="/uslugi"
     />
     <JsonLd
@@ -197,7 +203,7 @@ const ServicesPage = () => (
           type: "CollectionPage",
           name: "Usługi — Biuro Projektowe ArKon",
           path: "/uslugi",
-          description: "Pełna oferta biura projektowego ArKon: projekty, adaptacje, geodezja, wnętrza, ekspertyzy, nadzór i obsługa inwestycji.",
+          description: "Pełna oferta biura projektowego ArKon: projekty, adaptacje, projekty branżowe, analizy działek, wnętrza, geodezja, nadzór i obsługa inwestycji.",
         }),
       ]}
     />
@@ -223,18 +229,24 @@ const ServicesPage = () => (
         >
           Od koncepcji po klucze
         </motion.p>
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-muted-foreground leading-relaxed"
+          className="text-muted-foreground leading-relaxed space-y-4"
         >
-          Biuro projektowe ArKon zajmuje się dokumentacją projektową do każdego pozwolenia na budowę, 
-          nadzorem inwestycyjnym, kontrolą realizacji oraz rozliczaniem finansów budowy. 
-          Współpracujemy z wieloma podmiotami branżowymi, gminami i pracowniami — dzięki czemu 
-          zapewniamy kompleksową i sprawną obsługę każdej inwestycji.
-        </motion.p>
+          <p>
+            Biuro projektowe ArKon zajmuje się przygotowaniem dokumentacji projektowej dla każdego
+            rodzaju budynku. Pomagamy zaprojektować inwestycję w każdym detalu w zależności od potrzeb.
+            Wszystko zaczyna się od koncepcji, przez kompletny projekt i obsługę w urzędzie aż po
+            uzyskanie pozwolenia na budowę. Oferujemy również nadzór inwestycyjny aż po oddanie obiektu.
+          </p>
+          <p>
+            Współpracujemy z wieloma podmiotami branżowymi i biurami projektowymi, a w szczególności
+            urzędami — dzięki czemu zapewniamy kompleksową i sprawną obsługę każdej inwestycji.
+          </p>
+        </motion.div>
       </div>
     </section>
 

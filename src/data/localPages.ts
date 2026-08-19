@@ -9,8 +9,8 @@ export interface LocalService {
 
 export interface LocalRealization {
   caption: string;
+  /** Typ obiektu + lokalizacja — bez opisu, zgodnie z uwagami klienta */
   title: string;
-  desc: string;
   href?: string;
 }
 
@@ -25,7 +25,6 @@ export interface LocalPageData {
   heroCaption: string;
   knowledgeTitle: string;
   knowledgeParagraphs: string[];
-  mapCaption: string;
   servicesTitle: string;
   services: LocalService[];
   realizationsTitle: string;
@@ -55,15 +54,14 @@ export const localPages: Record<string, LocalPageData> = {
       "Architekt i kierownik budowy dla Bochni i okolic — 25 min od centrum. Projekty indywidualne, adaptacje, nadzór budowy. Bezpłatna konsultacja: 888 899 366.",
     breadcrumbName: "Biuro projektowe Bochnia",
     h1: "Biuro projektowe dla Bochni i powiatu bocheńskiego",
-    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — 25 minut od centrum Bochni. Projektowaliśmy i budowaliśmy m.in. na osiedlu Nowy Świat, w Brzeziu i w Sobolowie.",
-    heroCaption: "ZDJĘCIE: realizacja z Bochni — osiedle Nowy Świat lub Mieszkania Bochnia (macie w galerii)",
+    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — 25 minut od centrum Bochni. Projektowaliśmy tu zarówno domy jednorodzinne, jak i całe osiedla mieszkaniowe, kompleksowo prowadząc inwestycje od projektu aż po realizację.",
+    heroCaption: "ZDJĘCIE: osiedle domów w Bochni (jest w galerii)",
     knowledgeTitle: "Znamy Bochnię od strony, której nie widać na mapie",
     knowledgeParagraphs: [
       "Nasze biuro leży w Żegocinie — 20 km od Bochni, w granicach powiatu bocheńskiego. Sprawy urzędowe naszych klientów załatwiamy w Starostwie Powiatowym w Bochni od lat, więc wiemy, jak przygotować wniosek, żeby przeszedł bez wezwań do uzupełnień.",
       "Pracowaliśmy na planach miejscowych Bochni i okolicznych gmin — Rzezawy, Łapanowa, Nowego Wiśnicza, Lipnicy Murowanej czy Trzciany. Wiemy, gdzie plan dopuszcza dach dwuspadowy o niskim kącie, a gdzie konserwator ma coś do powiedzenia.",
       "Na budowę w Bochni i okolicach dojeżdżamy w ok. 25 minut — to ważne, gdy kierownik budowy ma być na odbiorze zbrojenia „na jutro rano”.",
     ],
-    mapCaption: "MAPA/GRAFIKA: trasa Żegocina → Bochnia (ok. 20 km, 25 min) + pinezki realizacji w powiecie",
     servicesTitle: "W czym pomagamy inwestorom z Bochni",
     services: [
       { title: "Projekty indywidualne", desc: "Dom zaprojektowany pod Waszą działkę — od koncepcji z wizualizacjami po pozwolenie na budowę.", to: SERVICE_PATHS.indywidualne },
@@ -73,9 +71,9 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w Bochni i okolicach",
     realizations: [
-      { caption: "FOTO: Bochnia Nowy Świat", title: "Osiedle domów, Bochnia Nowy Świat", desc: "[2–3 zdania o realizacji: co projektowaliście, ile budynków, co było ciekawe]" },
-      { caption: "FOTO: Mieszkania Bochnia", title: "Budynek mieszkalny, Bochnia", desc: "[2–3 zdania]" },
-      { caption: "FOTO: Sobolów / Brzezie", title: "Dom jednorodzinny, Sobolów", desc: "[2–3 zdania]" },
+      { caption: "FOTO: osiedle domów, Bochnia", title: "Osiedle domów, Bochnia" },
+      { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów" },
+      { caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa" },
     ],
     faqTitle: "Budowa domu w Bochni — pytania, które słyszymy najczęściej",
     faqs: [
@@ -118,7 +116,6 @@ export const localPages: Record<string, LocalPageData> = {
       "Zanim powstanie projekt, sprawdzamy działkę pod kątem osuwisk (rejestr SOPO), nachylenia i warunków gruntowych. Fundamenty projektujemy pod konkretny stok, nie pod katalogowy przekrój. Dzięki temu dom stoi spokojnie — a Wy nie dopłacacie na budowie za „niespodzianki”.",
       "Sprawy urzędowe prowadzimy w Starostwie Powiatowym w Limanowej i okolicznych gminach: Laskowa, Tymbark, Dobra, Kamienica, Łukowica.",
     ],
-    mapCaption: "MAPA/GRAFIKA: trasa Żegocina → Limanowa (ok. 17 km, 20 min) + zaznaczony Beskid Wyspowy",
     servicesTitle: "W czym pomagamy inwestorom z Limanowej",
     services: [
       { title: "Projekty indywidualne", desc: "Domy projektowane pod stok, widok i nasłonecznienie — nasza specjalność w terenie górskim.", to: SERVICE_PATHS.indywidualne },
@@ -128,9 +125,9 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w górskim terenie",
     realizations: [
-      { caption: "FOTO: 600 m n.p.m.", title: "Dom na 600 m n.p.m. z widokiem na Tatry", desc: "[2–3 zdania — jest już wpis na blogu, podlinkować i rozwinąć w case study]", href: "/blog/600-mnpm-i-widok-na-tatry" },
-      { caption: "FOTO: Żegocina", title: "Dom jednorodzinny, Żegocina", desc: "[2–3 zdania]" },
-      { caption: "FOTO: Bytomsko", title: "Szkoła w Bytomsku", desc: "[2–3 zdania — obiekt publiczny to mocny dowód kompetencji]" },
+      { caption: "FOTO: baza piłkarska, Limanowa", title: "Baza piłkarska, Limanowa" },
+      { caption: "FOTO: dom jednorodzinny — zdjęcie do przesłania", title: "Dom jednorodzinny" },
+      { caption: "FOTO: dom jednorodzinny, Limanowa — wizualizacja do przesłania", title: "Dom jednorodzinny, Limanowa" },
     ],
     faqTitle: "Budowa domu koło Limanowej — najczęstsze pytania",
     faqs: [
@@ -143,12 +140,12 @@ export const localPages: Record<string, LocalPageData> = {
         a: "Nie, jeśli dom jest zaprojektowany pod stok — z częściowym podpiwniczeniem lub przesunięciem poziomów zamiast kosztownej niwelacji. Drogo robi się wtedy, gdy na stok trafia projekt katalogowy z płaskiego terenu.",
       },
       {
-        q: "Czy prowadzicie budowy w wyżej położonych miejscowościach?",
-        a: "Tak — jako kierownik budowy obsługujemy cały powiat limanowski. Sami projektowaliśmy dom na wysokości 600 m n.p.m., więc wiemy, co znaczy sezon budowlany w górach.",
+        q: "Czy załatwiacie formalności w urzędzie w Limanowej?",
+        a: "Tak. Działamy na podstawie pełnomocnictwa i w pełni reprezentujemy naszych klientów w Starostwie Powiatowym w Limanowej. Przejmujemy na siebie cały proces biurokratyczny — od złożenia wniosku po zgłoszenie zakończenia budowy.",
       },
       {
         q: "Gdzie załatwia się formalności budowlane dla gmin powiatu limanowskiego?",
-        a: "W Starostwie Powiatowym w Limanowej. Prowadzimy sprawy naszych klientów od wniosku po odbiór — na pełnomocnictwo.",
+        a: "Formalności związane z pozwoleniem na budowę i zgłoszeniem robót załatwia się przede wszystkim w Starostwie Powiatowym w Limanowej — w Wydziale Architektury i Budownictwa. W zależności od inwestycji potrzebne mogą być również dokumenty z właściwego urzędu gminy. W naszym biurze pomagamy kompleksowo przejść przez cały proces formalny.",
       },
     ],
     ctaTitle: "Macie działkę z widokiem? Nie zmarnujcie go katalogowym projektem",
@@ -165,14 +162,13 @@ export const localPages: Record<string, LocalPageData> = {
       "Projekty indywidualne, adaptacje projektów gotowych i kierownik budowy dla Brzeska i powiatu brzeskiego. Realizacje m.in. w Dębnie. Tel. 888 899 366.",
     breadcrumbName: "Biuro projektowe Brzesko",
     h1: "Biuro projektowe dla Brzeska i powiatu brzeskiego",
-    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami. Projektowaliśmy m.in. w Dębnie i Lipnicy Murowanej — do Brzeska mamy pół godziny drogi.",
+    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami. Projektowaliśmy m.in. w Dębnie i Jasieniu — do Brzeska mamy pół godzinki drogi.",
     heroCaption: "ZDJĘCIE: realizacja Dębno (macie w galerii)",
     knowledgeTitle: "Od Brzeska dzieli nas pół godziny — i żadnych niespodzianek w urzędzie",
     knowledgeParagraphs: [
-      "Powiat brzeski znamy z praktyki: prowadziliśmy projekty w Dębnie i sąsiadującej z powiatem Lipnicy Murowanej, a sprawy urzędowe naszych klientów załatwiamy w Starostwie Powiatowym w Brzesku. Wiemy, jak wygląda praktyka wydawania pozwoleń w gminach Brzesko, Dębno, Czchów, Gnojnik, Iwkowa czy Szczurowa.",
+      "Powiat brzeski znamy z praktyki: prowadziliśmy projekty między innymi w Dębnie i w samej gminie Brzesko, a sprawy urzędowe naszych klientów załatwiamy w Starostwie Powiatowym w Brzesku. Wiemy, jak wygląda praktyka wydawania pozwoleń w gminach Brzesko, Dębno, Czchów, Gnojnik, Iwkowa czy Szczurowa.",
       "To teren przejściowy — od płaskich działek nad Uszwicą po pofałdowane tereny na południu powiatu. Dobieramy projekt (albo projektujemy od zera) pod konkretną działkę, a nie odwrotnie. Jeśli działka leży przy trasie A4 lub DK94, pomagamy też z formalnościami dotyczącymi hałasu i zjazdów.",
     ],
-    mapCaption: "MAPA/GRAFIKA: trasa Żegocina → Brzesko (ok. 27 km, 30 min) + pinezki: Dębno, Lipnica Murowana",
     servicesTitle: "W czym pomagamy inwestorom z Brzeska",
     services: [
       { title: "Projekty indywidualne", desc: "Dom zaprojektowany pod Waszą działkę i budżet — od koncepcji po pozwolenie.", to: SERVICE_PATHS.indywidualne },
@@ -182,23 +178,23 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w Brzesku i okolicach",
     realizations: [
-      { caption: "FOTO: Dębno", title: "Realizacja w Dębnie", desc: "[2–3 zdania o realizacji]" },
-      { caption: "FOTO: Lipnica Murowana", title: "Dom, Lipnica Murowana", desc: "[2–3 zdania — Lipnica graniczy z powiatem brzeskim, teren konserwatorski to dobry temat]" },
-      { caption: "FOTO: inna realizacja", title: "[Kolejna realizacja]", desc: "[2–3 zdania]" },
+      { caption: "FOTO: Dębno", title: "Dom jednorodzinny, Dębno" },
+      { caption: "FOTO: Poręba Spytkowska — wizualizacja do przesłania", title: "Dom jednorodzinny, Poręba Spytkowska" },
+      { caption: "FOTO: Sufczyn — wizualizacja do przesłania", title: "Dom jednorodzinny, Sufczyn" },
     ],
     faqTitle: "Budowa domu w Brzesku — najczęstsze pytania",
     faqs: [
       {
         q: "Gdzie składa się wniosek o pozwolenie na budowę w powiecie brzeskim?",
-        a: "W Wydziale Architektury i Budownictwa Starostwa Powiatowego w Brzesku. Na pełnomocnictwo składamy i pilotujemy wniosek za Was.",
+        a: "Wniosek należy złożyć w Wydziale Architektury i Budownictwa Starostwa Powiatowego w Brzesku. Nie musicie jednak robić tego osobiście — działając na podstawie pełnomocnictwa, bierzemy na siebie wszystkie formalności. Składamy komplet dokumentów i na bieżąco monitorujemy proces, aż do uzyskania decyzji.",
       },
       {
         q: "Kupiłem projekt z katalogu — czy zaadaptujecie go dla działki w gminie Brzesko?",
         a: "Tak, to nasza codzienna praca. Sprawdzimy zgodność projektu z planem miejscowym lub warunkami zabudowy, wykonamy projekt zagospodarowania i skompletujemy dokumenty do pozwolenia.",
       },
       {
-        q: "Czy dojeżdżacie jako kierownik budowy do Brzeska i okolicznych gmin?",
-        a: "Tak — powiat brzeski obsługujemy w całości. Na budowie jesteśmy w ok. 30–40 minut od telefonu, a na odbiory kluczowych etapów umawiamy się z wyprzedzeniem.",
+        q: "Czy pomagacie w uzyskaniu decyzji o Warunkach Zabudowy (WZ) w gminie Brzesko?",
+        a: "Tak, wspieramy naszych klientów na każdym etapie biurokracji. Jeśli Wasza działka nie jest objęta Miejscowym Planem Zagospodarowania Przestrzennego, przygotujemy kompletny wniosek wraz z niezbędnymi załącznikami i złożymy go w Urzędzie Miejskim, odciążając Was z urzędowych formalności.",
       },
       {
         q: "Działka blisko autostrady A4 — czy są dodatkowe wymagania?",
@@ -207,7 +203,7 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     ctaTitle: "Budujecie w Brzesku lub okolicy?",
     ctaText: "Zadzwońcie z numerem działki — bezpłatnie sprawdzimy plan miejscowy i powiemy, od czego zacząć.",
-    ctaNote: "ArKon · Żegocina 149 · ok. 27 km od Brzeska",
+    ctaNote: "ArKon · Żegocina 149 · ok. 31 km od Brzeska",
     areaServed: ["Brzesko", "Dębno", "Czchów", "Gnojnik", "Iwkowa", "Szczurowa"],
   },
 
@@ -227,7 +223,6 @@ export const localPages: Record<string, LocalPageData> = {
       "W Wieliczce i okolicach trzeba też wiedzieć, gdzie sprawdzić tereny dawnej eksploatacji górniczej oraz strefy ochrony konserwatorskiej. To standardowy punkt naszej analizy działki, zanim powstanie projekt lub adaptacja.",
       "Sprawy urzędowe prowadzimy w Starostwie Powiatowym w Wieliczce; pracujemy w gminach Wieliczka, Niepołomice, Biskupice, Kłaj i Gdów — w Brzeziu (gm. Kłaj) mamy zrealizowany projekt.",
     ],
-    mapCaption: "MAPA/GRAFIKA: trasa Żegocina → Wieliczka (ok. 33 km, 40 min) + pinezka realizacji w Brzeziu",
     servicesTitle: "W czym pomagamy inwestorom z Wieliczki",
     services: [
       { title: "Projekty indywidualne", desc: "Dom skrojony pod małą lub nietypową działkę — specjalność terenów podmiejskich.", to: SERVICE_PATHS.indywidualne },
@@ -237,9 +232,9 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w powiecie wielickim i okolicach",
     realizations: [
-      { caption: "FOTO: Brzezie", title: "Dom jednorodzinny, Brzezie (gm. Kłaj)", desc: "[2–3 zdania o realizacji]" },
-      { caption: "FOTO: realizacja", title: "[Realizacja 2]", desc: "[2–3 zdania]" },
-      { caption: "FOTO: realizacja", title: "[Realizacja 3]", desc: "[2–3 zdania]" },
+      { caption: "FOTO: Tomaszkowice — wizualizacja do przesłania", title: "Dom jednorodzinny, Tomaszkowice" },
+      { caption: "FOTO: Łazany — wizualizacja do przesłania", title: "Dom jednorodzinny, Łazany" },
+      { caption: "FOTO: Gorzków — wizualizacja do przesłania", title: "Dom jednorodzinny, Gorzków" },
     ],
     faqTitle: "Budowa domu w Wieliczce — najczęstsze pytania",
     faqs: [
@@ -257,12 +252,12 @@ export const localPages: Record<string, LocalPageData> = {
       },
       {
         q: "Ile trwa uzyskanie pozwolenia na budowę w powiecie wielickim?",
-        a: "Formalnie urząd ma 65 dni; realnie, z kompletem dokumentów, w praktyce wychodzi 2–4 miesiące razem z przygotowaniem adaptacji lub projektu. Duży ruch budowlany w powiecie bywa odczuwalny — tym bardziej warto złożyć wniosek kompletny za pierwszym razem.",
+        a: "Ustawowo urząd ma 65 dni na wydanie decyzji. W praktyce, doliczając czas niezbędny na przygotowanie adaptacji lub projektu, cały proces zajmuje zazwyczaj od 2 do 4 miesięcy. Powiat wielicki charakteryzuje się dużym ruchem budowlanym, dlatego kluczowe jest złożenie bezbłędnej i kompletnej dokumentacji już za pierwszym razem. Dbamy o to, aby maksymalnie skrócić Wasz czas oczekiwania.",
       },
     ],
     ctaTitle: "Planujecie dom pod Wieliczką?",
     ctaText: "Wyślijcie numer działki — sprawdzimy plan miejscowy i powiemy, co realnie można na niej wybudować.",
-    ctaNote: "ArKon · Żegocina 149 · ok. 40 min od Wieliczki",
+    ctaNote: "ArKon · Żegocina 149 · ok. 45 min od Wieliczki",
     areaServed: ["Wieliczka", "Niepołomice", "Biskupice", "Kłaj", "Gdów"],
   },
 
@@ -274,7 +269,7 @@ export const localPages: Record<string, LocalPageData> = {
       "Architekt, adaptacje projektów i kierownik budowy dla Gdowa i doliny Raby — 25 min od Gdowa. Sprawdzimy działkę bezpłatnie. Tel. 888 899 366.",
     breadcrumbName: "Biuro projektowe Gdów",
     h1: "Biuro projektowe dla Gdowa i doliny Raby",
-    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — 25 minut od Gdowa. Obsługujemy całą gminę: od Marszowic po Zręczyce, od pierwszego szkicu po odbiór domu.",
+    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — ok. 30 minut od Gdowa. Obsługujemy całą gminę: od Marszowic po Zręczyce, od pierwszego szkicu po odbiór domu.",
     heroCaption: "ZDJĘCIE: dom jednorodzinny w otwartym krajobrazie (realizacja lub wizualizacja)",
     knowledgeTitle: "Gdów to dobre miejsce na dom — jeśli dobrze wybierzecie działkę",
     knowledgeParagraphs: [
@@ -282,19 +277,18 @@ export const localPages: Record<string, LocalPageData> = {
       "Zanim kupicie działkę albo projekt, sprawdzimy za Was: plan miejscowy lub możliwość uzyskania WZ, zagrożenie powodziowe, dostęp do drogi i mediów. Bezpłatnie, po numerze działki.",
       "Formalności dla gminy Gdów prowadzimy w Starostwie Powiatowym w Wieliczce — robimy to na pełnomocnictwo, więc Wy nie stoicie w żadnej kolejce.",
     ],
-    mapCaption: "MAPA/GRAFIKA: trasa Żegocina → Gdów (ok. 17 km, 25 min) + dolina Raby",
     servicesTitle: "W czym pomagamy inwestorom z gminy Gdów",
     services: [
       { title: "Projekty indywidualne", desc: "Dom pod Waszą działkę i budżet — z wizualizacjami, zanim zdecydujecie.", to: SERVICE_PATHS.indywidualne },
       { title: "Adaptacje projektów", desc: "Projekt z katalogu dostosowany do działki, WZ lub planu — z kompletem dokumentów.", to: SERVICE_PATHS.adaptacje },
-      { title: "Kierownik budowy", desc: "Gdów mamy „po drodze” — na budowie jesteśmy w ok. 25 minut od telefonu.", to: SERVICE_PATHS.kierownik },
+      { title: "Kierownik budowy", desc: "Gdów mamy „po drodze” — na budowie jesteśmy w ok. 30 minut od telefonu.", to: SERVICE_PATHS.kierownik },
       { title: "Analizy działek", desc: "WZ czy MPZP, tereny zalewowe, media, zjazd — sprawdzimy przed zakupem działki.", to: SERVICE_PATHS.uslugi },
     ],
     realizationsTitle: "Nasze projekty w okolicy",
     realizations: [
-      { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów (gm. Łapanów)", desc: "[2–3 zdania — Łapanów sąsiaduje z gminą Gdów]" },
-      { caption: "FOTO: realizacja", title: "[Realizacja 2]", desc: "[2–3 zdania]" },
-      { caption: "FOTO: realizacja", title: "[Realizacja 3]", desc: "[2–3 zdania]" },
+      { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów (gm. Łapanów)" },
+      { caption: "FOTO: realizacja do ustalenia", title: "[Realizacja 2]" },
+      { caption: "FOTO: realizacja do ustalenia", title: "[Realizacja 3]" },
     ],
     faqTitle: "Budowa domu w gminie Gdów — najczęstsze pytania",
     faqs: [
@@ -312,12 +306,12 @@ export const localPages: Record<string, LocalPageData> = {
       },
       {
         q: "Czy poprowadzicie budowę w Gdowie jako kierownik budowy?",
-        a: "Tak — Gdów leży kwadrans z hakiem od naszego biura, więc jesteśmy na każdym kluczowym etapie budowy bez wyczekiwania na „okienko w kalendarzu”.",
+        a: "Tak — z naszego biura do Gdowa jedziemy około pół godziny, więc jesteśmy na każdym kluczowym etapie budowy bez wyczekiwania na „okienko w kalendarzu”.",
       },
     ],
     ctaTitle: "Kupujecie działkę lub budujecie w Gdowie?",
     ctaText: "Wyślijcie numer działki — bezpłatnie sprawdzimy, czy i co można na niej wybudować.",
-    ctaNote: "ArKon · Żegocina 149 · ok. 17 km od Gdowa",
+    ctaNote: "ArKon · Żegocina 149 · ok. 25 km od Gdowa",
     areaServed: ["Gdów", "Marszowice", "Zręczyce", "Wieliczka"],
   },
 };

@@ -48,11 +48,12 @@ const Footer = () => (
             <Link to="/uslugi/adaptacja-projektu" className="block hover:text-accent transition-colors">Adaptacje projektów</Link>
             <Link to="/uslugi/kierownik-budowy" className="block hover:text-accent transition-colors">Kierownik budowy</Link>
             <p>Projekty branżowe</p>
+            <p>Analizy działek</p>
+            <p>Projekty wnętrz</p>
             <p>Geodezja</p>
             <p>Nadzór budowy</p>
             <p>Obsługa inwestycji</p>
-            <p>Projekty wnętrz</p>
-            <p>Ekspertyzy i opinie</p>
+            <p>Inne usługi</p>
           </div>
         </div>
 

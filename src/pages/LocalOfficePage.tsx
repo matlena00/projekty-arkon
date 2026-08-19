@@ -7,6 +7,7 @@ import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
 import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import RouteMap from "@/components/landing/RouteMap";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
 import { breadcrumbLd, webPageLd, serviceLd } from "@/lib/schema";
@@ -120,7 +121,7 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
           </motion.div>
           <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }}>
             <div className="border border-accent/40 p-2">
-              <PhotoPlaceholder className="aspect-[4/3] w-full" caption={data.mapCaption} />
+              <RouteMap city={data.slug} className="aspect-[4/3] w-full" />
             </div>
           </motion.div>
         </div>
@@ -169,10 +170,9 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
                 <>
                   <PhotoPlaceholder className="aspect-[4/3] w-full" caption={r.caption} />
                   <div className="p-6">
-                    <h3 className="font-display font-700 text-foreground text-lg mb-2 group-hover:text-accent transition-colors">
+                    <h3 className="font-display font-700 text-foreground text-lg group-hover:text-accent transition-colors">
                       {r.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{r.desc}</p>
                   </div>
                 </>
               );

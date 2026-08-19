@@ -7,6 +7,7 @@ import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
 import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import RouteMap from "@/components/landing/RouteMap";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
 import { breadcrumbLd, webPageLd, serviceLd } from "@/lib/schema";
@@ -312,10 +313,9 @@ const KierownikBudowyPage = () => (
         </motion.h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div {...fadeUp}>
-            <PhotoPlaceholder
-              className="aspect-[4/3] w-full border-accent/40"
-              caption="MAPA: obszar działania z pinezką w Żegocinie i zaznaczonymi miastami (grafika lub Google Maps embed)"
-            />
+            <div className="border border-accent/40 p-2">
+              <RouteMap area className="aspect-[4/3] w-full" />
+            </div>
           </motion.div>
           <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }}>
             <p className="text-muted-foreground leading-relaxed mb-6">
