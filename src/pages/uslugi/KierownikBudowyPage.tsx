@@ -32,9 +32,7 @@ const steps = [
 const areaCities = [
   { name: "Bochnię", rest: " i powiat bocheński,", to: "/biuro-projektowe-bochnia" },
   { name: "Limanową", rest: " i powiat limanowski,", to: "/biuro-projektowe-limanowa" },
-  { name: "Brzesko", rest: " i powiat brzeski,", to: "/biuro-projektowe-brzesko" },
-  { name: "Wieliczkę", rest: " i powiat wielicki,", to: "/biuro-projektowe-wieliczka" },
-  { name: "Gdów", rest: " i okoliczne gminy.", to: "/biuro-projektowe-gdow" },
+  { name: "Wieliczkę", rest: " i powiat wielicki.", to: "/biuro-projektowe-wieliczka" },
 ];
 
 const faqs = [
@@ -70,8 +68,8 @@ const fadeUp = {
 const KierownikBudowyPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="Kierownik budowy z uprawnieniami — Bochnia, Limanowa, Brzesko"
-      description="Kierownik budowy z uprawnieniami konstrukcyjno-budowlanymi. Dziennik budowy, odbiory, nadzór. Bochnia, Limanowa, Brzesko, Wieliczka, Gdów. Tel. 888 899 366."
+      title="Kierownik budowy z uprawnieniami — Bochnia, Limanowa, Wieliczka"
+      description="Kierownik budowy z uprawnieniami konstrukcyjno-budowlanymi. Dziennik budowy, odbiory, nadzór. Powiat bocheński, limanowski i wielicki. Tel. 888 899 366."
       path="/uslugi/kierownik-budowy"
     />
     <JsonLd
@@ -115,7 +113,7 @@ const KierownikBudowyPage = () => (
               transition={{ duration: 0.8, delay: 0.1 }}
               className="heading-display text-primary-foreground text-3xl md:text-5xl lg:text-[3.4rem] mb-6"
             >
-              Kierownik budowy — Bochnia, Limanowa, Brzesko i&nbsp;okolice
+              Kierownik budowy — Bochnia, Limanowa, Wieliczka i&nbsp;okolice
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -144,7 +142,7 @@ const KierownikBudowyPage = () => (
                 href="#kontakt"
                 className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
               >
-                Bezpłatna wycena
+                Wycena bez zobowiązań
               </a>
             </motion.div>
           </div>
@@ -348,7 +346,7 @@ const KierownikBudowyPage = () => (
     <CtaBand
       id="kontakt"
       title="Ruszacie z budową? Porozmawiajmy, zanim wbijecie pierwszą łopatę"
-      text="Bezpłatnie doradzimy, jakie dokumenty musicie mieć gotowe przed rozpoczęciem robót."
+      text="Doradzimy, jakie dokumenty musicie mieć gotowe przed rozpoczęciem robót."
       note="Pn–Pt 8:00–16:00 · Żegocina 149"
     />
 

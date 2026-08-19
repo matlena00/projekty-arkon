@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
-import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import AssetPhoto from "@/components/landing/AssetPhoto";
 import RouteMap from "@/components/landing/RouteMap";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
@@ -100,7 +100,15 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
               </motion.div>
             </div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
-              <PhotoPlaceholder dark className="aspect-[4/5] max-h-[520px] w-full" caption={data.heroCaption} />
+              <AssetPhoto
+                folder="lokalne"
+                name={data.heroImage}
+                alt={`${data.breadcrumbName} — realizacja ArKon`}
+                caption={data.heroCaption}
+                className="aspect-[4/3] max-h-[520px] w-full"
+                dark
+                eager
+              />
             </motion.div>
           </div>
         </div>
@@ -168,7 +176,14 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
             {data.realizations.map((r, i) => {
               const card = (
                 <>
-                  <PhotoPlaceholder className="aspect-[4/3] w-full" caption={r.caption} />
+                  <AssetPhoto
+                    folder="lokalne"
+                    name={r.image}
+                    alt={r.title}
+                    caption={r.caption}
+                    className="aspect-[4/3] w-full"
+                    thumb
+                  />
                   <div className="p-6">
                     <h3 className="font-display font-700 text-foreground text-lg group-hover:text-accent transition-colors">
                       {r.title}

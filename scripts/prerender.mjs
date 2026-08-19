@@ -31,7 +31,6 @@ const ROUTES = [
   "/biuro-projektowe-limanowa",
   "/biuro-projektowe-brzesko",
   "/biuro-projektowe-wieliczka",
-  "/biuro-projektowe-gdow",
   "/galeria",
   "/blog",
   "/faq",

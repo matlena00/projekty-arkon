@@ -64,7 +64,6 @@ const Footer = () => (
             <Link to="/biuro-projektowe-limanowa" className="block hover:text-accent transition-colors">Limanowa</Link>
             <Link to="/biuro-projektowe-brzesko" className="block hover:text-accent transition-colors">Brzesko</Link>
             <Link to="/biuro-projektowe-wieliczka" className="block hover:text-accent transition-colors">Wieliczka</Link>
-            <Link to="/biuro-projektowe-gdow" className="block hover:text-accent transition-colors">Gdów</Link>
           </div>
         </div>
       </div>

@@ -70,7 +70,7 @@ const FaqPage = () => (
 
     <CtaBand
       title="Nie znaleźliście odpowiedzi na swoje pytanie?"
-      text="Zadzwońcie lub napiszcie — doradzimy bezpłatnie i bez zobowiązań."
+      text="Zadzwońcie lub napiszcie — doradzimy bez zobowiązań."
       note="Pn–Pt 8:00–16:00 · Żegocina 149"
     />
 

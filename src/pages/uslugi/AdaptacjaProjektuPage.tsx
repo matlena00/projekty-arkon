@@ -21,7 +21,7 @@ const scope = [
 ];
 
 const steps = [
-  { title: "Analiza działki", desc: "Sprawdzamy MPZP / warunki zabudowy, dostęp do drogi i mediów, ukształtowanie terenu. Bezpłatnie, przed jakąkolwiek decyzją." },
+  { title: "Analiza działki", desc: "Sprawdzamy MPZP / warunki zabudowy, dostęp do drogi i mediów, ukształtowanie terenu. Bez zobowiązań, przed jakąkolwiek decyzją." },
   { title: "Wybór i weryfikacja projektu", desc: "Doradzamy, który projekt z katalogu zmieści się na działce i będzie tani w budowie. Współpracujemy z czołowymi katalogami." },
   { title: "Dokumenty wyjściowe", desc: "Zamawiamy mapę do celów projektowych (mamy własną geodezję), badania gruntu i warunki przyłączenia mediów." },
   { title: "Adaptacja i zmiany", desc: "Dostosowujemy projekt do działki i wprowadzamy Wasze zmiany. Wszystko konsultujemy na bieżąco." },
@@ -197,14 +197,14 @@ const AdaptacjaProjektuPage = () => (
       />
       <div className="relative section-padding max-w-3xl mx-auto text-center">
         <motion.p {...fadeUp} className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
-          Bezpłatna weryfikacja
+          Wstępna analiza
         </motion.p>
         <motion.h2
           {...fadeUp}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="heading-display text-primary-foreground text-2xl md:text-4xl mb-6"
         >
-          Zanim kupicie projekt — sprawdzimy go bezpłatnie
+          Zanim kupicie projekt — sprawdzimy go za Was
         </motion.h2>
         <motion.p
           {...fadeUp}
@@ -212,8 +212,8 @@ const AdaptacjaProjektuPage = () => (
           className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-10"
         >
           Najdroższy błąd to kupno projektu, który nie zmieści się na działce albo jest sprzeczny z planem
-          miejscowym. Wyślijcie nam numer działki i link do projektu, który Wam się podoba — bezpłatnie
-          sprawdzimy, czy da się go u Was postawić i co trzeba będzie zmienić.
+          miejscowym. Wyślijcie nam numer działki i link do projektu, który Wam się podoba — sprawdzimy,
+          czy da się go u Was postawić i co trzeba będzie zmienić, zanim wydacie na niego pieniądze.
         </motion.p>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.3 }}>
           <a

@@ -97,10 +97,10 @@ const OfficeSection = () => {
               Zacznijmy od rozmowy
             </p>
             <h2 className="heading-display text-primary-foreground text-3xl md:text-5xl mb-6">
-              Umów się na bezpłatną konsultację
+              Umów się na rozmowę bez zobowiązań
             </h2>
             <p className="text-concrete text-base md:text-lg leading-relaxed mb-8 max-w-lg">
-              Pierwsze spotkanie jest zawsze bezpłatne. Porozmawiamy o Twoich potrzebach,
+              Pierwsze spotkanie jest zawsze bez zobowiązań. Porozmawiamy o Twoich potrzebach,
               przedstawimy możliwości i zaproponujemy najlepsze rozwiązanie dla Twojego projektu.
             </p>
 

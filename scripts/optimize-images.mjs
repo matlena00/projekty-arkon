@@ -21,6 +21,8 @@ const THUMB_QUALITY = 72;
 function thumbWidthFor(relPath) {
   if (relPath.startsWith("projects/")) return 900; // siatka galerii realizacji
   if (relPath.startsWith("team/")) return 480; // awatary zespołu (128-160px CSS)
+  if (relPath.startsWith("lokalne/")) return 900; // karty realizacji na stronach lokalnych
+  if (relPath.startsWith("uslugi/")) return 900; // karty portfolio na podstronach usług
   if (/^office-(real-[12]|lobby|reception|desk)\./.test(relPath)) return 900; // siatka biura
   return null;
 }

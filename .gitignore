@@ -7,3 +7,4 @@ dist
 *.log
 projekty-arkon-deploy.zip
 *.tsbuildinfo
+IMAGES/

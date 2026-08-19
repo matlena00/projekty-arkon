@@ -40,7 +40,7 @@ const ContactPage = () => (
   <main className="overflow-x-hidden">
     <Seo
       title="Kontakt | Biuro Projektowe ArKon — Żegocina"
-      description="Skontaktuj się z biurem ArKon: Żegocina 149, tel. +48 888 899 366, biuro@projekty-arkon.pl. Zapraszamy na bezpłatną konsultację."
+      description="Skontaktuj się z biurem ArKon: Żegocina 149, tel. +48 888 899 366, biuro@projekty-arkon.pl. Zapraszamy na rozmowę bez zobowiązań."
       path="/kontakt"
     />
     <JsonLd

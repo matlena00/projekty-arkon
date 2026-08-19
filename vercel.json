@@ -1,3 +1,10 @@
 {
+  "redirects": [
+    {
+      "source": "/biuro-projektowe-gdow",
+      "destination": "/biuro-projektowe-wieliczka",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

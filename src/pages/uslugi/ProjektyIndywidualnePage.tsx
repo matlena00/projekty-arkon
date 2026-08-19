@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
-import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import AssetPhoto from "@/components/landing/AssetPhoto";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
 import { breadcrumbLd, webPageLd, serviceLd } from "@/lib/schema";
@@ -60,15 +60,13 @@ const steps = [
   },
 ];
 
-// Zdjęcia do podpięcia z galerii (bucket „realizacje” w Supabase) — mapowanie
-// slot → plik jest w notatkach z uwag klienta.
 const portfolio = [
-  { caption: "FOTO: Kocmyrzów", title: "Dom jednorodzinny, Kocmyrzów", desc: "Wymagający projekt na działce z dużym spadkiem. Inwestor chciał ponadto wykorzystać piękny widok z działki na Kraków." },
-  { caption: "FOTO: Łazany", title: "Dom jednorodzinny, Łazany", desc: "Jeden z największych i najciekawszych projektów. Trzy kondygnacje idealnie wkomponowane w działkę ze spadkiem." },
-  { caption: "FOTO: Brzezie", title: "Dom jednorodzinny, Brzezie", desc: "Piękna parterówka z unikalnym układem pomieszczeń — możemy śmiało powiedzieć, że to projekt uszyty pod wymagania Inwestorów." },
-  { caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa", desc: "Miało być nowocześnie, ale nie zrujnować portfela — i z całą pewnością się udało! Projekt, któremu poświęciliśmy bardzo dużo czasu, ale ostatecznie wyszła piękna i unikalna bryła." },
-  { caption: "FOTO: Bochnia", title: "Osiedle domów, Bochnia", desc: "Osiedle budynków w zabudowie szeregowej — wymagający projekt, który udało się nam zrealizować w ekspresowym czasie." },
-  { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów", desc: "Nietypowy budynek pod nietypowe wymagania Inwestorów. Koncepcje zmienialiśmy kilkanaście razy, ale w efekcie powstał budynek, który w pełni będzie odpowiadał potrzebom Klientów." },
+  { image: "indywidualne-kocmyrzow", caption: "FOTO: Kocmyrzów", title: "Dom jednorodzinny, Kocmyrzów", desc: "Wymagający projekt na działce z dużym spadkiem. Inwestor chciał ponadto wykorzystać piękny widok z działki na Kraków." },
+  { image: "indywidualne-lazany", caption: "FOTO: Łazany", title: "Dom jednorodzinny, Łazany", desc: "Jeden z największych i najciekawszych projektów. Trzy kondygnacje idealnie wkomponowane w działkę ze spadkiem." },
+  { image: "indywidualne-brzezie", caption: "FOTO: Brzezie", title: "Dom jednorodzinny, Brzezie", desc: "Piękna parterówka z unikalnym układem pomieszczeń — możemy śmiało powiedzieć, że to projekt uszyty pod wymagania Inwestorów." },
+  { image: "indywidualne-olchawa", caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa", desc: "Miało być nowocześnie, ale nie zrujnować portfela — i z całą pewnością się udało! Projekt, któremu poświęciliśmy bardzo dużo czasu, ale ostatecznie wyszła piękna i unikalna bryła." },
+  { image: "indywidualne-bochnia", caption: "FOTO: Bochnia", title: "Osiedle domów, Bochnia", desc: "Osiedle budynków w zabudowie szeregowej — wymagający projekt, który udało się nam zrealizować w ekspresowym czasie." },
+  { image: "indywidualne-sobolow", caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów", desc: "Nietypowy budynek pod nietypowe wymagania Inwestorów. Koncepcje zmienialiśmy kilkanaście razy, ale w efekcie powstał budynek, który w pełni będzie odpowiadał potrzebom Klientów." },
 ];
 
 const deliverables = [
@@ -115,7 +113,7 @@ const ProjektyIndywidualnePage = () => (
   <main className="overflow-x-hidden">
     <Seo
       title="Projekty indywidualne domów — Małopolska | Biuro ArKon"
-      description="Projekt domu zaprojektowany pod Waszą działkę i budżet — od koncepcji po pozwolenie na budowę. Bochnia, Limanowa, Brzesko, Wieliczka. Bezpłatna konsultacja."
+      description="Projekt domu zaprojektowany pod Waszą działkę i budżet — od koncepcji po pozwolenie na budowę. Bochnia, Limanowa, Brzesko, Wieliczka. Pierwsza rozmowa bez zobowiązań."
       path="/uslugi/projekty-indywidualne"
     />
     <JsonLd
@@ -182,7 +180,7 @@ const ProjektyIndywidualnePage = () => (
                 className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
               >
                 <Phone size={16} />
-                Umów bezpłatną konsultację
+                Umów rozmowę o projekcie
               </a>
               <a
                 href="#realizacje"
@@ -193,10 +191,14 @@ const ProjektyIndywidualnePage = () => (
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
-            <PhotoPlaceholder
+            <AssetPhoto
+              folder="uslugi"
+              name="indywidualne-hero"
+              alt="Wizualizacja domu jednorodzinnego zaprojektowanego przez ArKon"
+              caption="WIZUALIZACJA: projekt indywidualny ArKon"
+              className="aspect-[4/3] max-h-[520px] w-full"
               dark
-              className="aspect-[4/5] max-h-[520px] w-full"
-              caption="WIZUALIZACJA: najlepszy projekt indywidualny ArKon (np. dom 600 m n.p.m. z widokiem na Tatry)"
+              eager
             />
           </motion.div>
         </div>
@@ -304,7 +306,14 @@ const ProjektyIndywidualnePage = () => (
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
               >
                 <div className={cls}>
-                  <PhotoPlaceholder className="aspect-[4/3] w-full" caption={project.caption} />
+                  <AssetPhoto
+                    folder="uslugi"
+                    name={project.image}
+                    alt={project.title}
+                    caption={project.caption}
+                    className="aspect-[4/3] w-full"
+                    thumb
+                  />
                   <div className="p-6">
                     <h3 className="font-display font-700 text-foreground text-lg mb-2">{project.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{project.desc}</p>

@@ -8,6 +8,9 @@ export interface LocalService {
 }
 
 export interface LocalRealization {
+  /** Plik w src/assets/lokalne (bez rozszerzenia); brak = placeholder */
+  image?: string;
+  /** Opis widoczny w placeholderze, dopóki nie ma zdjęcia */
   caption: string;
   /** Typ obiektu + lokalizacja — bez opisu, zgodnie z uwagami klienta */
   title: string;
@@ -22,6 +25,8 @@ export interface LocalPageData {
   breadcrumbName: string;
   h1: string;
   lead: string;
+  /** Plik w src/assets/lokalne (bez rozszerzenia); brak = placeholder */
+  heroImage?: string;
   heroCaption: string;
   knowledgeTitle: string;
   knowledgeParagraphs: string[];
@@ -51,11 +56,12 @@ export const localPages: Record<string, LocalPageData> = {
     path: "/biuro-projektowe-bochnia",
     seoTitle: "Biuro projektowe Bochnia — projekty domów i adaptacje | ArKon",
     seoDescription:
-      "Architekt i kierownik budowy dla Bochni i okolic — 25 min od centrum. Projekty indywidualne, adaptacje, nadzór budowy. Bezpłatna konsultacja: 888 899 366.",
+      "Architekt i kierownik budowy dla Bochni i okolic — 25 min od centrum. Projekty indywidualne, adaptacje, nadzór budowy. Konsultacja bez zobowiązań: 888 899 366.",
     breadcrumbName: "Biuro projektowe Bochnia",
     h1: "Biuro projektowe dla Bochni i powiatu bocheńskiego",
     lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — 25 minut od centrum Bochni. Projektowaliśmy tu zarówno domy jednorodzinne, jak i całe osiedla mieszkaniowe, kompleksowo prowadząc inwestycje od projektu aż po realizację.",
-    heroCaption: "ZDJĘCIE: osiedle domów w Bochni (jest w galerii)",
+    heroImage: "bochnia-hero",
+    heroCaption: "ZDJĘCIE: osiedle domów w Bochni",
     knowledgeTitle: "Znamy Bochnię od strony, której nie widać na mapie",
     knowledgeParagraphs: [
       "Nasze biuro leży w Żegocinie — 20 km od Bochni, w granicach powiatu bocheńskiego. Sprawy urzędowe naszych klientów załatwiamy w Starostwie Powiatowym w Bochni od lat, więc wiemy, jak przygotować wniosek, żeby przeszedł bez wezwań do uzupełnień.",
@@ -71,9 +77,9 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w Bochni i okolicach",
     realizations: [
-      { caption: "FOTO: osiedle domów, Bochnia", title: "Osiedle domów, Bochnia" },
-      { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów" },
-      { caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa" },
+      { image: "bochnia-osiedle", caption: "FOTO: osiedle domów, Bochnia", title: "Osiedle domów, Bochnia" },
+      { image: "bochnia-sobolow", caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów" },
+      { image: "bochnia-olchawa", caption: "FOTO: Olchawa", title: "Dom jednorodzinny, Olchawa" },
     ],
     faqTitle: "Budowa domu w Bochni — pytania, które słyszymy najczęściej",
     faqs: [
@@ -83,7 +89,7 @@ export const localPages: Record<string, LocalPageData> = {
       },
       {
         q: "Czy moja działka w Bochni jest objęta planem miejscowym?",
-        a: "Duża część miasta i gmin powiatu ma obowiązujące plany miejscowe, ale nie wszystkie tereny. Tam, gdzie planu nie ma, potrzebna jest decyzja o warunkach zabudowy — sprawdzimy to bezpłatnie po numerze działki.",
+        a: "Duża część miasta i gmin powiatu ma obowiązujące plany miejscowe, ale nie wszystkie tereny. Tam, gdzie planu nie ma, potrzebna jest decyzja o warunkach zabudowy — sprawdzimy to po numerze działki, zanim cokolwiek zamówicie.",
       },
       {
         q: "Ile kosztuje adaptacja projektu w powiecie bocheńskim?",
@@ -95,7 +101,7 @@ export const localPages: Record<string, LocalPageData> = {
       },
     ],
     ctaTitle: "Budujecie w Bochni lub okolicy?",
-    ctaText: "Zadzwońcie z numerem działki — bezpłatnie sprawdzimy, co można na niej wybudować.",
+    ctaText: "Zadzwońcie z numerem działki — sprawdzimy, co można na niej wybudować.",
     ctaNote: "ArKon · Żegocina 149 · 20 km od Bochni",
     areaServed: ["Bochnia", "Rzezawa", "Łapanów", "Nowy Wiśnicz", "Lipnica Murowana", "Trzciana"],
   },
@@ -105,11 +111,12 @@ export const localPages: Record<string, LocalPageData> = {
     path: "/biuro-projektowe-limanowa",
     seoTitle: "Biuro projektowe Limanowa — projekty domów w górach | ArKon",
     seoDescription:
-      "Projekty domów na działkach ze spadkiem, adaptacje i kierownik budowy — 20 min od Limanowej. Znamy teren górski i osuwiska. Bezpłatna konsultacja: 888 899 366.",
+      "Projekty domów na działkach ze spadkiem, adaptacje i kierownik budowy — 20 min od Limanowej. Znamy teren górski i osuwiska. Konsultacja bez zobowiązań: 888 899 366.",
     breadcrumbName: "Biuro projektowe Limanowa",
     h1: "Biuro projektowe dla Limanowej i Beskidu Wyspowego",
     lead: "Projektujemy domy tam, gdzie katalogowe projekty się poddają: działki ze spadkiem, tereny osuwiskowe, widoki na góry. Biuro mamy w Żegocinie — 20 minut od Limanowej, po tej samej, górskiej stronie świata.",
-    heroCaption: "ZDJĘCIE: dom na 600 m n.p.m. z widokiem na Tatry — Wasza realizacja, idealna tutaj",
+    heroImage: "limanowa-hero",
+    heroCaption: "ZDJĘCIE: baza piłkarska w Limanowej",
     knowledgeTitle: "Budowa w powiecie limanowskim to inna dyscyplina",
     knowledgeParagraphs: [
       "Kto projektował tylko „na płaskim”, tego teren limanowski potrafi zaskoczyć: spadki kilkunastu procent, strefy osuwiskowe wpisane do rejestrów, wyższe obciążenie śniegiem, dojazdy, które zimą weryfikują każdy plan budowy. My w takim terenie pracujemy na co dzień — Żegocina leży na granicy Beskidu Wyspowego.",
@@ -125,15 +132,15 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w górskim terenie",
     realizations: [
-      { caption: "FOTO: baza piłkarska, Limanowa", title: "Baza piłkarska, Limanowa" },
-      { caption: "FOTO: dom jednorodzinny — zdjęcie do przesłania", title: "Dom jednorodzinny" },
-      { caption: "FOTO: dom jednorodzinny, Limanowa — wizualizacja do przesłania", title: "Dom jednorodzinny, Limanowa" },
+      { image: "limanowa-baza-pilkarska", caption: "FOTO: baza piłkarska, Limanowa", title: "Baza piłkarska, Limanowa" },
+      { image: "limanowa-dom-01", caption: "FOTO: dom jednorodzinny, Limanowa", title: "Dom jednorodzinny, Limanowa" },
+      { image: "limanowa-dom-02", caption: "FOTO: dom jednorodzinny, Limanowa", title: "Dom jednorodzinny, Limanowa" },
     ],
     faqTitle: "Budowa domu koło Limanowej — najczęstsze pytania",
     faqs: [
       {
         q: "Jak sprawdzić, czy działka jest na terenie osuwiskowym?",
-        a: "Podstawą jest rejestr SOPO (System Osłony Przeciwosuwiskowej) i zapisy planu miejscowego. Na terenach zagrożonych starostwo może wymagać dokumentacji geologiczno-inżynierskiej. Sprawdzimy Waszą działkę bezpłatnie — wystarczy numer ewidencyjny.",
+        a: "Podstawą jest rejestr SOPO (System Osłony Przeciwosuwiskowej) i zapisy planu miejscowego. Na terenach zagrożonych starostwo może wymagać dokumentacji geologiczno-inżynierskiej. Sprawdzimy Waszą działkę na starcie — wystarczy numer ewidencyjny.",
       },
       {
         q: "Czy na działce ze spadkiem budowa musi być droższa?",
@@ -159,11 +166,12 @@ export const localPages: Record<string, LocalPageData> = {
     path: "/biuro-projektowe-brzesko",
     seoTitle: "Biuro projektowe Brzesko — projekty domów, adaptacje | ArKon",
     seoDescription:
-      "Projekty indywidualne, adaptacje projektów gotowych i kierownik budowy dla Brzeska i powiatu brzeskiego. Realizacje m.in. w Dębnie. Tel. 888 899 366.",
+      "Projekty indywidualne, adaptacje projektów gotowych i analizy działek dla Brzeska i powiatu brzeskiego. Realizacje m.in. w Dębnie i Sufczynie. Tel. 888 899 366.",
     breadcrumbName: "Biuro projektowe Brzesko",
     h1: "Biuro projektowe dla Brzeska i powiatu brzeskiego",
-    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami. Projektowaliśmy m.in. w Dębnie i Jasieniu — do Brzeska mamy pół godzinki drogi.",
-    heroCaption: "ZDJĘCIE: realizacja Dębno (macie w galerii)",
+    lead: "Projekty domów i adaptacje projektów gotowych. Projektowaliśmy m.in. w Dębnie i Jasieniu — do Brzeska mamy pół godzinki drogi.",
+    heroImage: "brzesko-hero",
+    heroCaption: "ZDJĘCIE: realizacja w powiecie brzeskim",
     knowledgeTitle: "Od Brzeska dzieli nas pół godziny — i żadnych niespodzianek w urzędzie",
     knowledgeParagraphs: [
       "Powiat brzeski znamy z praktyki: prowadziliśmy projekty między innymi w Dębnie i w samej gminie Brzesko, a sprawy urzędowe naszych klientów załatwiamy w Starostwie Powiatowym w Brzesku. Wiemy, jak wygląda praktyka wydawania pozwoleń w gminach Brzesko, Dębno, Czchów, Gnojnik, Iwkowa czy Szczurowa.",
@@ -173,14 +181,14 @@ export const localPages: Record<string, LocalPageData> = {
     services: [
       { title: "Projekty indywidualne", desc: "Dom zaprojektowany pod Waszą działkę i budżet — od koncepcji po pozwolenie.", to: SERVICE_PATHS.indywidualne },
       { title: "Adaptacje projektów", desc: "Projekt z katalogu dostosowany do działki i planu miejscowego, z kompletem formalności.", to: SERVICE_PATHS.adaptacje },
-      { title: "Kierownik budowy", desc: "Dziennik budowy, odbiory robót, nadzór — na terenie całego powiatu brzeskiego.", to: SERVICE_PATHS.kierownik },
+      { title: "Analizy działek", desc: "MPZP lub warunki zabudowy, media, zjazd, ograniczenia — sprawdzimy działkę, zanim ją kupicie.", to: SERVICE_PATHS.uslugi },
       { title: "Geodezja i formalności", desc: "Mapy do celów projektowych, warunki zabudowy, legalizacje, zmiany sposobu użytkowania.", to: SERVICE_PATHS.uslugi },
     ],
     realizationsTitle: "Nasze projekty w Brzesku i okolicach",
     realizations: [
-      { caption: "FOTO: Dębno", title: "Dom jednorodzinny, Dębno" },
-      { caption: "FOTO: Poręba Spytkowska — wizualizacja do przesłania", title: "Dom jednorodzinny, Poręba Spytkowska" },
-      { caption: "FOTO: Sufczyn — wizualizacja do przesłania", title: "Dom jednorodzinny, Sufczyn" },
+      { image: "brzesko-debno", caption: "FOTO: Dębno", title: "Dom jednorodzinny, Dębno" },
+      { image: "brzesko-poreba-spytkowska", caption: "FOTO: Poręba Spytkowska", title: "Dom jednorodzinny, Poręba Spytkowska" },
+      { image: "brzesko-sufczyn", caption: "FOTO: Sufczyn", title: "Dom jednorodzinny, Sufczyn" },
     ],
     faqTitle: "Budowa domu w Brzesku — najczęstsze pytania",
     faqs: [
@@ -202,7 +210,7 @@ export const localPages: Record<string, LocalPageData> = {
       },
     ],
     ctaTitle: "Budujecie w Brzesku lub okolicy?",
-    ctaText: "Zadzwońcie z numerem działki — bezpłatnie sprawdzimy plan miejscowy i powiemy, od czego zacząć.",
+    ctaText: "Zadzwońcie z numerem działki — sprawdzimy plan miejscowy i powiemy, od czego zacząć.",
     ctaNote: "ArKon · Żegocina 149 · ok. 31 km od Brzeska",
     areaServed: ["Brzesko", "Dębno", "Czchów", "Gnojnik", "Iwkowa", "Szczurowa"],
   },
@@ -212,16 +220,17 @@ export const localPages: Record<string, LocalPageData> = {
     path: "/biuro-projektowe-wieliczka",
     seoTitle: "Biuro projektowe Wieliczka — projekty domów, adaptacje | ArKon",
     seoDescription:
-      "Projekty indywidualne, adaptacje projektów gotowych i kierownik budowy dla Wieliczki i okolic. Znamy lokalne plany miejscowe. Bezpłatna konsultacja: 888 899 366.",
+      "Projekty indywidualne, adaptacje projektów gotowych i kierownik budowy dla Wieliczki i okolic. Znamy lokalne plany miejscowe. Konsultacja bez zobowiązań: 888 899 366.",
     breadcrumbName: "Biuro projektowe Wieliczka",
     h1: "Biuro projektowe dla Wieliczki i powiatu wielickiego",
     lead: "Uciekacie z Krakowa na swoje? Pomagamy od wyboru działki po odbiór domu: projekty indywidualne, adaptacje projektów gotowych i kierownik budowy z uprawnieniami. Bez krakowskich stawek i bez krakowskich kolejek.",
-    heroCaption: "ZDJĘCIE: dom jednorodzinny — realizacja lub najlepsza wizualizacja podmiejska",
+    heroImage: "wieliczka-hero",
+    heroCaption: "ZDJĘCIE: dom jednorodzinny w powiecie wielickim",
     knowledgeTitle: "Wieliczka buduje najszybciej w Małopolsce — my pomagamy budować mądrze",
     knowledgeParagraphs: [
       "Powiat wielicki od lat jest jednym z najszybciej zabudowywanych terenów w regionie. Efekt: coraz mniejsze i trudniejsze działki, gęste plany miejscowe i sąsiedzi za płotem z każdej strony. Dobrze dobrany projekt musi to wszystko uwzględnić — od zacieniania po odległości od granic.",
       "W Wieliczce i okolicach trzeba też wiedzieć, gdzie sprawdzić tereny dawnej eksploatacji górniczej oraz strefy ochrony konserwatorskiej. To standardowy punkt naszej analizy działki, zanim powstanie projekt lub adaptacja.",
-      "Sprawy urzędowe prowadzimy w Starostwie Powiatowym w Wieliczce; pracujemy w gminach Wieliczka, Niepołomice, Biskupice, Kłaj i Gdów — w Brzeziu (gm. Kłaj) mamy zrealizowany projekt.",
+      "Sprawy urzędowe prowadzimy w Starostwie Powiatowym w Wieliczce; pracujemy w gminach Wieliczka, Niepołomice, Biskupice, Kłaj i Gdów — nasze projekty stoją m.in. w Tomaszkowicach, Gorzkowie i Łazanach.",
     ],
     servicesTitle: "W czym pomagamy inwestorom z Wieliczki",
     services: [
@@ -232,9 +241,9 @@ export const localPages: Record<string, LocalPageData> = {
     ],
     realizationsTitle: "Nasze projekty w powiecie wielickim i okolicach",
     realizations: [
-      { caption: "FOTO: Tomaszkowice — wizualizacja do przesłania", title: "Dom jednorodzinny, Tomaszkowice" },
-      { caption: "FOTO: Łazany — wizualizacja do przesłania", title: "Dom jednorodzinny, Łazany" },
-      { caption: "FOTO: Gorzków — wizualizacja do przesłania", title: "Dom jednorodzinny, Gorzków" },
+      { image: "wieliczka-tomaszkowice", caption: "FOTO: Tomaszkowice", title: "Dom jednorodzinny, Tomaszkowice" },
+      { image: "wieliczka-lazany", caption: "FOTO: Łazany", title: "Dom jednorodzinny, Łazany" },
+      { image: "wieliczka-gorzkow", caption: "FOTO: Gorzków", title: "Dom jednorodzinny, Gorzków" },
     ],
     faqTitle: "Budowa domu w Wieliczce — najczęstsze pytania",
     faqs: [
@@ -248,7 +257,7 @@ export const localPages: Record<string, LocalPageData> = {
       },
       {
         q: "Czy obsługujecie też gminy Niepołomice i Kłaj?",
-        a: "Tak — pracujemy w całym powiecie wielickim. W Brzeziu w gminie Kłaj mamy zrealizowany projekt.",
+        a: "Tak — pracujemy w całym powiecie wielickim: w gminie Wieliczka projektowaliśmy w Tomaszkowicach i Gorzkowie, w gminie Biskupice w Łazanach, a w gminie Kłaj w Brzeziu.",
       },
       {
         q: "Ile trwa uzyskanie pozwolenia na budowę w powiecie wielickim?",
@@ -259,59 +268,5 @@ export const localPages: Record<string, LocalPageData> = {
     ctaText: "Wyślijcie numer działki — sprawdzimy plan miejscowy i powiemy, co realnie można na niej wybudować.",
     ctaNote: "ArKon · Żegocina 149 · ok. 45 min od Wieliczki",
     areaServed: ["Wieliczka", "Niepołomice", "Biskupice", "Kłaj", "Gdów"],
-  },
-
-  gdow: {
-    slug: "gdow",
-    path: "/biuro-projektowe-gdow",
-    seoTitle: "Biuro projektowe Gdów — projekty domów i adaptacje | ArKon",
-    seoDescription:
-      "Architekt, adaptacje projektów i kierownik budowy dla Gdowa i doliny Raby — 25 min od Gdowa. Sprawdzimy działkę bezpłatnie. Tel. 888 899 366.",
-    breadcrumbName: "Biuro projektowe Gdów",
-    h1: "Biuro projektowe dla Gdowa i doliny Raby",
-    lead: "Projekty domów, adaptacje projektów gotowych i kierownik budowy z uprawnieniami — ok. 30 minut od Gdowa. Obsługujemy całą gminę: od Marszowic po Zręczyce, od pierwszego szkicu po odbiór domu.",
-    heroCaption: "ZDJĘCIE: dom jednorodzinny w otwartym krajobrazie (realizacja lub wizualizacja)",
-    knowledgeTitle: "Gdów to dobre miejsce na dom — jeśli dobrze wybierzecie działkę",
-    knowledgeParagraphs: [
-      "Gmina Gdów przyciąga budujących: blisko Krakowa i Wieliczki, a działki wciąż większe i tańsze niż bliżej miasta. Ale dolina Raby ma swoją specyfikę — część terenów leży w zasięgu wód powodziowych, a część gminy nie jest objęta planem miejscowym, więc potrzebna bywa decyzja o warunkach zabudowy.",
-      "Zanim kupicie działkę albo projekt, sprawdzimy za Was: plan miejscowy lub możliwość uzyskania WZ, zagrożenie powodziowe, dostęp do drogi i mediów. Bezpłatnie, po numerze działki.",
-      "Formalności dla gminy Gdów prowadzimy w Starostwie Powiatowym w Wieliczce — robimy to na pełnomocnictwo, więc Wy nie stoicie w żadnej kolejce.",
-    ],
-    servicesTitle: "W czym pomagamy inwestorom z gminy Gdów",
-    services: [
-      { title: "Projekty indywidualne", desc: "Dom pod Waszą działkę i budżet — z wizualizacjami, zanim zdecydujecie.", to: SERVICE_PATHS.indywidualne },
-      { title: "Adaptacje projektów", desc: "Projekt z katalogu dostosowany do działki, WZ lub planu — z kompletem dokumentów.", to: SERVICE_PATHS.adaptacje },
-      { title: "Kierownik budowy", desc: "Gdów mamy „po drodze” — na budowie jesteśmy w ok. 30 minut od telefonu.", to: SERVICE_PATHS.kierownik },
-      { title: "Analizy działek", desc: "WZ czy MPZP, tereny zalewowe, media, zjazd — sprawdzimy przed zakupem działki.", to: SERVICE_PATHS.uslugi },
-    ],
-    realizationsTitle: "Nasze projekty w okolicy",
-    realizations: [
-      { caption: "FOTO: Sobolów", title: "Dom jednorodzinny, Sobolów (gm. Łapanów)" },
-      { caption: "FOTO: realizacja do ustalenia", title: "[Realizacja 2]" },
-      { caption: "FOTO: realizacja do ustalenia", title: "[Realizacja 3]" },
-    ],
-    faqTitle: "Budowa domu w gminie Gdów — najczęstsze pytania",
-    faqs: [
-      {
-        q: "Moja działka w gminie Gdów nie ma planu miejscowego — co teraz?",
-        a: "Potrzebna będzie decyzja o warunkach zabudowy (WZ). Przygotowujemy wnioski o WZ i prowadzimy je do decyzji — to zwykle najdłuższy etap, dlatego warto zacząć od niego, jeszcze przed wyborem projektu.",
-      },
-      {
-        q: "Jak sprawdzić, czy działka leży na terenie zalewowym Raby?",
-        a: "Zasięgi wód powodziowych sprawdza się na mapach zagrożenia powodziowego; bywają też ujęte w planie miejscowym. Robimy to standardowo przy każdej analizie działki w dolinie Raby — bezpłatnie.",
-      },
-      {
-        q: "Gdzie załatwia się pozwolenie na budowę dla Gdowa?",
-        a: "Gmina Gdów należy do powiatu wielickiego — wnioski składa się w Starostwie Powiatowym w Wieliczce. Na pełnomocnictwo prowadzimy całą sprawę za Was.",
-      },
-      {
-        q: "Czy poprowadzicie budowę w Gdowie jako kierownik budowy?",
-        a: "Tak — z naszego biura do Gdowa jedziemy około pół godziny, więc jesteśmy na każdym kluczowym etapie budowy bez wyczekiwania na „okienko w kalendarzu”.",
-      },
-    ],
-    ctaTitle: "Kupujecie działkę lub budujecie w Gdowie?",
-    ctaText: "Wyślijcie numer działki — bezpłatnie sprawdzimy, czy i co można na niej wybudować.",
-    ctaNote: "ArKon · Żegocina 149 · ok. 25 km od Gdowa",
-    areaServed: ["Gdów", "Marszowice", "Zręczyce", "Wieliczka"],
   },
 };

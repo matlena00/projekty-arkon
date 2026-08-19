@@ -50,7 +50,6 @@ const App = () => (
           <Route path="/biuro-projektowe-limanowa" element={<LocalOfficePage city="limanowa" />} />
           <Route path="/biuro-projektowe-brzesko" element={<LocalOfficePage city="brzesko" />} />
           <Route path="/biuro-projektowe-wieliczka" element={<LocalOfficePage city="wieliczka" />} />
-          <Route path="/biuro-projektowe-gdow" element={<LocalOfficePage city="gdow" />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/faq" element={<FaqPage />} />
