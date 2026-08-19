@@ -44,7 +44,7 @@ const ContactSection = () => (
             icon: Clock,
             label: "Godziny otwarcia",
             type: "text",
-            lines: ["Pon – Pt: 8:00 – 16:00", "Sb: 8:00 – 12:00"],
+            lines: ["Pon - Pt: 8:00 - 16:00", "Sb: 8:00 - 12:00"],
           },
         ].map((item, i) => (
           <motion.div

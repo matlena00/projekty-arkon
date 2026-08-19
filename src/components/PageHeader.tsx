@@ -35,7 +35,7 @@ const PageHeader = ({
     >
       {hasBg && (
         <motion.div className="absolute inset-0" style={{ y: imgY, scale: imgScale }}>
-          <img src={bgImage} alt="" className="w-full h-full object-cover" />
+          <img src={bgImage} alt="" className="w-full h-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/20" />
         </motion.div>
       )}

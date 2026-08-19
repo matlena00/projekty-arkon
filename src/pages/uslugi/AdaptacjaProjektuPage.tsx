@@ -15,7 +15,7 @@ import biuroImg from "@/assets/biuro01.webp";
 const scope = [
   "sporządzamy projekt zagospodarowania terenu (usytuowanie domu, zjazd, przyłącza),",
   "sprawdzamy zgodność z miejscowym planem (MPZP) lub warunkami zabudowy,",
-  "dostosowujemy fundamenty i konstrukcję do warunków gruntowych oraz stref klimatycznych (śnieg, wiatr — w naszym terenie to istotne),",
+  "dostosowujemy fundamenty i konstrukcję do warunków gruntowych oraz stref klimatycznych (śnieg, wiatr - w naszym terenie to istotne),",
   "wprowadzamy zmiany, na których Wam zależy: lustrzane odbicie, przesunięcie okien i ścianek, zmiana garażu, kąta dachu czy materiałów,",
   "kompletujemy uzgodnienia i opinie oraz przygotowujemy wniosek o pozwolenie na budowę.",
 ];
@@ -31,11 +31,11 @@ const steps = [
 const faqs = [
   {
     q: "Ile kosztuje adaptacja projektu gotowego?",
-    a: "Cena zależy od zakresu zmian i dokumentów, które trzeba zgromadzić. Adaptacja „czysta” (bez zmian w projekcie) jest najtańsza; każda ingerencja w konstrukcję zwiększa nakład pracy. Po analizie działki i projektu podajemy jedną, konkretną cenę za całość — z mapą, badaniami gruntu i złożeniem wniosku.",
+    a: "Cena zależy od zakresu zmian i dokumentów, które trzeba zgromadzić. Adaptacja „czysta” (bez zmian w projekcie) jest najtańsza; każda ingerencja w konstrukcję zwiększa nakład pracy. Po analizie działki i projektu podajemy jedną, konkretną cenę za całość - z mapą, badaniami gruntu i złożeniem wniosku.",
   },
   {
     q: "Ile trwa adaptacja i uzyskanie pozwolenia?",
-    a: "Sama adaptacja to zwykle około dwóch miesięcy. Do czasu oczekiwania należy doliczyć czas potrzebny na wykonanie mapy czy uzyskanie warunków przyłączy — również około dwa miesiące. Urząd ma kolejne 65 dni na wydanie decyzji o pozwoleniu na budowę. Tak więc realnie należy zakładać około 6 miesięcy.",
+    a: "Sama adaptacja to zwykle około dwóch miesięcy. Do czasu oczekiwania należy doliczyć czas potrzebny na wykonanie mapy czy uzyskanie warunków przyłączy - również około dwa miesiące. Urząd ma kolejne 65 dni na wydanie decyzji o pozwoleniu na budowę. Tak więc realnie należy zakładać około 6 miesięcy.",
   },
   {
     q: "Czy można zakupić projekt w Waszym biurze?",
@@ -47,11 +47,11 @@ const faqs = [
   },
   {
     q: "Czy każdy projekt z katalogu da się zaadaptować na mojej działce?",
-    a: "Nie — i to najczęstsza pułapka. Plan miejscowy potrafi narzucić kąt dachu, szerokość elewacji, wysokość czy poziom posadowienia. Dlatego sprawdzamy projekt względem zapisów planu, zanim wydacie na niego pieniądze.",
+    a: "Nie - i to najczęstsza pułapka. Plan miejscowy potrafi narzucić kąt dachu, szerokość elewacji, wysokość czy poziom posadowienia. Dlatego sprawdzamy projekt względem zapisów planu, zanim wydacie na niego pieniądze.",
   },
   {
-    q: "Mam już projekt kupiony — co musicie ode mnie dostać?",
-    a: "Komplet dokumentacji z katalogu (4 egzemplarze lub wersję elektroniczną ze zgodą na zmiany) i numer działki. Resztę — mapę, badania, warunki, uzgodnienia — załatwiamy my.",
+    q: "Mam już projekt kupiony - co musicie ode mnie dostać?",
+    a: "Komplet dokumentacji z katalogu (4 egzemplarze lub wersję elektroniczną ze zgodą na zmiany) i numer działki. Resztę - mapę, badania, warunki, uzgodnienia - załatwiamy my.",
   },
 ];
 
@@ -65,7 +65,7 @@ const fadeUp = {
 const AdaptacjaProjektuPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="Adaptacja projektu gotowego — Bochnia, Wieliczka | ArKon"
+      title="Adaptacja projektu gotowego - Bochnia, Wieliczka | ArKon"
       description="Adaptujemy projekty typowe (Archon+, Murator i inne) do działki i MPZP. Komplet formalności do pozwolenia na budowę. Powiaty: bocheński, wielicki, limanowski."
       path="/uslugi/adaptacja-projektu"
     />
@@ -77,9 +77,9 @@ const AdaptacjaProjektuPage = () => (
           { name: "Adaptacja projektu", path: "/uslugi/adaptacja-projektu" },
         ]),
         webPageLd({
-          name: "Adaptacja projektu gotowego — Biuro Projektowe ArKon",
+          name: "Adaptacja projektu gotowego - Biuro Projektowe ArKon",
           path: "/uslugi/adaptacja-projektu",
-          description: "Adaptacja projektów typowych do działki, planu miejscowego i warunków gruntowych — z kompletem formalności do pozwolenia na budowę.",
+          description: "Adaptacja projektów typowych do działki, planu miejscowego i warunków gruntowych - z kompletem formalności do pozwolenia na budowę.",
         }),
         serviceLd({
           name: "Adaptacja projektu gotowego",
@@ -110,7 +110,7 @@ const AdaptacjaProjektuPage = () => (
               transition={{ duration: 0.8, delay: 0.1 }}
               className="heading-display text-primary-foreground text-3xl md:text-5xl lg:text-[3.4rem] mb-6"
             >
-              Adaptacja projektu gotowego — od katalogu do pozwolenia na budowę
+              Adaptacja projektu gotowego - od katalogu do pozwolenia na budowę
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -120,24 +120,24 @@ const AdaptacjaProjektuPage = () => (
             >
               Kupiliście (albo dopiero wybieracie) projekt z katalogu? Dostosujemy go do Waszej działki,
               miejscowego planu i warunków gruntowych, skompletujemy dokumenty i złożymy wniosek o pozwolenie
-              na budowę. Wy wybieracie dom — formalności są po naszej stronie.
+              na budowę. Wy wybieracie dom - formalności są po naszej stronie.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row sm:flex-wrap gap-4"
             >
               <a
                 href="tel:+48888899366"
-                className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
               >
                 <Phone size={16} />
                 Zadzwoń: 888 899 366
               </a>
               <a
                 href="#przed-zakupem"
-                className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
               >
                 Sprawdź projekt przed zakupem
               </a>
@@ -164,7 +164,7 @@ const AdaptacjaProjektuPage = () => (
           <p className="text-muted-foreground leading-relaxed mb-8">
             Projekt kupiony z katalogu (Archon+, Murator, MG Projekt i inne) to dopiero połowa drogi. Zanim urząd
             wyda pozwolenie na budowę, projekt musi zostać dostosowany do konkretnej działki przez uprawnionego
-            projektanta — i to właśnie jest adaptacja. W jej ramach:
+            projektanta - i to właśnie jest adaptacja. W jej ramach:
           </p>
           <ul className="space-y-4">
             {scope.map((item) => (
@@ -184,7 +184,7 @@ const AdaptacjaProjektuPage = () => (
       </div>
     </section>
 
-    {/* Sprawdzenie przed zakupem — centralny hook */}
+    {/* Sprawdzenie przed zakupem - centralny hook */}
     <section id="przed-zakupem" className="py-20 md:py-28 bg-charcoal relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -204,7 +204,7 @@ const AdaptacjaProjektuPage = () => (
           transition={{ duration: 0.7, delay: 0.1 }}
           className="heading-display text-primary-foreground text-2xl md:text-4xl mb-6"
         >
-          Zanim kupicie projekt — sprawdzimy go za Was
+          Zanim kupicie projekt - sprawdzimy go za Was
         </motion.h2>
         <motion.p
           {...fadeUp}
@@ -212,13 +212,13 @@ const AdaptacjaProjektuPage = () => (
           className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-10"
         >
           Najdroższy błąd to kupno projektu, który nie zmieści się na działce albo jest sprzeczny z planem
-          miejscowym. Wyślijcie nam numer działki i link do projektu, który Wam się podoba — sprawdzimy,
+          miejscowym. Wyślijcie nam numer działki i link do projektu, który Wam się podoba - sprawdzimy,
           czy da się go u Was postawić i co trzeba będzie zmienić, zanim wydacie na niego pieniądze.
         </motion.p>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.3 }}>
           <a
             href="mailto:biuro@projekty-arkon.pl"
-            className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
           >
             <Mail size={16} />
             Wyślij projekt do sprawdzenia
@@ -227,7 +227,7 @@ const AdaptacjaProjektuPage = () => (
       </div>
     </section>
 
-    {/* Adaptacja krok po kroku — timeline */}
+    {/* Adaptacja krok po kroku - timeline */}
     <section className="py-20 md:py-28 bg-warm-white">
       <div className="section-padding max-w-7xl mx-auto">
         <motion.h2 {...fadeUp} className="heading-display text-foreground text-2xl md:text-4xl mb-14 text-center">
@@ -264,14 +264,14 @@ const AdaptacjaProjektuPage = () => (
         <motion.div {...fadeUp}>
           <img
             src={biuroImg}
-            alt="Biuro ArKon — rozmowa z klientem przy stole"
+            alt="Biuro ArKon - rozmowa z klientem przy stole"
             className="w-full object-cover aspect-[4/3]"
             loading="lazy"
           />
         </motion.div>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }}>
           <h2 className="heading-display text-foreground text-2xl md:text-4xl mb-6">
-            Adaptacja, geodezja i kierownik budowy — w jednym biurze
+            Adaptacja, geodezja i kierownik budowy - w jednym biurze
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-5">
             W ArKon nie kończymy pracy na pieczątce. Mapę do celów projektowych robi nasz geodeta, adaptację nasz
@@ -282,10 +282,10 @@ const AdaptacjaProjektuPage = () => (
             >
               nasz kierownik budowy z uprawnieniami
             </Link>
-            . Jeden telefon zamiast czterech firm — i nikt nie rozkłada rąk, że „to nie jego etap”.
+            . Jeden telefon zamiast czterech firm - i nikt nie rozkłada rąk, że „to nie jego etap”.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Działamy w powiatach bocheńskim, limanowskim, brzeskim i wielickim — znamy lokalne plany miejscowe
+            Działamy w powiatach bocheńskim, limanowskim, brzeskim i wielickim - znamy lokalne plany miejscowe
             i praktykę tutejszych urzędów, więc wnioski składamy dobrze za pierwszym razem.
           </p>
         </motion.div>
@@ -296,7 +296,7 @@ const AdaptacjaProjektuPage = () => (
 
     <CtaBand
       title="Macie działkę i marzenie o domu? To wystarczy na start"
-      text="Zadzwońcie — w 15 minut powiemy, co można wybudować na Waszej działce i od czego zacząć."
+      text="Zadzwońcie - w 15 minut powiemy, co można wybudować na Waszej działce i od czego zacząć."
     />
 
     <Footer />

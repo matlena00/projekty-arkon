@@ -48,6 +48,8 @@ const Navbar = () => {
               src={logoWhite}
               alt="ArKon Logo"
               className="h-9 lg:h-12 xl:h-14 w-auto transition-opacity duration-300 group-hover:opacity-80"
+              loading="eager"
+              decoding="async"
             />
           </Link>
 

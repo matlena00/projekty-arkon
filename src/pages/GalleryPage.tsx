@@ -161,7 +161,7 @@ const GalleryPage = () => {
     <main className="overflow-x-hidden">
       <Seo
         title="Realizacje i wizualizacje 3D | Biuro Projektowe ArKon"
-        description="Zobacz nasze realizacje i wizualizacje — domy jednorodzinne, osiedla domów, obiekty publiczne, usługowe i wizualizacje wnętrz zaprojektowane przez biuro ArKon."
+        description="Zobacz nasze realizacje i wizualizacje - domy jednorodzinne, osiedla domów, obiekty publiczne, usługowe i wizualizacje wnętrz zaprojektowane przez biuro ArKon."
         path="/galeria"
       />
       <JsonLd
@@ -171,7 +171,7 @@ const GalleryPage = () => {
             { name: "Realizacje", path: "/galeria" },
           ]),
           imageGalleryLd({
-            name: "Realizacje — Biuro Projektowe ArKon",
+            name: "Realizacje - Biuro Projektowe ArKon",
             path: "/galeria",
             images: items.flatMap((it) => it.images.map((im) => im.src)),
           }),
@@ -182,7 +182,7 @@ const GalleryPage = () => {
       <PageHeader
         label="Realizacje"
         title="Nasze realizacje"
-        subtitle="Wizualizacje architektoniczne i zrealizowane projekty — zobacz, jak zamieniamy marzenia w rzeczywistość."
+        subtitle="Wizualizacje architektoniczne i zrealizowane projekty - zobacz, jak zamieniamy marzenia w rzeczywistość."
         dark
         accentWord="realizacje"
         sectionNumber="03"
@@ -224,7 +224,7 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      {/* Grid — kafelki realizacji */}
+      {/* Grid - kafelki realizacji */}
       <section className="py-16 md:py-24 bg-background">
         <div className="section-padding max-w-7xl mx-auto">
           {filtered.length === 0 ? (
@@ -233,7 +233,7 @@ const GalleryPage = () => {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <p className="text-muted-foreground text-lg">Brak realizacji w tej kategorii — wkrótce dodamy nowe projekty.</p>
+              <p className="text-muted-foreground text-lg">Brak realizacji w tej kategorii - wkrótce dodamy nowe projekty.</p>
             </motion.div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -285,7 +285,7 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      {/* Lightbox — galeria pojedynczej realizacji */}
+      {/* Lightbox - galeria pojedynczej realizacji */}
       <AnimatePresence>
         {openItem && (
           <motion.div

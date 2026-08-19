@@ -16,17 +16,17 @@ import teamImg from "@/assets/team-group.webp";
 const duties = [
   "protokolarnie przejmujemy plac budowy i prowadzimy dziennik budowy,",
   "pilnujemy zgodności robót z projektem, pozwoleniem i sztuką budowlaną,",
-  "odbieramy roboty zanikające (zbrojenie, izolacje, instalacje przed zakryciem) — to etapy, których po zalaniu betonem nikt już nie sprawdzi,",
+  "odbieramy roboty zanikające (zbrojenie, izolacje, instalacje przed zakryciem) - to etapy, których po zalaniu betonem nikt już nie sprawdzi,",
   "koordynujemy ekipy i reagujemy, gdy wykonawca „idzie na skróty”,",
   "dbamy o BHP i zabezpieczenie terenu,",
-  "kompletujemy dokumentację do zakończenia budowy i zawiadomienia PINB — aż do pozwolenia na użytkowanie.",
+  "kompletujemy dokumentację do zakończenia budowy i zawiadomienia PINB - aż do pozwolenia na użytkowanie.",
 ];
 
 const steps = [
   { title: "Rozmowa i wycena", desc: "Opowiadacie o budowie, my przedstawiamy zakres i cenę. Bez zobowiązań." },
   { title: "Przejęcie obowiązków", desc: "Podpisujemy oświadczenie kierownika budowy i zgłaszamy je z zawiadomieniem o rozpoczęciu robót." },
   { title: "Budowa pod kontrolą", desc: "Wizyty na każdym kluczowym etapie, wpisy w dzienniku, odbiory robót zanikających, kontakt telefoniczny na bieżąco." },
-  { title: "Zakończenie budowy", desc: "Kompletujemy dokumenty, oświadczenia i geodezję powykonawczą — składamy zawiadomienie do PINB." },
+  { title: "Zakończenie budowy", desc: "Kompletujemy dokumenty, oświadczenia i geodezję powykonawczą - składamy zawiadomienie do PINB." },
 ];
 
 const areaCities = [
@@ -38,7 +38,7 @@ const areaCities = [
 const faqs = [
   {
     q: "Czy kierownik budowy jest obowiązkowy?",
-    a: "Tak — przy każdej budowie na pozwolenie na budowę oraz przy większości budów na zgłoszenie z projektem (w tym domów do 70 m² kierownik nie jest formalnie wymagany, ale wtedy całą odpowiedzialność za budowę przejmuje inwestor — odradzamy). Bez ustanowionego kierownika nie można legalnie rozpocząć robót.",
+    a: "Tak - przy każdej budowie na pozwolenie na budowę oraz przy większości budów na zgłoszenie z projektem (w tym domów do 70 m² kierownik nie jest formalnie wymagany, ale wtedy całą odpowiedzialność za budowę przejmuje inwestor - odradzamy). Bez ustanowionego kierownika nie można legalnie rozpocząć robót.",
   },
   {
     q: "Czym różni się kierownik budowy od inspektora nadzoru inwestorskiego?",
@@ -46,15 +46,15 @@ const faqs = [
   },
   {
     q: "Jak często kierownik pojawia się na budowie?",
-    a: "Zawsze na etapach kluczowych: przejęcie placu, odbiór zbrojenia fundamentów i stropów, ściany, więźba, instalacje przed zakryciem, odbiór końcowy. W praktyce to regularne wizyty co 1–2 tygodnie w sezonie intensywnych robót, a dodatkowo przyjeżdżamy na każde wezwanie, gdy dzieje się coś niepokojącego.",
+    a: "Zawsze na etapach kluczowych: przejęcie placu, odbiór zbrojenia fundamentów i stropów, ściany, więźba, instalacje przed zakryciem, odbiór końcowy. W praktyce to regularne wizyty co 1-2 tygodnie w sezonie intensywnych robót, a dodatkowo przyjeżdżamy na każde wezwanie, gdy dzieje się coś niepokojącego.",
   },
   {
     q: "Czy mogę zmienić kierownika budowy w trakcie budowy?",
-    a: "Tak. Sporządza się protokół przekazania obowiązków i odnotowuje zmianę w dokumentacji budowy. Regularnie przejmujemy budowy „w trakcie” — również te z problemami.",
+    a: "Tak. Sporządza się protokół przekazania obowiązków i odnotowuje zmianę w dokumentacji budowy. Regularnie przejmujemy budowy „w trakcie” - również te z problemami.",
   },
   {
     q: "Co jeśli budowa jest już zaawansowana albo była prowadzona bez kierownika?",
-    a: "Pomagamy również w legalizacji samowoli budowlanych i w formalnym uporządkowaniu budów prowadzonych z przerwami. To jedna z naszych usług — zadzwońcie, ocenimy sytuację.",
+    a: "Pomagamy również w legalizacji samowoli budowlanych i w formalnym uporządkowaniu budów prowadzonych z przerwami. To jedna z naszych usług - zadzwońcie, ocenimy sytuację.",
   },
 ];
 
@@ -68,7 +68,7 @@ const fadeUp = {
 const KierownikBudowyPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="Kierownik budowy z uprawnieniami — Bochnia, Limanowa, Wieliczka"
+      title="Kierownik budowy z uprawnieniami - Bochnia, Limanowa, Wieliczka"
       description="Kierownik budowy z uprawnieniami konstrukcyjno-budowlanymi. Dziennik budowy, odbiory, nadzór. Powiat bocheński, limanowski i wielicki. Tel. 888 899 366."
       path="/uslugi/kierownik-budowy"
     />
@@ -80,9 +80,9 @@ const KierownikBudowyPage = () => (
           { name: "Kierownik budowy", path: "/uslugi/kierownik-budowy" },
         ]),
         webPageLd({
-          name: "Kierownik budowy — Biuro Projektowe ArKon",
+          name: "Kierownik budowy - Biuro Projektowe ArKon",
           path: "/uslugi/kierownik-budowy",
-          description: "Kierownik budowy z uprawnieniami konstrukcyjno-budowlanymi — dziennik budowy, odbiory robót, nadzór aż do pozwolenia na użytkowanie.",
+          description: "Kierownik budowy z uprawnieniami konstrukcyjno-budowlanymi - dziennik budowy, odbiory robót, nadzór aż do pozwolenia na użytkowanie.",
         }),
         serviceLd({
           name: "Kierownik budowy",
@@ -113,7 +113,7 @@ const KierownikBudowyPage = () => (
               transition={{ duration: 0.8, delay: 0.1 }}
               className="heading-display text-primary-foreground text-3xl md:text-5xl lg:text-[3.4rem] mb-6"
             >
-              Kierownik budowy — Bochnia, Limanowa, Wieliczka i&nbsp;okolice
+              Kierownik budowy - Bochnia, Limanowa, Wieliczka i&nbsp;okolice
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -129,18 +129,18 @@ const KierownikBudowyPage = () => (
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row sm:flex-wrap gap-4"
             >
               <a
                 href="tel:+48888899366"
-                className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
               >
                 <Phone size={16} />
                 Zadzwoń: 888 899 366
               </a>
               <a
                 href="#kontakt"
-                className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+                className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
               >
                 Wycena bez zobowiązań
               </a>
@@ -191,7 +191,7 @@ const KierownikBudowyPage = () => (
             Za co odpowiada kierownik budowy?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-8">
-            Kierownik budowy to funkcja wymagana przez prawo budowlane — bez niego nie rozpoczniecie legalnie
+            Kierownik budowy to funkcja wymagana przez prawo budowlane - bez niego nie rozpoczniecie legalnie
             żadnej budowy na pozwolenie. Ale dobry kierownik to nie podpis „na papierze”. W ramach usługi:
           </p>
           <ul className="space-y-4">
@@ -225,15 +225,15 @@ const KierownikBudowyPage = () => (
         </motion.div>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }} className="order-1 lg:order-2">
           <h2 className="heading-display text-foreground text-2xl md:text-4xl mb-6">
-            Kierownik z biura projektowego — to robi różnicę
+            Kierownik z biura projektowego - to robi różnicę
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-5">
-            Jesteśmy biurem projektowym, więc kierownik budowy od ArKon czyta projekt „od środka” — wie, co
+            Jesteśmy biurem projektowym, więc kierownik budowy od ArKon czyta projekt „od środka” - wie, co
             projektant miał na myśli, i widzi, kiedy wykonawca odchodzi od dokumentacji. Jeśli na budowie
             potrzebna jest zmiana, projektant i kierownik siedzą w jednym biurze: decyzja zapada w dni, nie w tygodnie.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Działamy lokalnie — z Żegociny na większość budów w powiatach bocheńskim, limanowskim, brzeskim
+            Działamy lokalnie - z Żegociny na większość budów w powiatach bocheńskim, limanowskim, brzeskim
             i wielickim dojeżdżamy w pół godziny. Znamy miejscowych wykonawców, urzędy i inspektoraty.
           </p>
         </motion.div>
@@ -279,7 +279,7 @@ const KierownikBudowyPage = () => (
               do końca to inna praca niż dokończenie budowy po poprzednim kierowniku.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Po krótkiej rozmowie telefonicznej podajemy konkretną cenę za całość — bez stawek godzinowych
+              Po krótkiej rozmowie telefonicznej podajemy konkretną cenę za całość - bez stawek godzinowych
               i niespodzianek.
             </p>
           </motion.div>
@@ -293,7 +293,7 @@ const KierownikBudowyPage = () => (
             <p className="text-muted-foreground mb-8">za poprowadzenie całej budowy</p>
             <a
               href="tel:+48888899366"
-              className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
             >
               <Phone size={16} />
               Zapytaj o wycenę
@@ -334,7 +334,7 @@ const KierownikBudowyPage = () => (
               ))}
             </ul>
             <p className="text-muted-foreground leading-relaxed">
-              Budowa poza tym obszarem? Zadzwońcie — przy większych inwestycjach dojeżdżamy dalej.
+              Budowa poza tym obszarem? Zadzwońcie - przy większych inwestycjach dojeżdżamy dalej.
             </p>
           </motion.div>
         </div>
@@ -347,7 +347,7 @@ const KierownikBudowyPage = () => (
       id="kontakt"
       title="Ruszacie z budową? Porozmawiajmy, zanim wbijecie pierwszą łopatę"
       text="Doradzimy, jakie dokumenty musicie mieć gotowe przed rozpoczęciem robót."
-      note="Pn–Pt 8:00–16:00 · Żegocina 149"
+      note="Pn-Pt 8:00-16:00 · Żegocina 149"
     />
 
     <Footer />

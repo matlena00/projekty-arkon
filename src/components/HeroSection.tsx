@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <section ref={ref} id="home" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        {/* Media query identyczne jak preloady w index.html — pobierany jest dokładnie preloadowany wariant. */}
+        {/* Media query identyczne jak preloady w index.html - pobierany jest dokładnie preloadowany wariant. */}
         <picture className="block w-full h-full">
           <source media="(max-width: 640px)" srcSet={heroImgMobile} />
           <img
@@ -26,6 +26,8 @@ const HeroSection = () => {
             width={1536}
             height={1022}
             decoding="async"
+            loading="eager"
+            fetchPriority="high"
             alt="Nowoczesny dom zaprojektowany przez ArKon"
             className="w-full h-full object-cover"
           />
@@ -71,7 +73,7 @@ const HeroSection = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
           onClick={scrollToServices}
-          className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest transition-all duration-300 hover:shadow-lg hover:shadow-accent/25"
+          className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap transition-all duration-300 hover:shadow-lg hover:shadow-accent/25"
         >
           Poznaj nasze usługi
           <ChevronDown size={18} />

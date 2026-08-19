@@ -117,7 +117,7 @@ const AdminDashboard = () => {
       } else {
         const created = await createProject(projectForm);
         setEditedProject(created);
-        toast.success("Utworzono — możesz teraz dodać zdjęcia");
+        toast.success("Utworzono - możesz teraz dodać zdjęcia");
       }
       await reloadProjects();
     } catch (err) {
@@ -297,7 +297,7 @@ const AdminDashboard = () => {
               {projects.map((p) => (
                 <li key={p.id} className="flex items-center gap-4 bg-background border border-border/60 p-3">
                   <div className="w-16 h-12 shrink-0 overflow-hidden bg-muted">
-                    {p.zdjecia[0] && <img src={p.zdjecia[0].url} alt="" className="w-full h-full object-cover" />}
+                    {p.zdjecia[0] && <img src={p.zdjecia[0].url} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-foreground text-sm font-semibold truncate">{p.tytul}</p>
@@ -317,7 +317,7 @@ const AdminDashboard = () => {
               ))}
               {projects.length === 0 && (
                 <p className="text-muted-foreground text-sm py-8 text-center">
-                  Brak realizacji — dodaj pierwszą przyciskiem powyżej.
+                  Brak realizacji - dodaj pierwszą przyciskiem powyżej.
                 </p>
               )}
             </ul>
@@ -387,7 +387,7 @@ const AdminDashboard = () => {
                 </button>
               </div>
 
-              {/* Zdjęcia — dostępne po utworzeniu realizacji */}
+              {/* Zdjęcia - dostępne po utworzeniu realizacji */}
               <div>
                 <label className={labelCls}>Zdjęcia</label>
                 {!editedProject ? (
@@ -408,7 +408,7 @@ const AdminDashboard = () => {
                     <div className="grid grid-cols-3 gap-3">
                       {editedProject.zdjecia.map((z) => (
                         <div key={z.id} className="relative group aspect-[4/3] overflow-hidden bg-muted">
-                          <img src={z.url} alt={z.alt ?? ""} className="w-full h-full object-cover" />
+                          <img src={z.url} alt={z.alt ?? ""} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                           {z.is_cover && (
                             <span className="absolute top-1.5 left-1.5 bg-accent text-accent-foreground text-[10px] font-semibold px-1.5 py-0.5">
                               OKŁADKA
@@ -588,7 +588,7 @@ const AdminDashboard = () => {
                 <div>
                   <label className={labelCls}>Okładka</label>
                   {postForm.cover_url && (
-                    <img src={postForm.cover_url} alt="" className="w-full max-w-xs aspect-[3/2] object-cover mb-3" />
+                    <img src={postForm.cover_url} alt="" loading="lazy" decoding="async" className="w-full max-w-xs aspect-[3/2] object-cover mb-3" />
                   )}
                   <input
                     type="file"

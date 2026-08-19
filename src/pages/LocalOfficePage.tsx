@@ -82,18 +82,18 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col sm:flex-row sm:flex-wrap gap-4"
               >
                 <a
                   href="tel:+48888899366"
-                  className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
                 >
                   <Phone size={16} />
                   Zadzwoń: 888 899 366
                 </a>
                 <a
                   href={`#${servicesAnchor}`}
-                  className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
                 >
                   Zobacz, w czym pomagamy
                 </a>
@@ -103,7 +103,7 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
               <AssetPhoto
                 folder="lokalne"
                 name={data.heroImage}
-                alt={`${data.breadcrumbName} — realizacja ArKon`}
+                alt={`${data.breadcrumbName} - realizacja ArKon`}
                 caption={data.heroCaption}
                 className="aspect-[4/3] max-h-[520px] w-full"
                 dark
@@ -184,7 +184,7 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
                     className="aspect-[4/3] w-full"
                     thumb
                   />
-                  <div className="p-6">
+                  <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display font-700 text-foreground text-lg group-hover:text-accent transition-colors">
                       {r.title}
                     </h3>
@@ -192,7 +192,7 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
                 </>
               );
               const cls =
-                "group block border border-border/60 bg-background hover:border-accent/50 transition-colors duration-500";
+                "group flex h-full flex-col border border-border/60 bg-background hover:border-accent/50 transition-colors duration-500";
               return (
                 <motion.div
                   key={r.title}
@@ -200,6 +200,7 @@ const LocalOfficePage = ({ city }: { city: keyof typeof localPages }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="h-full"
                 >
                   {r.href ? (
                     <Link to={r.href} className={cls}>

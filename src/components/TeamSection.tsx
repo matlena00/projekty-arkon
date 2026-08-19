@@ -43,6 +43,8 @@ const TeamSection = () => (
           src={teamGroupPhoto}
           alt="Zespół ArKon - zdjęcie grupowe"
           className="w-full h-[300px] md:h-[450px] lg:h-[520px] object-cover object-top"
+          loading="lazy"
+          decoding="async"
         />
       </motion.div>
 
@@ -81,7 +83,7 @@ const TeamSection = () => (
       >
         <Link
           to="/o-nas"
-          className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+          className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
         >
           Poznaj cały zespół
           <ArrowRight size={18} />

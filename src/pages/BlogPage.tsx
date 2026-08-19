@@ -59,7 +59,7 @@ const BlogPage = () => {
   return (
     <main className="overflow-x-hidden">
       <Seo
-        title="Blog — aktualności i realizacje | Biuro Projektowe ArKon"
+        title="Blog - aktualności i realizacje | Biuro Projektowe ArKon"
         description="Aktualności, nowości w ofercie i codzienna praca zespołu ArKon. Śledź nasze realizacje oraz porady o projektowaniu i budowie."
         path="/blog"
       />
@@ -70,7 +70,7 @@ const BlogPage = () => {
             { name: "Blog", path: "/blog" },
           ]),
           blogLd({
-            name: "Blog — Biuro Projektowe ArKon",
+            name: "Blog - Biuro Projektowe ArKon",
             path: "/blog",
             description: "Aktualności, realizacje i porady zespołu ArKon.",
           }),
@@ -98,7 +98,7 @@ const BlogPage = () => {
             <Link to={`/blog/${featured.slug}`} className="block">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-border/50 group cursor-pointer card-hover">
                 <div className="h-64 lg:h-auto overflow-hidden">
-                  <img src={featured.thumb} alt={featured.title} decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={featured.thumb} alt={featured.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-8 md:p-12 flex flex-col justify-center bg-warm-white relative overflow-hidden">
                   <span className="section-number text-8xl absolute -top-4 right-4 select-none pointer-events-none">01</span>
@@ -131,12 +131,16 @@ const BlogPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="h-full"
                 >
-                  <Link to={`/blog/${post.slug}`} className="block group cursor-pointer card-hover border border-border/50 bg-background overflow-hidden">
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="flex h-full flex-col group cursor-pointer card-hover border border-border/50 bg-background overflow-hidden"
+                  >
                     <div className="h-56 overflow-hidden">
                       <img src={post.thumb} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     </div>
-                    <div className="p-6 md:p-8">
+                    <div className="flex flex-1 flex-col p-6 md:p-8">
                       <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                         <span className="flex items-center gap-1"><Tag size={12} /> {post.tag}</span>
                         <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>

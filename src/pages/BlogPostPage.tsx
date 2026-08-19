@@ -120,7 +120,7 @@ const BlogPostPage = () => {
         transition={{ duration: 1 }}
         className="relative h-[50vh] md:h-[60vh] overflow-hidden"
       >
-        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+        <img src={post.image} alt={post.title} className="w-full h-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
           <div className="max-w-3xl mx-auto">

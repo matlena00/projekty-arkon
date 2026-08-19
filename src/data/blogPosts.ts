@@ -36,8 +36,8 @@ export const posts: BlogPost[] = [
     thumb: p1t,
     body: [
       "Październik okazał się dla nas jednym z najbardziej intensywnych miesięcy w tym roku. Rozpoczęliśmy prace nad kilkoma nowymi projektami domów jednorodzinnych w okolicach Krakowa, a równocześnie kontynuujemy realizacje rozpoczęte wiosną.",
-      "Pogoda nam sprzyjała — słoneczne dni pozwoliły ekipom pracować bez opóźnień, co w budownictwie jest rzadkością o tej porze roku. Fundamenty wylane, ściany murowane, a na kilku budowach już montujemy więźby dachowe.",
-      "Nasi klienci odwiedzali budowy i cieszyli się z postępów. Nic tak nie motywuje jak widok realnych efektów pracy. Zapraszamy do śledzenia naszych realizacji — kolejne wpisy już niedługo!",
+      "Pogoda nam sprzyjała - słoneczne dni pozwoliły ekipom pracować bez opóźnień, co w budownictwie jest rzadkością o tej porze roku. Fundamenty wylane, ściany murowane, a na kilku budowach już montujemy więźby dachowe.",
+      "Nasi klienci odwiedzali budowy i cieszyli się z postępów. Nic tak nie motywuje jak widok realnych efektów pracy. Zapraszamy do śledzenia naszych realizacji - kolejne wpisy już niedługo!",
     ],
   },
   {
@@ -52,7 +52,7 @@ export const posts: BlogPost[] = [
     image: p2,
     thumb: p2t,
     body: [
-      "Od początku naszej działalności zależało nam na tym, żeby oferować klientom kompletną usługę — od koncepcji, przez projekt, aż po wizualizację, która pozwala wyobrazić sobie efekt końcowy jeszcze przed wbiciem pierwszej łopaty.",
+      "Od początku naszej działalności zależało nam na tym, żeby oferować klientom kompletną usługę - od koncepcji, przez projekt, aż po wizualizację, która pozwala wyobrazić sobie efekt końcowy jeszcze przed wbiciem pierwszej łopaty.",
       "Teraz, dzięki rozszerzeniu naszego zespołu, możemy tworzyć fotorealistyczne wizualizacje 3D całkowicie in-house. Oznacza to szybszą komunikację, spójność z projektem i pełną kontrolę nad jakością.",
       "Pierwsze efekty możecie zobaczyć w naszej zakładce Realizacje. Jesteśmy z nich niesamowicie dumni i nie możemy się doczekać, aż pokażemy Wam więcej!",
     ],
@@ -69,7 +69,7 @@ export const posts: BlogPost[] = [
     image: p3,
     thumb: p3t,
     body: [
-      "Lipiec to dla nas miesiąc przełomowy. Oficjalnie rozszerzamy zakres usług o pełną obsługę inwestycji — od projektu budowlanego, przez nadzór autorski, aż po koordynację wykonawców na placu budowy.",
+      "Lipiec to dla nas miesiąc przełomowy. Oficjalnie rozszerzamy zakres usług o pełną obsługę inwestycji - od projektu budowlanego, przez nadzór autorski, aż po koordynację wykonawców na placu budowy.",
       "To naturalny krok w rozwoju ArKon. Wielokrotnie nasi klienci pytali, czy możemy pomóc im nie tylko z projektem, ale też z samą budową. Teraz odpowiedź brzmi: tak!",
       "Nowy rozdział otwieramy z entuzjazmem i dużą dozą pokory. Wiemy, że zaufanie klientów zobowiązuje, dlatego stawiamy na transparentność, terminowość i najwyższą jakość wykonania.",
     ],
@@ -87,7 +87,7 @@ export const posts: BlogPost[] = [
     thumb: p4t,
     body: [
       "Niektóre działki zapierają dech w piersiach. Ta, na której właśnie rozpoczęliśmy prace, leży na wysokości 600 metrów nad poziomem morza i oferuje panoramiczny widok na Tatry.",
-      "Projekt domu został dopasowany do ukształtowania terenu i otaczającego krajobrazu. Duże przeszklenia od strony południowej pozwolą mieszkańcom cieszyć się widokiem przez cały rok — niezależnie od pogody.",
+      "Projekt domu został dopasowany do ukształtowania terenu i otaczającego krajobrazu. Duże przeszklenia od strony południowej pozwolą mieszkańcom cieszyć się widokiem przez cały rok - niezależnie od pogody.",
       "Prace fundamentowe przebiegły sprawnie pomimo stromego terenu. Kolejne etapy budowy będziemy dokumentować i dzielić się z Wami postępami. Trzymajcie kciuki!",
     ],
   },
@@ -103,9 +103,9 @@ export const posts: BlogPost[] = [
     image: p5,
     thumb: p5t,
     body: [
-      "Zima w tym roku nie chciała odpuścić. Jeszcze w marcu mieliśmy opady śniegu, które utrudniały prace terenowe. Ale kwiecień przyniósł nadzieję — i słońce.",
-      "Już w pierwszych cieplejszych dniach wyruszyliśmy na działki naszych klientów. Pomiary geodezyjne, badania gruntu, spotkania z wykonawcami — sezon budowlany oficjalnie się rozpoczął!",
-      "W najbliższych tygodniach planujemy rozpoczęcie kilku nowych inwestycji. Projekty gotowe, pozwolenia uzyskane — czas budować. Zapraszamy do śledzenia naszych postępów tutaj i na social mediach.",
+      "Zima w tym roku nie chciała odpuścić. Jeszcze w marcu mieliśmy opady śniegu, które utrudniały prace terenowe. Ale kwiecień przyniósł nadzieję - i słońce.",
+      "Już w pierwszych cieplejszych dniach wyruszyliśmy na działki naszych klientów. Pomiary geodezyjne, badania gruntu, spotkania z wykonawcami - sezon budowlany oficjalnie się rozpoczął!",
+      "W najbliższych tygodniach planujemy rozpoczęcie kilku nowych inwestycji. Projekty gotowe, pozwolenia uzyskane - czas budować. Zapraszamy do śledzenia naszych postępów tutaj i na social mediach.",
     ],
   },
 ];

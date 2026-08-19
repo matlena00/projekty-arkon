@@ -63,7 +63,7 @@ const FaqSection = () => (
       >
         <Link
           to="/faq"
-          className="inline-flex items-center gap-3 border border-accent text-accent px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+          className="inline-flex items-center gap-3 border border-accent text-accent px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:bg-accent hover:text-accent-foreground transition-all duration-300"
         >
           Zobacz wszystkie pytania
           <ArrowRight size={16} />

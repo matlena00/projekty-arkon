@@ -10,7 +10,7 @@ const schema = z.object({
   email: z.string().email("Podaj poprawny adres e-mail"),
   subject: z.string().min(2, "Podaj temat wiadomości"),
   message: z.string().min(10, "Wiadomość jest zbyt krótka (min. 10 znaków)"),
-  botcheck: z.string().optional(), // honeypot — ukryte pole antyspamowe
+  botcheck: z.string().optional(), // honeypot - ukryte pole antyspamowe
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -34,7 +34,7 @@ const ContactForm = () => {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormValues) => {
-    if (data.botcheck) return; // bot wykryty — cicho przerywamy
+    if (data.botcheck) return; // bot wykryty - cicho przerywamy
     if (!ACCESS_KEY) {
       toast.error("Formularz nie jest jeszcze skonfigurowany (brak VITE_WEB3FORMS_ACCESS_KEY).");
       return;
@@ -67,7 +67,7 @@ const ContactForm = () => {
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* honeypot — niewidoczne dla ludzi */}
+      {/* honeypot - niewidoczne dla ludzi */}
       <input
         type="text"
         tabIndex={-1}
@@ -103,7 +103,7 @@ const ContactForm = () => {
         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Wysyłanie…" : "Wyślij wiadomość"}
         <Send size={16} />

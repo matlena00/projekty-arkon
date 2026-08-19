@@ -9,12 +9,12 @@ const GOOGLE_PROFILE_URL = "https://share.google/F1YgSEUiCP3j0a6W0";
 const testimonials = [
   {
     quote:
-      "Polecam! Pełen profesjonalizm od pierwszego spotkania, świetne podejście do klienta i ogromna wiedza. Współpraca z firmą ArKon była czystą przyjemnością, na każdym etapie mogliśmy liczyć na fachowe doradztwo. Biuro architektoniczne godne zaufania — polecam każdemu, kto szuka solidnego projektanta :)",
+      "Polecam! Pełen profesjonalizm od pierwszego spotkania, świetne podejście do klienta i ogromna wiedza. Współpraca z firmą ArKon była czystą przyjemnością, na każdym etapie mogliśmy liczyć na fachowe doradztwo. Biuro architektoniczne godne zaufania - polecam każdemu, kto szuka solidnego projektanta :)",
     name: "Ewelina",
   },
   {
     quote:
-      "Na firmę ArKon trafiliśmy dzięki forum budowlanemu, gdzie miała bardzo dobre opinie – i w pełni zasłużenie. Zespół z ogromną cierpliwością odpowiadał na wszystkie nasze pytania i rozwiewał wątpliwości. Otrzymaliśmy również pełne wsparcie w kwestiach formalnych, co pozwoliło nam sprawnie uzyskać pozwolenie na budowę. Pomimo współpracy na odległość, cały proces przebiegał bezproblemowo i w przyjaznej atmosferze. Z pełnym przekonaniem polecamy firmę ArKon i serdecznie pozdrawiamy cały zespół!",
+      "Na firmę ArKon trafiliśmy dzięki forum budowlanemu, gdzie miała bardzo dobre opinie - i w pełni zasłużenie. Zespół z ogromną cierpliwością odpowiadał na wszystkie nasze pytania i rozwiewał wątpliwości. Otrzymaliśmy również pełne wsparcie w kwestiach formalnych, co pozwoliło nam sprawnie uzyskać pozwolenie na budowę. Pomimo współpracy na odległość, cały proces przebiegał bezproblemowo i w przyjaznej atmosferze. Z pełnym przekonaniem polecamy firmę ArKon i serdecznie pozdrawiamy cały zespół!",
     name: "Piotr",
   },
   {
@@ -105,7 +105,7 @@ const TestimonialsSection = () => (
           href={GOOGLE_PROFILE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+          className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
         >
           <Star size={18} className="fill-accent text-accent" />
           Zobacz wszystkie opinie w Google

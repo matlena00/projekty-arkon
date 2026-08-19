@@ -44,7 +44,7 @@ export const faqItems: FaqItem[] = [
     a: "MPZP określa szczegółowe zasady zabudowy dla konkretnego terenu i to jego zapisy są najważniejsze przy projektowaniu inwestycji. Studium uwarunkowań zostało zastąpione planem ogólnym gminy, który wyznacza kierunki rozwoju przestrzennego, jednak nie określa szczegółowych zasad zabudowy dla poszczególnych działek.",
   },
   {
-    q: "MPZP czy warunki zabudowy — co obowiązuje na mojej działce?",
+    q: "MPZP czy warunki zabudowy - co obowiązuje na mojej działce?",
     a: "Nie wszystkie działki są objęte miejscowym planem zagospodarowania przestrzennego. Jeśli dla danej działki obowiązuje MPZP, to jego zapisy określają możliwości i zasady zabudowy. W przypadku braku planu konieczne jest uzyskanie decyzji o warunkach zabudowy, która określa parametry planowanej inwestycji.",
   },
   {
@@ -57,7 +57,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: "Czym jest wyłączenie gruntu z produkcji rolnej i czy wiąże się z opłatami?",
-    a: "Wyłączenie gruntu z produkcji rolnej oznacza uzyskanie zgody na wykorzystanie gruntu rolnego pod planowaną inwestycję, np. budowę domu lub innego obiektu. Stanowi jeden z niezbędnych etapów do uzyskania pozwolenia na budowę. To, czy wiąże się z opłatami, zależy przede wszystkim od klasy gruntu i powierzchni wyłączanej z produkcji oraz występowania melioracji — ustawowo budownictwo mieszkaniowe jest zwolnione z opłaty, jednak w przypadku gruntów dobrej jakości opłaty mogą pojawić się po przekroczeniu 500 m² wyłączanej powierzchni.",
+    a: "Wyłączenie gruntu z produkcji rolnej oznacza uzyskanie zgody na wykorzystanie gruntu rolnego pod planowaną inwestycję, np. budowę domu lub innego obiektu. Stanowi jeden z niezbędnych etapów do uzyskania pozwolenia na budowę. To, czy wiąże się z opłatami, zależy przede wszystkim od klasy gruntu i powierzchni wyłączanej z produkcji oraz występowania melioracji - ustawowo budownictwo mieszkaniowe jest zwolnione z opłaty, jednak w przypadku gruntów dobrej jakości opłaty mogą pojawić się po przekroczeniu 500 m² wyłączanej powierzchni.",
   },
   {
     q: "Czy badania geotechniczne są obowiązkowe przed budową?",
@@ -81,11 +81,11 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: "Czym różnią się schematyczne rysunki konstrukcyjne od rysunków wykonawczych?",
-    a: "Rysunki schematyczne przedstawiają ogólny układ i podstawowe założenia konstrukcji. Rysunki wykonawcze są znacznie bardziej szczegółowe — nie są niezbędnym elementem podstawowej dokumentacji, ale znacząco ułatwiają prawidłową realizację prac na budowie. Na życzenie inwestora możemy przygotować je jako dodatkowy zakres opracowania.",
+    a: "Rysunki schematyczne przedstawiają ogólny układ i podstawowe założenia konstrukcji. Rysunki wykonawcze są znacznie bardziej szczegółowe - nie są niezbędnym elementem podstawowej dokumentacji, ale znacząco ułatwiają prawidłową realizację prac na budowie. Na życzenie inwestora możemy przygotować je jako dodatkowy zakres opracowania.",
   },
   {
     q: "Jaką wysokość pomieszczeń warto zaplanować w domu jednorodzinnym?",
-    a: "W domach jednorodzinnych najczęściej projektuje się pomieszczenia o wysokości około 2,6–2,8 m, choć ostateczny wymiar zależy od charakteru wnętrza i indywidualnych preferencji inwestora. Wyższe pomieszczenia dają większe poczucie przestrzeni, ale mogą również wpływać na koszty budowy i ogrzewania. Odpowiednią wysokość dobieramy indywidualnie, uwzględniając proporcje pomieszczeń oraz charakter całego budynku.",
+    a: "W domach jednorodzinnych najczęściej projektuje się pomieszczenia o wysokości około 2,6-2,8 m, choć ostateczny wymiar zależy od charakteru wnętrza i indywidualnych preferencji inwestora. Wyższe pomieszczenia dają większe poczucie przestrzeni, ale mogą również wpływać na koszty budowy i ogrzewania. Odpowiednią wysokość dobieramy indywidualnie, uwzględniając proporcje pomieszczeń oraz charakter całego budynku.",
   },
 ];
 

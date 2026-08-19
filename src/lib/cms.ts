@@ -182,7 +182,7 @@ export async function uploadBlogImage(file: File): Promise<string> {
 
 async function requireSupabase(): Promise<SupabaseClient> {
   const db = await getSupabase();
-  if (!db) throw new Error("Supabase nie jest skonfigurowany — uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.");
+  if (!db) throw new Error("Supabase nie jest skonfigurowany - uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.");
   return db;
 }
 

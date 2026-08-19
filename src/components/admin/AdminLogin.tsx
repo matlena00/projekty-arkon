@@ -33,7 +33,7 @@ const AdminLogin = () => {
 
         {!configured && (
           <p className="mb-6 text-sm text-destructive">
-            Supabase nie jest skonfigurowany — uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.
+            Supabase nie jest skonfigurowany - uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY w .env.local.
           </p>
         )}
 
@@ -72,7 +72,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={submitting || !configured}
-            className="w-full bg-accent text-accent-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 disabled:opacity-50"
+            className="w-full bg-accent text-accent-foreground py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 disabled:opacity-50"
           >
             {submitting ? "Logowanie…" : "Zaloguj"}
           </button>

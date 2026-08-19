@@ -10,7 +10,7 @@ if (!isSupabaseConfigured) {
   // Nie przerywamy działania strony — publiczne sekcje mają fallback,
   // a panel /admin pokaże komunikat o konieczności konfiguracji.
   console.warn(
-    "[supabase] Brak VITE_SUPABASE_URL lub VITE_SUPABASE_ANON_KEY — uzupełnij .env.local, aby włączyć CMS i panel /admin."
+    "[supabase] Brak VITE_SUPABASE_URL lub VITE_SUPABASE_ANON_KEY - uzupełnij .env.local, aby włączyć CMS i panel /admin."
   );
 }
 

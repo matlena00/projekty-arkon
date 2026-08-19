@@ -18,7 +18,7 @@ import {
 const FaqPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="Najczęstsze pytania (FAQ) — Biuro Projektowe ArKon"
+      title="Najczęstsze pytania (FAQ) - Biuro Projektowe ArKon"
       description="Odpowiedzi na najczęstsze pytania: pozwolenie na budowę, MPZP i warunki zabudowy, badania gruntu, przyłącza, projekt koncepcyjny i budowlany. Biuro ArKon."
       path="/faq"
     />
@@ -36,7 +36,7 @@ const FaqPage = () => (
     <PageHeader
       label="FAQ"
       title="Najczęstsze pytania"
-      subtitle="Zebraliśmy pytania, które słyszymy od inwestorów najczęściej — o formalności, działki, grunt, przyłącza i sam proces projektowania. Nie znajdziecie odpowiedzi? Zadzwońcie."
+      subtitle="Zebraliśmy pytania, które słyszymy od inwestorów najczęściej - o formalności, działki, grunt, przyłącza i sam proces projektowania. Nie znajdziecie odpowiedzi? Zadzwońcie."
       accentWord="pytania"
     />
 
@@ -70,8 +70,8 @@ const FaqPage = () => (
 
     <CtaBand
       title="Nie znaleźliście odpowiedzi na swoje pytanie?"
-      text="Zadzwońcie lub napiszcie — doradzimy bez zobowiązań."
-      note="Pn–Pt 8:00–16:00 · Żegocina 149"
+      text="Zadzwońcie lub napiszcie - doradzimy bez zobowiązań."
+      note="Pn-Pt 8:00-16:00 · Żegocina 149"
     />
 
     <Footer />

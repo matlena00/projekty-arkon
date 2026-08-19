@@ -104,17 +104,17 @@ const OfficeSection = () => {
               przedstawimy możliwości i zaproponujemy najlepsze rozwiązanie dla Twojego projektu.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
               <Link
                 to="/kontakt"
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
               >
                 <CalendarDays size={18} />
                 Umów spotkanie
               </Link>
               <a
                 href="tel:+48888899366"
-                className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent/50 hover:text-accent transition-all duration-300"
+                className="inline-flex items-center gap-3 border border-concrete/30 text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent/50 hover:text-accent transition-all duration-300"
               >
                 <MessageCircle size={18} />
                 Zadzwoń teraz
@@ -133,7 +133,7 @@ const OfficeSection = () => {
               {
                 step: "01",
                 title: "Kontakt",
-                desc: "Zadzwoń lub napisz – umówimy się na spotkanie w dogodnym terminie.",
+                desc: "Zadzwoń lub napisz - umówimy się na spotkanie w dogodnym terminie.",
               },
               {
                 step: "02",

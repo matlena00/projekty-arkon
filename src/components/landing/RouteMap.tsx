@@ -162,7 +162,7 @@ const RouteMap = ({ city, area = false, className = "aspect-[4/3] w-full" }: Rou
     : `https://www.google.com/maps/search/?api=1&query=${OFFICE.lat},${OFFICE.lng}`;
 
   const described = data
-    ? `Mapa trasy z biura w Żegocinie do miejscowości ${data.city.name} — ${data.km} km, ok. ${
+    ? `Mapa trasy z biura w Żegocinie do miejscowości ${data.city.name} - ${data.km} km, ok. ${
         data.minutes
       } min. Zaznaczone realizacje: ${data.pins.map((p) => p.name).join(", ")}.`
     : `Mapa obszaru działania biura projektowego ArKon: ${AREA_POINTS.map((p) => p.name).join(", ")}.`;
@@ -189,7 +189,7 @@ const RouteMap = ({ city, area = false, className = "aspect-[4/3] w-full" }: Rou
         <span>
           {data
             ? `Żegocina → ${data.city.name} · ${data.km} km · ok. ${data.minutes} min`
-            : "Żegocina — biuro projektowe ArKon"}
+            : "Żegocina - biuro projektowe ArKon"}
         </span>
         <a
           href={directionsUrl}

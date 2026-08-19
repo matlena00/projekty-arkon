@@ -7,10 +7,10 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
         <div className="md:col-span-1">
           <Link to="/">
-            <img src={logoWhite} alt="ArKon Logo" className="h-10 mb-4" />
+            <img src={logoWhite} alt="ArKon Logo" className="h-10 mb-4" loading="lazy" decoding="async" />
           </Link>
           <p className="text-concrete text-sm leading-relaxed">
-            Zajmujemy się kompleksową obsługą budowy. Poprowadzimy Cię przez cały proces inwestycji —
+            Zajmujemy się kompleksową obsługą budowy. Poprowadzimy Cię przez cały proces inwestycji -
             od wyboru idealnego projektu i uzyskania pozwolenia na budowę, poprzez realizację
             i nadzór budowy, aż po uzyskanie pozwolenia na użytkowanie.
             Wszyscy specjaliści w jednym miejscu, a Twoja inwestycja w dobrych rękach.
@@ -36,8 +36,8 @@ const Footer = () => (
             <a href="tel:+48888899366" className="block hover:text-accent transition-colors">+48 888 899 366</a>
             <a href="tel:+48889406116" className="block hover:text-accent transition-colors">+48 889 406 116</a>
             <a href="mailto:biuro@projekty-arkon.pl" className="block hover:text-accent transition-colors break-words">biuro@projekty-arkon.pl</a>
-            <p>Pon – Pt: 8:00 – 16:00</p>
-            <p>Sb: 8:00 – 12:00</p>
+            <p>Pon - Pt: 8:00 - 16:00</p>
+            <p>Sb: 8:00 - 12:00</p>
           </div>
         </div>
 

@@ -68,8 +68,8 @@ const officeGallery = [
 const AboutPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="O nas — zespół #TEAMArKon | Biuro Projektowe ArKon"
-      description="Poznaj zespół Biura Projektowego ArKon z Żegociny — architekci, projektanci i geodeci. Kompleksowa obsługa inwestycji budowlanych od A do Z."
+      title="O nas - zespół #TEAMArKon | Biuro Projektowe ArKon"
+      description="Poznaj zespół Biura Projektowego ArKon z Żegociny - architekci, projektanci i geodeci. Kompleksowa obsługa inwestycji budowlanych od A do Z."
       path="/o-nas"
     />
     <JsonLd
@@ -80,9 +80,9 @@ const AboutPage = () => (
         ]),
         webPageLd({
           type: "AboutPage",
-          name: "O nas — Biuro Projektowe ArKon",
+          name: "O nas - Biuro Projektowe ArKon",
           path: "/o-nas",
-          description: "Poznaj zespół i biuro ArKon z Żegociny — kompleksowa obsługa inwestycji od A do Z.",
+          description: "Poznaj zespół i biuro ArKon z Żegociny - kompleksowa obsługa inwestycji od A do Z.",
         }),
       ]}
     />
@@ -121,11 +121,11 @@ const AboutPage = () => (
             <h2 className="heading-display text-foreground text-2xl md:text-3xl mb-8">Biuro, które naprawdę znasz</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
               Ta strona to nasze realne miejsce pracy i nasz realny zespół. Spotkania, konsultacje i przygotowanie projektów
-              odbywają się u nas codziennie — dlatego chcemy pokazać ArKon takim, jakim jest naprawdę.
+              odbywają się u nas codziennie - dlatego chcemy pokazać ArKon takim, jakim jest naprawdę.
             </p>
             <div className="gold-line-wide mb-8" />
             <blockquote className="heading-serif-italic text-foreground/80 text-2xl md:text-3xl leading-snug">
-              "Twoje Marzenia – Nasza Misja.<br />
+              "Twoje Marzenia - Nasza Misja.<br />
               Od pierwszej rozmowy do gotowego projektu."
             </blockquote>
           </motion.div>
@@ -327,7 +327,7 @@ const AboutPage = () => (
         >
           <Link
             to="/kontakt"
-            className="inline-flex items-center gap-3 bg-charcoal text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-graphite transition-colors duration-300"
+            className="inline-flex items-center gap-3 bg-charcoal text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:bg-graphite transition-colors duration-300"
           >
             Kontakt
             <ArrowRight size={18} />

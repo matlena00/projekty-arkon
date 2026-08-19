@@ -32,14 +32,14 @@ const contactInfo = [
     icon: Clock,
     label: "Godziny otwarcia",
     type: "text",
-    lines: ["Poniedziałek – Piątek: 8:00 – 16:00", "Sobota: 8:00 – 12:00"],
+    lines: ["Poniedziałek - Piątek: 8:00 - 16:00", "Sobota: 8:00 - 12:00"],
   },
 ];
 
 const ContactPage = () => (
   <main className="overflow-x-hidden">
     <Seo
-      title="Kontakt | Biuro Projektowe ArKon — Żegocina"
+      title="Kontakt | Biuro Projektowe ArKon - Żegocina"
       description="Skontaktuj się z biurem ArKon: Żegocina 149, tel. +48 888 899 366, biuro@projekty-arkon.pl. Zapraszamy na rozmowę bez zobowiązań."
       path="/kontakt"
     />
@@ -49,7 +49,7 @@ const ContactPage = () => (
           { name: "Strona główna", path: "/" },
           { name: "Kontakt", path: "/kontakt" },
         ]),
-        contactPageLd({ name: "Kontakt — Biuro Projektowe ArKon", path: "/kontakt" }),
+        contactPageLd({ name: "Kontakt - Biuro Projektowe ArKon", path: "/kontakt" }),
       ]}
     />
     <Navbar />
@@ -177,7 +177,7 @@ const ContactPage = () => (
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
         >
-          <Link to="/uslugi" className="inline-flex items-center gap-3 bg-charcoal text-primary-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-graphite transition-colors duration-300">
+          <Link to="/uslugi" className="inline-flex items-center gap-3 bg-charcoal text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:bg-graphite transition-colors duration-300">
             Nasze usługi
             <ArrowRight size={18} />
           </Link>

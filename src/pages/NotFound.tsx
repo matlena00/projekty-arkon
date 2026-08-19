@@ -24,7 +24,7 @@ const NotFound = () => {
   return (
     <main className="overflow-x-hidden">
       <Seo
-        title="404 — nie znaleziono strony | ArKon"
+        title="404 - nie znaleziono strony | ArKon"
         description="Strona nie istnieje lub została przeniesiona."
         path={location.pathname}
         noindex
@@ -32,8 +32,8 @@ const NotFound = () => {
       <Navbar />
 
       <section className="relative flex min-h-screen items-center bg-charcoal overflow-hidden">
-        {/* Duża "404" w tle — jak section-number na podstronach */}
-        {/* przezroczystość w kolorze (accent/10), nie w opacity — prerender zdejmuje inline opacity */}
+        {/* Duża "404" w tle - jak section-number na podstronach */}
+        {/* przezroczystość w kolorze (accent/10), nie w opacity - prerender zdejmuje inline opacity */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -61,7 +61,7 @@ const NotFound = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="heading-display text-primary-foreground text-3xl md:text-5xl lg:text-6xl mb-6 max-w-3xl"
           >
-            Ta strona nie istnieje — ale Wasz dom może powstać
+            Ta strona nie istnieje - ale Wasz dom może powstać
           </motion.h1>
 
           <motion.p
@@ -70,7 +70,7 @@ const NotFound = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-primary-foreground/60 text-base md:text-lg leading-relaxed max-w-xl mb-10"
           >
-            Adres jest błędny albo strona została przeniesiona. Wybierzcie jedną z poniższych ścieżek —
+            Adres jest błędny albo strona została przeniesiona. Wybierzcie jedną z poniższych ścieżek -
             albo po prostu zadzwońcie.
           </motion.p>
 
@@ -78,18 +78,18 @@ const NotFound = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-14"
+            className="flex flex-col sm:flex-row sm:flex-wrap gap-4 mb-14"
           >
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 bg-accent text-accent-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
             >
               Wróć na stronę główną
               <ArrowRight size={16} />
             </Link>
             <a
               href="tel:+48888899366"
-              className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:border-accent hover:text-accent transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 border border-primary-foreground/25 text-primary-foreground/85 px-6 sm:px-8 py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest whitespace-nowrap hover:border-accent hover:text-accent transition-all duration-300"
             >
               <Phone size={16} />
               888 899 366
