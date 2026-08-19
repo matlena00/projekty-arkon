@@ -4,6 +4,31 @@
       "source": "/biuro-projektowe-gdow",
       "destination": "/biuro-projektowe-wieliczka",
       "permanent": true
+    },
+    {
+      "source": "/blog/piekna-jesienna-aura",
+      "destination": "/blog/jesien-sprzyja-budowom",
+      "permanent": true
+    },
+    {
+      "source": "/blog/poszerzamy-uslugi-o-wizualizacje",
+      "destination": "/blog/nowosc-w-naszej-ofercie-wizualizacje-projektow",
+      "permanent": true
+    },
+    {
+      "source": "/blog/600-mnpm-i-widok-na-tatry",
+      "destination": "/blog/budowa-z-widokiem-na-tatry",
+      "permanent": true
+    },
+    {
+      "source": "/blog/wyruszamy-w-teren-po-zimie",
+      "destination": "/blog/wiosna-start-sezonu-budowlanego",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nowosci",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]

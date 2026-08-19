@@ -4,8 +4,13 @@
  * więc łapie też dane z Supabase), zapisuje wyrenderowany HTML — z meta, JSON-LD i treścią
  * w ŹRÓDLE każdej podstrony (dla robotów i podglądów social).
  *
+ * Przy okazji zapisuje dist/sitemap.xml z listy faktycznie wyrenderowanych tras —
+ * dzięki temu mapa witryny nie rozjeżdża się z zawartością (wpisy bloga pochodzą z CMS-u,
+ * więc ręcznie utrzymywany plik zawsze był nieaktualny).
+ *
  * Uruchamiany automatycznie jako `postbuild` po `vite build`.
- * Odporny: jeśli przeglądarki nie da się uruchomić, pomija prerender (SPA dalej działa).
+ * Odporny: jeśli przeglądarki nie da się uruchomić, pomija prerender (SPA dalej działa),
+ * a sitemapa i tak powstaje — z samych tras statycznych.
  */
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
@@ -37,6 +42,49 @@ const ROUTES = [
   "/kontakt",
   "/404", // trasa nie istnieje → renderuje NotFound; zapisywana jako dist/404.html (ErrorDocument)
 ];
+
+const SITE = "https://projekty-arkon.pl";
+
+/** Priorytet w sitemapie wg wzorca trasy (od najbardziej szczegółowego). */
+function priorityFor(route) {
+  if (route === "/") return "1.0";
+  if (route.startsWith("/uslugi/")) return "0.9";
+  if (route.startsWith("/blog/")) return "0.5";
+  if (route === "/blog" || route === "/kontakt") return "0.6";
+  if (route === "/faq") return "0.7";
+  return "0.8";
+}
+
+/** Data publikacji wpisu bloga z JSON-LD w wyrenderowanym HTML-u. */
+function publishedDate(html) {
+  const m = html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})/);
+  return m ? m[1] : null;
+}
+
+function writeSitemap(pages) {
+  const urls = [...pages.entries()]
+    .filter(([route]) => route !== "/404")
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([route, lastmod]) => {
+      const loc = `${SITE}${route === "/" ? "/" : route}`;
+      return [
+        "  <url>",
+        `    <loc>${loc}</loc>`,
+        lastmod ? `    <lastmod>${lastmod}</lastmod>` : null,
+        `    <priority>${priorityFor(route)}</priority>`,
+        "  </url>",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    });
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join("\n")}
+</urlset>
+`;
+  writeFileSync(join(DIST, "sitemap.xml"), xml, "utf8");
+  console.log(`[prerender] sitemap.xml: ${urls.length} adresów.`);
+}
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -107,6 +155,11 @@ async function main() {
   const done = new Set();
   let blogScanned = false;
 
+  // route -> lastmod. Wpisy bloga dostają datę publikacji z JSON-LD, strony statyczne
+  // datę wdrożenia (ich HTML powstaje na nowo przy każdym buildzie).
+  const buildDate = new Date().toISOString().slice(0, 10);
+  const sitemapPages = new Map();
+
   try {
     while (queue.length) {
       const route = queue.shift();
@@ -156,6 +209,7 @@ async function main() {
         }
 
         writeFileSync(outPath(route), html, "utf8");
+        sitemapPages.set(route, route.startsWith("/blog/") ? publishedDate(html) : buildDate);
         console.log(`[prerender] ✓ ${route}`);
       } catch (e) {
         console.warn(`[prerender] pominięto ${route}: ${e.message}`);
@@ -166,6 +220,10 @@ async function main() {
   } finally {
     await browser.close();
     server.close();
+    // Gdy któraś trasa padła, i tak wypuszczamy sitemapę z tym, co się udało;
+    // brakujące trasy statyczne dokładamy, żeby mapa nigdy nie była uboższa od ROUTES.
+    for (const r of ROUTES) if (!sitemapPages.has(r)) sitemapPages.set(r, buildDate);
+    writeSitemap(sitemapPages);
   }
 
   console.log(`[prerender] Gotowe: ${done.size} stron.`);
