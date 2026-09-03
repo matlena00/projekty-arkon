@@ -30,7 +30,11 @@
     </script>
     <script>
       (function () {
-        if (navigator.webdriver) return;
+        // Skaner/weryfikator Cookiebota (UA zawiera "Cookiebot") musi zobaczyć baner od razu —
+        // bez tego weryfikacja w panelu failuje, a comiesięczny skan nie wykrywa cookies
+        // (pusta zakładka "O plikach cookies" w banerze).
+        var isCookiebotScan = /cookiebot/i.test(navigator.userAgent);
+        if (navigator.webdriver && !isCookiebotScan) return; // prerender/inne automaty: pomiń
         var loaded = false;
         function loadGtm() {
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -52,6 +56,7 @@
           cb.onerror = loadGtm;
           document.head.appendChild(cb);
         }
+        if (isCookiebotScan) { loadConsentThenTags(); return; }
         ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
           addEventListener(ev, loadConsentThenTags, { passive: true, once: true });
         });
