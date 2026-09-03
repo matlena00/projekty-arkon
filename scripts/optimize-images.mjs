@@ -29,6 +29,10 @@ function thumbWidthFor(relPath) {
 
 const SKIP = new Set(["logo-white.png"]); // 4KB, zostaje bez zmian
 
+// Pionowe zdjęcia hero (max ~560px szerokości w layoucie) nie potrzebują 1920px szerokości —
+// przy 3:4 dawałoby to 1920x2560 i ~0,5MB nad zgięciem.
+const MAX_WIDTH_OVERRIDE = { "uslugi/adaptacje.jpeg": 1200 };
+
 async function* walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -45,8 +49,10 @@ for await (const file of walk(ASSETS)) {
   const rel = path.relative(ASSETS, file);
   if (!/\.(png|jpe?g)$/i.test(rel) || SKIP.has(rel)) continue;
 
-  const src = sharp(file);
-  const meta = await src.metadata();
+  // rotate() bez argumentu obraca wg EXIF Orientation (zdjęcia z telefonu w pionie),
+  // bo WebP nie przenosi tego znacznika i bez tego pionowe kadry wychodziłyby położone.
+  const src = sharp(file).rotate();
+  const meta = await sharp(file).metadata();
   const origSize = (await stat(file)).size;
   before += origSize;
 
@@ -54,7 +60,7 @@ for await (const file of walk(ASSETS)) {
   const fullOut = `${base}.webp`;
   await src
     .clone()
-    .resize({ width: FULL_MAX_WIDTH, withoutEnlargement: true })
+    .resize({ width: MAX_WIDTH_OVERRIDE[rel] ?? FULL_MAX_WIDTH, withoutEnlargement: true })
     .webp({ quality: FULL_QUALITY })
     .toFile(fullOut);
   let newSize = (await stat(fullOut)).size;

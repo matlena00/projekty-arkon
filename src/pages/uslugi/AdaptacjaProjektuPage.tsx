@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
-import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import AssetPhoto from "@/components/landing/AssetPhoto";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
 import { breadcrumbLd, webPageLd, serviceLd } from "@/lib/schema";
@@ -144,10 +144,14 @@ const AdaptacjaProjektuPage = () => (
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
-            <PhotoPlaceholder
-              dark
-              className="aspect-[4/5] max-h-[520px] w-full"
+            <AssetPhoto
+              folder="uslugi"
+              name="adaptacje"
+              alt="Biuro projektowe ArKon w Żegocinie - katalogi projektów gotowych Archon przygotowane do adaptacji"
               caption="ZDJĘCIE: projekt katalogowy rozłożony na biurku + notatki adaptacyjne / ekran z rzutem"
+              className="aspect-[4/5] max-h-[520px] w-full"
+              dark
+              eager
             />
           </motion.div>
         </div>
@@ -176,9 +180,13 @@ const AdaptacjaProjektuPage = () => (
           </ul>
         </motion.div>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }}>
-          <PhotoPlaceholder
-            className="aspect-[3/4] w-full"
+          <AssetPhoto
+            folder="uslugi"
+            name="czym-jest-adaptacja"
+            alt="Adaptacja projektu gotowego Archon - dokumentacja projektowa i rzuty na ekranie w biurze ArKon"
             caption="ZDJĘCIE: dom w budowie zrealizowany z projektu katalogowego (Wasza realizacja)"
+            className="aspect-[4/3] w-full"
+            thumb
           />
         </motion.div>
       </div>

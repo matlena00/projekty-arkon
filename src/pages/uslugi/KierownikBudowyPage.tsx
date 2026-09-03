@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/landing/Breadcrumbs";
-import PhotoPlaceholder from "@/components/landing/PhotoPlaceholder";
+import AssetPhoto from "@/components/landing/AssetPhoto";
 import RouteMap from "@/components/landing/RouteMap";
 import CtaBand from "@/components/landing/CtaBand";
 import LandingFaq from "@/components/landing/LandingFaq";
@@ -24,9 +24,9 @@ const duties = [
 
 const steps = [
   { title: "Rozmowa i wycena", desc: "Opowiadacie o budowie, my przedstawiamy zakres i cenę. Bez zobowiązań." },
-  { title: "Przejęcie obowiązków", desc: "Podpisujemy oświadczenie kierownika budowy i zgłaszamy je z zawiadomieniem o rozpoczęciu robót." },
+  { title: "Przejęcie obowiązków", desc: "Podpisujecie umowę i dokumenty, a my zgłaszamy rozpoczęcie robót w PINB." },
   { title: "Budowa pod kontrolą", desc: "Wizyty na każdym kluczowym etapie, wpisy w dzienniku, odbiory robót zanikających, kontakt telefoniczny na bieżąco." },
-  { title: "Zakończenie budowy", desc: "Kompletujemy dokumenty, oświadczenia i geodezję powykonawczą - składamy zawiadomienie do PINB." },
+  { title: "Zakończenie budowy", desc: "Pomagamy w kompletowaniu dokumentów i zgłaszamy zawiadomienie o zakończeniu budowy w PINB." },
 ];
 
 const areaCities = [
@@ -46,11 +46,11 @@ const faqs = [
   },
   {
     q: "Jak często kierownik pojawia się na budowie?",
-    a: "Zawsze na etapach kluczowych: przejęcie placu, odbiór zbrojenia fundamentów i stropów, ściany, więźba, instalacje przed zakryciem, odbiór końcowy. W praktyce to regularne wizyty co 1-2 tygodnie w sezonie intensywnych robót, a dodatkowo przyjeżdżamy na każde wezwanie, gdy dzieje się coś niepokojącego.",
+    a: "Zawsze na etapach kluczowych: rozpoczęcie robót, odbiór zbrojenia fundamentów i stropów, ściany, więźba, instalacje przed zakryciem, odbiór końcowy. W praktyce to regularne wizyty w okresie intensywnych robót, a dodatkowo przyjeżdżamy na każde wezwanie, gdy dzieje się coś niepokojącego. Przy podpisywaniu umowy określamy szacunkową ilość wizyt.",
   },
   {
     q: "Czy mogę zmienić kierownika budowy w trakcie budowy?",
-    a: "Tak. Sporządza się protokół przekazania obowiązków i odnotowuje zmianę w dokumentacji budowy. Regularnie przejmujemy budowy „w trakcie” - również te z problemami.",
+    a: "Tak. Sporządza się protokół przekazania obowiązków i odnotowuje zmianę w dokumentacji budowy. Zdarza się, że przejmujemy budowy „w trakcie” - również te z problemami.",
   },
   {
     q: "Co jeśli budowa jest już zaawansowana albo była prowadzona bez kierownika?",
@@ -147,10 +147,14 @@ const KierownikBudowyPage = () => (
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
-            <PhotoPlaceholder
-              dark
-              className="aspect-[4/5] max-h-[520px] w-full"
+            <AssetPhoto
+              folder="uslugi"
+              name="kierownik-budowy"
+              alt="Kierownik budowy ArKon z dziennikiem budowy na tle domu jednorodzinnego w stanie surowym"
               caption="ZDJĘCIE: kierownik budowy w kasku z dziennikiem budowy na tle budowanego domu (autentyczne, nie stock)"
+              className="aspect-[4/5] max-h-[520px] w-full"
+              dark
+              eager
             />
           </motion.div>
         </div>
@@ -161,10 +165,10 @@ const KierownikBudowyPage = () => (
     <section className="bg-background border-b border-border/50">
       <div className="section-padding max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4">
         {[
-          { big: "[XX]", small: "prowadzonych budów" },
-          { big: "Uprawnienia", small: "konstrukcyjno-budowlane [DO UZUPEŁNIENIA: nr uprawnień]" },
-          { big: "Członek MOIIB", small: "[DO UZUPEŁNIENIA: nr członkowski]" },
-          { big: "≤ 40 min", small: "dojazd na budowę w obszarze działania" },
+          { big: "100+", small: "prowadzonych budów" },
+          { big: "Uprawnienia", small: "konstrukcyjno-budowlane bez ograniczeń, nr MAP/0453/WBKb/17" },
+          { big: "Członek MOIIB", small: "numer członkowski MAP/BO/0087/18" },
+          { big: "≤ 30 min", small: "dojazd na budowę w obszarze działania" },
         ].map((item, i) => (
           <motion.div
             key={item.big}
@@ -204,9 +208,13 @@ const KierownikBudowyPage = () => (
           </ul>
         </motion.div>
         <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.15 }}>
-          <PhotoPlaceholder
-            className="aspect-[3/4] w-full"
+          <AssetPhoto
+            folder="uslugi"
+            name="nadzor"
+            alt="Odbiór zbrojenia stropu przed betonowaniem - nadzór kierownika budowy ArKon"
             caption="ZDJĘCIE: odbiór zbrojenia / kontrola na budowie (detal, ręce + plan)"
+            className="aspect-[4/3] w-full"
+            thumb
           />
         </motion.div>
       </div>
@@ -274,9 +282,9 @@ const KierownikBudowyPage = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div {...fadeUp}>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              Cena zależy od trzech rzeczy: wielkości i rodzaju budynku, etapu budowy (prowadzenie od fundamentów
-              czy przejęcie w trakcie) oraz odległości od naszego biura. Dom jednorodzinny prowadzony od początku
-              do końca to inna praca niż dokończenie budowy po poprzednim kierowniku.
+              Cena zależy od pięciu rzeczy: rodzaju budynku, wielkości (powierzchnia i liczba kondygnacji), etapu
+              budowy (prowadzenie od fundamentów czy przejęcie w trakcie), technologii budowy oraz odległości od
+              naszego biura.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Po krótkiej rozmowie telefonicznej podajemy konkretną cenę za całość - bez stawek godzinowych
@@ -289,7 +297,7 @@ const KierownikBudowyPage = () => (
             className="border border-accent bg-background p-10 md:p-12 text-center"
           >
             <p className="text-accent text-xs font-semibold tracking-[0.3em] uppercase mb-4">Dom jednorodzinny</p>
-            <p className="font-display font-700 text-4xl md:text-5xl text-foreground mb-2">od [X XXX] zł</p>
+            <p className="font-display font-700 text-4xl md:text-5xl text-foreground mb-2">od 3&nbsp;000 zł</p>
             <p className="text-muted-foreground mb-8">za poprowadzenie całej budowy</p>
             <a
               href="tel:+48888899366"
