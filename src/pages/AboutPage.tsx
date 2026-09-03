@@ -8,9 +8,9 @@ import Seo from "@/components/Seo";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import PartnersSection from "@/components/PartnersSection";
-import officeReal1 from "@/assets/office-real-1-thumb.webp";
-import officeReal2 from "@/assets/office-real-2.webp";
-import officeReal2Thumb from "@/assets/office-real-2-thumb.webp";
+import biuro01 from "@/assets/biuro01.webp";
+import biuro01Thumb from "@/assets/biuro01-thumb.webp";
+import biuro02Thumb from "@/assets/biuro02-thumb.webp";
 import officeLobby from "@/assets/office-lobby-thumb.webp";
 import officeReception from "@/assets/office-reception-thumb.webp";
 import officeDesk from "@/assets/office-desk-thumb.webp";
@@ -57,9 +57,17 @@ const team = [
   { name: "Krzysztof Grabias", role: "Geodeta", photo: krzysztofPhoto },
 ];
 
-const officeGallery = [
-  { src: officeReal1, alt: "Recepcja biura ArKon", span: "md:col-span-2 md:row-span-2" },
-  { src: officeReal2Thumb, alt: "Przestrzeń spotkań w biurze ArKon", span: "" },
+// Duży kafel (2x2) na desktopie ma ~600px szerokości, więc dostaje srcSet z pełnym plikiem;
+// małe kafle wystarczą w wariancie -thumb (900px).
+const officeGallery: { src: string; srcSet?: string; sizes?: string; alt: string; span: string }[] = [
+  {
+    src: biuro01Thumb,
+    srcSet: `${biuro01Thumb} 900w, ${biuro01} 1920w`,
+    sizes: "(min-width: 768px) 50vw, 100vw",
+    alt: "Recepcja i stół konsultacji w biurze ArKon w Żegocinie",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  { src: biuro02Thumb, alt: "Zespół ArKon przy pracy w biurze projektowym", span: "" },
   { src: officeLobby, alt: "Strefa wejściowa biura", span: "" },
   { src: officeReception, alt: "Recepcja i punkt obsługi klienta", span: "" },
   { src: officeDesk, alt: "Stanowiska pracy zespołu projektowego", span: "" },
@@ -157,7 +165,14 @@ const AboutPage = () => (
               transition={{ duration: 0.45, delay: i * 0.08 }}
               className={`overflow-hidden ${img.span}`}
             >
-              <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
+              <img
+                src={img.src}
+                srcSet={img.srcSet}
+                sizes={img.sizes}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </motion.div>
           ))}
         </div>
