@@ -1,0 +1,716 @@
+<title>Audyt SEO ArKon</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F4F3EF; --surface:#FFFFFF; --surface-2:#ECEAE4; --ink:#1C1E22; --ink-2:#3C3F45; --muted:#6A6E76; --line:#DAD8D1; --line-2:#C7C4BB;
+  --accent:#A8864C; --accent-ink:#7D6233; --accent-soft:#F1E8D6;
+  --crit:#B23A2E; --crit-soft:#F6E2DF; --warn:#B97E14; --warn-soft:#F7ECD2; --good:#2E7A4F; --good-soft:#DDEFE3; --info:#3B6EA8; --info-soft:#DFE8F4;
+  --shadow:0 1px 2px rgba(28,30,34,.06),0 6px 18px rgba(28,30,34,.05);
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#141517; --surface:#1C1E22; --surface-2:#24272C; --ink:#ECEBE6; --ink-2:#CFCEC8; --muted:#9EA1A8; --line:#2D3036; --line-2:#3A3E45;
+    --accent:#CDAE73; --accent-ink:#E2C98F; --accent-soft:#2C2820;
+    --crit:#E0695C; --crit-soft:#3A221F; --warn:#E0A83A; --warn-soft:#3A2F18; --good:#5DB383; --good-soft:#1D2F25; --info:#7FA6D8; --info-soft:#1F2A38;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141517; --surface:#1C1E22; --surface-2:#24272C; --ink:#ECEBE6; --ink-2:#CFCEC8; --muted:#9EA1A8; --line:#2D3036; --line-2:#3A3E45;
+  --accent:#CDAE73; --accent-ink:#E2C98F; --accent-soft:#2C2820;
+  --crit:#E0695C; --crit-soft:#3A221F; --warn:#E0A83A; --warn-soft:#3A2F18; --good:#5DB383; --good-soft:#1D2F25; --info:#7FA6D8; --info-soft:#1F2A38;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);overflow-wrap:break-word;font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Manrope,"IBM Plex Sans",system-ui,sans-serif;line-height:1.2;text-wrap:balance;margin:0;color:var(--ink)}
+h1{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:800;letter-spacing:-.015em}
+h2{font-size:1.55rem;font-weight:800;letter-spacing:-.01em;margin-top:0}
+h3{font-size:1.15rem;font-weight:700;margin-top:1.6rem;margin-bottom:.5rem}
+h4{font-size:1rem;font-weight:700;margin-top:1.2rem;margin-bottom:.35rem}
+p{margin:.55rem 0 .9rem}
+a{color:var(--accent-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em}
+code{background:var(--surface-2);padding:.08em .35em;border-radius:4px;color:var(--ink-2);word-break:break-word}
+pre{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;overflow-x:auto;font-size:.84rem;line-height:1.5}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3rem;margin:.4rem 0 1rem}
+li{margin:.25rem 0}
+li::marker{color:var(--muted)}
+strong{font-weight:600}
+hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+header.masthead{border-bottom:1px solid var(--line);background:var(--surface)}
+.masthead .wrap{padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(22px,3vw,36px)}
+.eyebrow{font-family:Manrope,sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+.lede{font-size:1.08rem;color:var(--ink-2);max-width:72ch;margin:.8rem 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.1rem;font-size:.86rem;color:var(--muted)}
+.meta b{color:var(--ink-2);font-weight:600}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:1.6rem}
+.tile{background:var(--ground);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem}
+.tile .k{font-family:Manrope,sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.05}
+.tile .l{font-size:.8rem;color:var(--muted);margin-top:.3rem;line-height:1.35}
+.tile.good .k{color:var(--good)} .tile.warn .k{color:var(--warn)} .tile.crit .k{color:var(--crit)} .tile.info .k{color:var(--info)}
+
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start;padding-top:2rem;padding-bottom:4rem}
+nav.toc{position:sticky;top:18px;font-size:.88rem}
+nav.toc .eyebrow{margin-bottom:.5rem}
+nav.toc ol{list-style:none;padding:0;margin:0;border-left:1px solid var(--line)}
+nav.toc li{margin:0}
+nav.toc a{display:block;padding:.32rem 0 .32rem .85rem;color:var(--ink-2);text-decoration:none;border-left:2px solid transparent;margin-left:-1px}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--line-2)}
+nav.toc .sub a{padding-left:1.6rem;font-size:.82rem;color:var(--muted)}
+@media (max-width:900px){.layout{grid-template-columns:1fr}nav.toc{position:static;border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;background:var(--surface)}nav.toc ol{border:0}nav.toc .sub{display:none}}
+
+main{min-width:0;max-width:860px}
+section.sec{padding:1.2rem 0 1.6rem;border-top:1px solid var(--line)}
+section.sec:first-of-type{border-top:0;padding-top:0}
+.sec-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:.8rem}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted);min-width:2ch}
+.prose{max-width:72ch}
+
+.callout{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--surface);border-radius:var(--r);padding:.85rem 1rem;margin:1rem 0;box-shadow:var(--shadow)}
+.callout.crit{border-left-color:var(--crit)} .callout.good{border-left-color:var(--good)} .callout.info{border-left-color:var(--info)} .callout.warn{border-left-color:var(--warn)}
+.callout p:first-child{margin-top:0}.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+
+.chip{display:inline-block;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18em .55em;border-radius:999px;white-space:nowrap;vertical-align:middle}
+.chip.crit{background:var(--crit-soft);color:var(--crit)} .chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.good{background:var(--good-soft);color:var(--good)} .chip.info{background:var(--info-soft);color:var(--info)} .chip.neutral{background:var(--surface-2);color:var(--ink-2)}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin:.9rem 0 1.3rem;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;vertical-align:top;padding:.6rem .75rem;border-bottom:1px solid var(--line)}
+th{font-family:Manrope,sans-serif;font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.c{text-align:center}
+.ok{color:var(--good);font-weight:600}.no{color:var(--crit);font-weight:600}.mid{color:var(--warn);font-weight:600}
+.tbl.compact th,.tbl.compact td{padding:.45rem .6rem;font-size:.84rem}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:1rem 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.95rem 1.05rem;box-shadow:var(--shadow)}
+.card h4{margin-top:0}
+.card .sub{font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
+.card ul{margin-bottom:0;font-size:.92rem}
+
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:.3rem 1rem;font-size:.92rem;margin:.6rem 0 1rem}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+
+.plan{list-style:none;padding:0;margin:1rem 0}
+.plan li{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.9rem;padding:.7rem 0;border-bottom:1px dashed var(--line)}
+.plan li>div{min-width:0}
+.plan li:last-child{border-bottom:0}
+.plan .when{font-family:Manrope,sans-serif;font-weight:700;font-size:.82rem;color:var(--accent-ink);padding-top:.15rem;min-width:8.5ch}
+.plan b{display:block;margin-bottom:.15rem}
+.plan p{margin:.2rem 0 0;font-size:.92rem;color:var(--ink-2)}
+
+.tree{font-family:"IBM Plex Mono",monospace;font-size:.82rem;line-height:1.55;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;overflow-x:auto;white-space:pre;margin:.8rem 0 1.2rem}
+.tree .new{color:var(--good);font-weight:600}
+.tree .cm{color:var(--muted)}
+
+footer.colophon{border-top:1px solid var(--line);padding:1.4rem 0 2.6rem;font-size:.82rem;color:var(--muted)}
+.small{font-size:.85rem;color:var(--muted)}
+.twocol{columns:2;column-gap:2rem}
+@media (max-width:720px){.twocol{columns:1}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Audyt SEO i treści · projekty-arkon.pl · 19 sierpnia 2026</div>
+    <h1>Audyt SEO ArKon</h1>
+    <p class="lede">Ocena serwisu pod kątem SEO, treści i rynku lokalnego, z perspektywy celu: <strong>wiodące biuro projektów domów jednorodzinnych i budynków usługowych w Bochni, Limanowej, Brzesku i Wieliczce</strong>. Raport mówi wprost, co działa, co trzeba naprawić od razu i jaki plan wdrożyć w kolejnych 90 dniach.</p>
+    <div class="meta">
+      <span><b>Zakres:</b> 52 URL live (14 stron + 38 wpisów), kod repo, Lighthouse, SERP-y dla 36 fraz lokalnych, 25+ stron konkurencji, GBP, 20+ katalogów, dane GUS</span>
+      <span><b>Metoda:</b> crawl prerenderowanego HTML, pomiar wydajności, analiza treści i linkowania, research rynku</span>
+    </div>
+    <div class="tiles">
+      <div class="tile good"><div class="k">52</div><div class="l">URL w sitemapie, 100% prerenderowane, poprawne 404/301, kompletna schema</div></div>
+      <div class="tile crit"><div class="k">0 / 36</div><div class="l">fraz lokalnych („biuro projektowe Bochnia”, „kierownik budowy Brzesko”…), na które serwis jest dziś widoczny</div></div>
+      <div class="tile warn"><div class="k">67</div><div class="l">Lighthouse Performance (mobile), LCP 7,7 s — przez błędy hydratacji i animacje, nie przez serwer</div></div>
+      <div class="tile warn"><div class="k">95 słów</div><div class="l">średnia długość wpisu na blogu (38 wpisów, żaden ≥ 400 słów, 0 linków wewnętrznych)</div></div>
+      <div class="tile info"><div class="k">74 × 5,0</div><div class="l">opinie Google — największy niewykorzystany atut (lokalni konkurenci: 0–65, większość poniżej 10)</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+<nav class="toc" aria-label="Spis treści">
+  <div class="eyebrow">Spis treści</div>
+  <ol>
+    <li><a href="#werdykt">1. Werdykt w 60 sekund</a></li>
+    <li><a href="#dobrze">2. Co zrobiono dobrze</a></li>
+    <li><a href="#pilne">3. Do natychmiastowej poprawy</a></li>
+    <li><a href="#rynek">4. Rynek i konkurencja</a></li>
+    <li class="sub"><a href="#rynek-popyt">Popyt i przepisy 2026</a></li>
+    <li class="sub"><a href="#rynek-bochnia">Bochnia · Brzesko</a></li>
+    <li class="sub"><a href="#rynek-limanowa">Limanowa · Wieliczka</a></li>
+    <li><a href="#tresc">5. Diagnoza treści</a></li>
+    <li><a href="#strategia">6. Strategia i architektura</a></li>
+    <li><a href="#offsite">7. Local SEO poza stroną</a></li>
+    <li><a href="#plan">8. Plan 90 dni i KPI</a></li>
+    <li><a href="#zalaczniki">9. Załączniki</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section class="sec" id="werdykt">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Werdykt w 60 sekund</h2></div>
+  <div class="prose">
+    <p><strong>Fundament techniczny jest dobry i lepszy niż u całej lokalnej konkurencji</strong> — prerender, sitemap z buildu, poprawne 301/404, schema Service/FAQ/Breadcrumb, unikalne strony lokalne. To efekt wdrożenia większości audytu z lipca. Problem jest gdzie indziej: <strong>serwis nie jest dziś widoczny na żadną z 36 sprawdzonych fraz lokalnych</strong> (tylko na frazy brandowe), a treść, która ma go wynieść — blog, realizacje, sekcja budynków usługowych — praktycznie nie istnieje.</p>
+    <p>Pięć rzeczy, które decydują o wyniku:</p>
+    <ol>
+      <li><strong>Cztery błędy „niewidoczne gołym okiem”, ale kosztowne:</strong> przekierowania z <code>vercel.json</code> nie działają (hosting to SEOHOST), stara strona Gdowa wisi live, rate-limiter hostingu zwraca 429 przy kilku żądaniach z rzędu, a hydratacja Reacta wywala się na każdej stronie (LCP 7,7 s mobile).</li>
+      <li><strong>Strona główna nie mówi Google, czym jesteście:</strong> H1 „Biuro Projektowe ArKon”, fraza „projekty domów” 0 razy, „budynki usługowe” 0 razy, miasta tylko w stopce. H1 na <code>/o-nas</code> i <code>/uslugi</code> nadal bez słów kluczowych (punkt z lipca niewdrożony).</li>
+      <li><strong>Budynki usługowe — cel biznesowy — nie mają ani jednej strony.</strong> W całym serwisie słowo „usługowy” pada 5 razy, wyłącznie w galerii.</li>
+      <li><strong>Blog to kronika z Facebooka</strong> (38 wpisów, śr. 95 słów, bez nagłówków, linków i zdjęć w treści), a CMS nie pozwala napisać poradnika (czysty tekst). 24 realizacje w galerii mają puste opisy i alty typu „Żegocina”.</li>
+      <li><strong>Największa dźwignia leży poza kodem:</strong> 74 opinie 5,0 w Google (na stronie wciąż „71”; konkurenci w Bochni: 11–65, w Brzesku i Limanowej prawie nic), niespójny NAP w katalogach (3 adresy, 3 e-maile, 2 nazwy), brak profili na Oferteo/Daibau/Fixly, które zajmują TOP3 dla ~70% fraz z miastem, oraz realizacje publiczne (baza piłkarska Limanowa, szkoła Bytomsko, osiedla w Bochni), które nie generują ani jednego linku.</li>
+    </ol>
+    <div class="callout">
+      <p><strong>Rekomendacja:</strong> najpierw tydzień napraw technicznych (sekcja 3) <em>plus jeden pilny wpis już teraz</em> — 31 sierpnia 2026 mija termin składania wniosków o warunki zabudowy na starych zasadach w gminach bez planu ogólnego (m.in. gmina Limanowa) — potem 90-dniowy sprint treści i local SEO (sekcje 6–8). Brzesko i Limanowa są do wzięcia w 3–4 miesiące (słaba konkurencja), Bochnia w 6–9 (jeden silny gracz: Gembarzewscy), Wieliczka w 9–12 (rynek podkrakowski). Bez sekcji 3 reszta działa wolniej, bez sekcji 6–7 nie zadziała wcale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="dobrze">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Co zrobiono dobrze — nie ruszać</h2></div>
+  <div class="prose">
+    <p>W porównaniu do lipca (audyt w repo) wdrożono większość punktów P1–P2. To, co poniżej, jest przewagą nad lokalną konkurencją i trzeba to utrzymać przy każdym wdrożeniu.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Obszar</th><th>Stan</th><th>Dlaczego to ważne</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Prerender (SSG) każdej trasy</strong></td><td>Treść, meta, JSON-LD w źródle HTML; TTFB 80 ms; serwer LiteSpeed odpowiada szybko</td><td>Google nie musi renderować JS; konkurencja ma głównie Joomla/WordPress z cienką treścią</td></tr>
+        <tr><td><strong>Architektura URL</strong></td><td>3 podstrony usług + 4 strony lokalne, <code>/faq</code>, 38 wpisów; canonical bez slasha, https bez www jednym skokiem</td><td>Szkielet pod frazy lokalne jest gotowy — trzeba go „napełnić”</td></tr>
+        <tr><td><strong>Strony lokalne są unikalne</strong></td><td>Bochnia/Limanowa/Brzesko/Wieliczka: własne H1, akapity o urzędzie, MPZP, osuwiskach, A4, 4 FAQ per miasto, mapa, realizacje z okolicy</td><td>Google karze kopiuj-wklej z podmianą miasta; tu go nie ma. Wymaga tylko rozbudowy (ok. 330 słów treści głównej — za mało)</td></tr>
+        <tr><td><strong>Dane strukturalne</strong></td><td>WebSite + ProfessionalService/LocalBusiness (adres, geo, godziny, założyciel, katalog usług) jako @graph; per strona BreadcrumbList, WebPage, Service z <code>areaServed</code> (City), FAQPage; Blog/BlogPosting; ImageGallery</td><td>Kompletniejsze niż u wszystkich 20 przejrzanych konkurentów</td></tr>
+        <tr><td><strong>Sitemap z buildu</strong></td><td>52 URL, lastmod wpisów z datePublished, jedno źródło prawdy</td><td>Koniec z rozjazdem sitemapy i treści</td></tr>
+        <tr><td><strong>Stare adresy</strong></td><td><code>/projekty/</code>, <code>/kolejne-uslugi-dostepne/</code> → 301; nieistniejące URL → prawdziwe 404</td><td>Koniec soft-404; stare tytuły znikną z indeksu same</td></tr>
+        <tr><td><strong>FAQ</strong></td><td>19 pytań merytorycznych z materiału klienta, osobne FAQ per usługa i per miasto</td><td>Trafia w intencje („pozwolenie czy zgłoszenie”, „osuwiska”) i w AI Overviews</td></tr>
+        <tr><td><strong>Social proof</strong></td><td>74 opinie Google 5,0 (na stronie 71 — zaktualizować), Orły Architektury 2026, 13-osobowy zespół z nazwiskami i zdjęciami</td><td>To jest realna przewaga rynkowa — dziś pokazana tylko na stronie głównej</td></tr>
+        <tr><td><strong>Analityka</strong></td><td>GTM + GA4 wdrożone</td><td>Można mierzyć leady — pod warunkiem zgody cookies (patrz sekcja 3)</td></tr>
+        <tr><td><strong>Obrazy własne</strong></td><td>WebP, lazy-loading, warianty mobile hero, alty na zdjęciach zespołu i stron lokalnych</td><td>Problem dotyczy tylko zdjęć z CMS (sekcja 3)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="pilne">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Do natychmiastowej poprawy</h2></div>
+  <div class="prose">
+    <p>Posortowane według wpływu na widoczność i leady. Kolumna „Dowód” to to, co zmierzyłem dziś na wersji live; „Naprawa” wskazuje plik w repo.</p>
+  </div>
+
+  <h3>P1 — blokują wyniki (ten tydzień)</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>#</th><th>Problem</th><th>Dowód</th><th>Naprawa</th><th>Wysiłek</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td><span class="chip crit">hosting</span><br><strong>Przekierowania z <code>vercel.json</code> nie działają</strong> — serwis stoi na SEOHOST (Apache/LiteSpeed, <code>.htaccess</code>), więc 301 dla Gdowa i 5 starych slugów bloga nigdy nie weszły.</td><td><code>/blog/piekna-jesienna-aura</code>, <code>/blog/nowosci</code>, <code>/blog/600-mnpm-i-widok-na-tatry</code> → <strong>200</strong> z treścią „nie znaleziono wpisu” (soft-404)</td><td>Przenieść reguły do <code>public/.htaccess</code> (RewriteRule … [R=301,L]); usunąć <code>vercel.json</code> lub oznaczyć jako nieużywany</td><td>1 h</td></tr>
+        <tr><td class="num">2</td><td><span class="chip crit">hosting</span><br><strong>Stara strona <code>/biuro-projektowe-gdow</code> wciąż live</strong> (200, canonical na siebie), choć w kodzie jej nie ma — deploy nie czyści serwera, zostały pliki z poprzedniego wdrożenia.</td><td>Strona osierocona: 0 linków wewnętrznych, brak w sitemapie, treść zdublowana z Wieliczką (Gdów)</td><td>Usunąć katalog na serwerze, dodać 301 → <code>/biuro-projektowe-wieliczka</code> w <code>.htaccess</code>; deploy przez rsync <code>--delete</code> (albo skrypt czyszczący <code>dist/</code> na hoście)</td><td>1 h</td></tr>
+        <tr><td class="num">3</td><td><span class="chip crit">hosting</span><br><strong>Rate-limiter SEOHOST zwraca 429 już przy kilku żądaniach HTML z rzędu</strong> i blokuje IP na kilka–kilkanaście minut. Pliki statyczne nie są limitowane.</td><td>15 równoległych żądań: 15×200, 15×429; potem 6 sekwencyjnych → 5×429. Lighthouse „nie mógł pobrać robots.txt”. W GSC był już „błąd przekierowania” z tego powodu (komentarz w <code>.htaccess</code>)</td><td>Zgłoszenie do SEOHOST: wyłączenie/wyższy próg limitu dla Googlebot/Bingbot (weryfikacja po reverse DNS) lub dla całej domeny; monitorować GSC → Statystyki indeksowania → kody 429/5xx. Plan B: hosting bez limitera (Vercel/Cloudflare Pages — repo już ma konfigurację)</td><td>2 h + ticket</td></tr>
+        <tr><td class="num">4</td><td><span class="chip crit">wydajność</span><br><strong>Błędy hydratacji React #418/#423 na każdej stronie</strong> → React odrzuca prerender i renderuje wszystko od nowa; framer-motion startuje wtedy od <code>opacity:0</code>. Efekt: element LCP to… akapit tekstu w hero, widoczny po 7,7 s (Render Delay 6,8 s = 89% LCP).</td><td>Lighthouse mobile: Perf 67, FCP 3,8 s, LCP 7,7 s, konsola: „Minified React error #418/#423”. Źródła niezgodności: licznik w <code>StatsSection</code> (HTML ma wartość końcową, klient startuje od 0), galeria z Supabase (HTML ma zdjęcia, klient rusza bez danych), czyszczenie <code>style</code> w prerenderze</td><td>(a) <code>StatsSection</code>: pierwszy render = wartość docelowa, animacja dopiero w <code>useEffect</code>; (b) prerender zapisuje dane CMS do <code>window.__ARKON__</code> i React Query dostaje <code>initialData</code>; (c) framer-motion: <code>initial={false}</code> przy hydratacji lub animacje CSS z <code>prefers-reduced-motion</code>; (d) zweryfikować w dev-buildzie do zera ostrzeżeń. Cel: LCP &lt; 2,5 s</td><td>1–2 dni</td></tr>
+        <tr><td class="num">5</td><td><span class="chip crit">treść</span><br><strong>Strona główna i strony „O nas”/„Usługi” nie niosą słów kluczowych.</strong> H1: „Biuro Projektowe ArKon”, „Za kulisami Firmy”, „Co możemy Wam zaoferować?”. Title strony głównej kończy się na „Żegocina” (wieś 1,5 tys. mieszk.).</td><td>Na <code>/</code>: „projekty domów” 0×, „projekt domu” 1×, „budynk… usługow…” 0×, miasta docelowe po 1× (stopka). Punkt 3.3 audytu z lipca — niewdrożony</td><td>Nowe H1/title/meta (załącznik A) + akapit wprowadzający na <code>/</code> z nazwami miast i typami obiektów; pasek zaufania pod hero (74 opinie 5,0 · od 2018 · 70+ projektów/rok · Orły Architektury 2026)</td><td>0,5 dnia</td></tr>
+        <tr><td class="num">6</td><td><span class="chip crit">treść</span><br><strong>Brak strony dla budynków usługowych</strong> — główny cel biznesowy bez adresu URL. Konkurenci w Bochni (Gembarzewscy, 3punkty, ArchTech) mają to w ofercie i rankują na „projekt budynku usługowego Bochnia”.</td><td>Słowo „usługowy” w całym serwisie: 5× (tylko etykiety w galerii). Realizacje są: Lipnica Murowana (usługowo-mieszkalny), Żegocina (remont budynków usługowych), osiedla, szkoła, baza piłkarska</td><td>Nowa podstrona <code>/uslugi/projekty-budynkow-uslugowych</code> (1 200+ słów: typy obiektów, formalności, MPZP/WZ, parkingi, dostępność, zmiana sposobu użytkowania, proces, realizacje, FAQ) + sekcja „budynki usługowe w &lt;miasto&gt;” na każdej stronie lokalnej</td><td>2 dni</td></tr>
+        <tr><td class="num">7</td><td><span class="chip crit">obrazy</span><br><strong>Zdjęcia z CMS (Supabase Storage) to PNG 3–7 MB</strong>; brak optymalizacji przy uploadzie (skrypt <code>optimize-images.mjs</code> obsługuje tylko <code>src/assets</code>).</td><td>W galerii 5 plików &gt; 3 MB (max 7,2 MB), JPG 220–350 KB; lightbox ładuje pełne pliki; cover na stronie głównej 265 KB JPG</td><td>Kompresja po stronie klienta w panelu (<code>browser-image-compression</code>, max 1 920 px, WebP q80, osobna miniatura) + jednorazowa migracja istniejących plików; ewentualnie Supabase Image Transformations (<code>?width=&amp;format=webp</code>)</td><td>1 dzień</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>P2 — ważne (2–3 tygodnie)</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>#</th><th>Problem</th><th>Dowód</th><th>Naprawa</th><th>Wysiłek</th></tr></thead>
+      <tbody>
+        <tr><td class="num">8</td><td><span class="chip warn">prawo</span> <strong>Brak zgody na cookies</strong> — GTM/GA4 ładują się przed jakąkolwiek zgodą (Cookiebot jest tylko komentarzem w <code>index.html</code>).</td><td>Ryzyko RODO/UODO; GA4 bez Consent Mode = zaniżone dane po wdrożeniu banera</td><td>CMP (Cookiebot/CookieYes/Klaro) + Google Consent Mode v2 przez GTM; tagi odpalane po zgodzie</td><td>0,5 dnia</td></tr>
+        <tr><td class="num">9</td><td><span class="chip warn">wydajność</span> <strong>Zasoby blokujące:</strong> 3 rodziny Google Fonts (209 KB), GTM+gtag 293 KB (68–74% nieużywane), <code>motion.js</code> 147 KB, Supabase SDK 51 KB na stronie głównej.</td><td>Render-blocking: <code>fonts.googleapis.com</code> 809 ms; bootup 0,8 s; main-thread 2,1 s</td><td>Self-host 2 rodziny (subset latin-ext, <code>preload</code> woff2), GTM ładowany po pierwszej interakcji lub po 3 s, Supabase tylko na trasach, które go używają; rozważyć CSS-animacje zamiast framer-motion w hero</td><td>1 dzień</td></tr>
+        <tr><td class="num">10</td><td><span class="chip warn">struktura</span> <strong>Hierarchia nagłówków</strong> — <code>/uslugi</code>: H1 → H3 → 46×H4 (tylko 2 H2), <code>/galeria</code>: H1 + wyłącznie H5, <code>/blog</code>: 37×H3 bez H2.</td><td>Lighthouse „heading-order” fail; Google gorzej rozumie sekcje</td><td>Każda usługa na <code>/uslugi</code> = H2, szczegóły = H3; galeria: H2 per kategoria; blog: H2 „Najnowsze”, karty H3</td><td>2 h</td></tr>
+        <tr><td class="num">11</td><td><span class="chip warn">schema</span> <strong>Te same 7 pytań + FAQPage na <code>/</code>, <code>/uslugi</code> i <code>/faq</code></strong>.</td><td>Duplikacja treści i danych strukturalnych</td><td>Schema FAQPage tylko na <code>/faq</code> i na stronach usług/lokalnych (tam pytania są unikalne); na <code>/</code> i <code>/uslugi</code> zostawić widżet bez schemy lub inne pytania</td><td>1 h</td></tr>
+        <tr><td class="num">12</td><td><span class="chip warn">treść</span> <strong>Galeria bez treści:</strong> 19 z 24 realizacji ma pusty opis, tytuł = nazwa wsi, alt = nazwa wsi („Żegocina”, „Sobolów”).</td><td>Brak podstron realizacji → 24 potencjalne strony long-tail nie istnieją</td><td>Pola w CMS: typ obiektu, miejscowość, gmina, zakres (projekt/adaptacja/KB), powierzchnia, rok, opis 150–400 słów; alt = „Dom jednorodzinny w Sobolowie – projekt indywidualny ArKon”; docelowo <code>/realizacje/&lt;slug&gt;</code> (sekcja 6)</td><td>CMS 1 dzień + treść</td></tr>
+        <tr><td class="num">13</td><td><span class="chip warn">a11y</span> <strong>Dostępność:</strong> przycisk menu mobilnego bez nazwy, kontrasty (tekst hero /60 na jasnym fragmencie zdjęcia, stopka /60, linki accent na ciemnym).</td><td>Lighthouse A11y 88: button-name, color-contrast</td><td><code>aria-label="Otwórz menu"</code>; ciemniejsza nakładka pod tekstem hero; kolory tekstu pomocniczego ≥ 4,5:1</td><td>2 h</td></tr>
+        <tr><td class="num">14</td><td><span class="chip warn">URL</span> <strong>Duplikaty:</strong> <code>/index.html</code> odpowiada 200 bez przekierowania (kopia strony głównej); <code>/uslugi/index.html</code> do sprawdzenia po zdjęciu limitu.</td><td>Dwa adresy z tą samą treścią</td><td>301 <code>/index.html</code> → <code>/</code> i <code>/(.+)/index.html</code> → <code>/$1</code> w <code>.htaccess</code></td><td>0,5 h</td></tr>
+        <tr><td class="num">15</td><td><span class="chip warn">nawigacja</span> <strong>Podstrony usług i miast tylko w stopce</strong> (anchor „Bochnia”), główne menu ich nie pokazuje.</td><td>Słaby przepływ PageRank do stron, które mają rankować; użytkownik mobilny ich nie znajduje</td><td>Rozwijane „Usługi” (lista usług) i „Gdzie działamy” (miasta) w Navbar; anchory „Biuro projektowe Bochnia” zamiast „Bochnia”</td><td>0,5 dnia</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn">
+    <p><strong>Jedna uwaga do procesu:</strong> audyt z lipca miał 8 punktów wdrożeniowych — zrobiono 5 technicznych, a 3 treściowe (H1/title, blog poradnikowy, case studies) zostały. To nie przypadek: treść wymaga czasu właściciela/architekta, nie dewelopera. W planie (sekcja 8) rozdzielam wprost, co robi dev, a co wymaga 2–3 godzin tygodniowo od zespołu ArKon.</p>
+  </div>
+</section>
+
+<section class="sec" id="rynek">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Rynek i konkurencja</h2></div>
+  <div class="prose">
+    <p>Sprawdziłem wyniki Google dla 9 fraz × 4 miasta (36 zapytań) oraz strony ponad 20 lokalnych biur. Uwaga metodyczna: wyszukiwania wykonane spoza Polski — skład domen w TOP10 jest miarodajny, dokładna kolejność może się różnić; pakiet map (local pack) nie był mierzony bezpośrednio.</p>
+  </div>
+
+  <h3 id="rynek-popyt">Popyt, intencje i przepisy 2026</h3>
+  <div class="prose">
+    <p><strong>Ile się buduje tam, gdzie chcecie być liderem.</strong> Dane GUS (BDL, pobrane 19.08.2026) — pozwolenia i zgłoszenia z projektem na <em>nowe domy jednorodzinne</em>:</p>
+  </div>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Powiat</th><th>2021</th><th>2023</th><th>2024</th><th>2025</th><th>2025/24</th><th>Rozpoczęte indyw. I–VI 2026 (vs I–VI 2025)</th><th>Charakter rynku</th></tr></thead>
+      <tbody>
+        <tr><td><strong>wielicki</strong></td><td class="num">994</td><td class="num">610</td><td class="num">709</td><td class="num">678</td><td class="num">−4,4%</td><td class="num">333 (415, −20%)</td><td>najszybciej rosnący powiat Małopolski (+40,8% ludności 2002–24), 9,5 mieszkań/1000 mieszk., 13. powiat w Polsce pod względem domów rozpoczętych; po mocnym 2025 — hamowanie</td></tr>
+        <tr><td><strong>limanowski</strong></td><td class="num">650</td><td class="num">598</td><td class="num">660</td><td class="num">654</td><td class="num">−0,9%</td><td class="num">306 (333, −8%)</td><td>94% budownictwa to inwestorzy indywidualni, największe domy w województwie (śr. 160 m²), dodatni przyrost naturalny; do tego 160 pozwoleń/rok na budynki gospodarcze/rolnicze</td></tr>
+        <tr><td><strong>bocheński</strong></td><td class="num">597</td><td class="num">429</td><td class="num">436</td><td class="num">481</td><td class="num">+10,3%</td><td class="num">224 (235, −5%)</td><td>odbicie 2025; Żegocina 25, gm. Bochnia 147, Rzezawa 88, N. Wiśnicz 61 pozwoleń; najwięcej pozwoleń na budynki handlowo-usługowe w czwórce (21/rok)</td></tr>
+        <tr><td><strong>brzeski</strong></td><td class="num">406</td><td class="num">296</td><td class="num">286</td><td class="num">298</td><td class="num">+4,2%</td><td class="num">149 (136, +10%)</td><td>najmniejszy rynek, ale jedyny rosnący w I półroczu 2026 i z najsłabszą konkurencją online</td></tr>
+        <tr><td>Razem 4 powiaty</td><td class="num">2 647</td><td class="num">1 933</td><td class="num">2 091</td><td class="num">2 111</td><td class="num">+1,0%</td><td class="num">1 012</td><td>≈ 21% województwa; budynki handlowo-usługowe 61/rok, przemysłowo-magazynowe 29/rok, hotele/pensjonaty 4/rok</td></tr>
+        <tr><td>Małopolska</td><td class="num">12 317</td><td class="num">9 089</td><td class="num">9 382</td><td class="num">10 074</td><td class="num">+7,4%</td><td class="num">5 114 (+1%)</td><td>2. województwo w kraju po mazowieckim; 83% pozwoleń na podstawie MPZP</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <p>Wniosek: ok. <strong>2 100 inwestorów rocznie</strong> w czterech powiatach szuka projektu domu i kierownika budowy, do tego ~100 obiektów usługowych/przemysłowych i kilkaset gospodarczych (Limanowa). Rynek jest stabilny, nie rośnie skokowo — udział zdobywa się kosztem konkurencji i portali, nie „na fali”.</p>
+
+    <h4>Co wpisują inwestorzy i kto to dziś wygrywa</h4>
+    <ul>
+      <li><strong>Frazy ogólne („projekt domu”, „projekty domów”, „projekt budynku usługowego”)</strong> — zdominowane przez katalogi projektów gotowych: Archon (~1,4 mln wizyt/mies.), Extradom (~1,2 mln), Murator, Z500, Tooba, Planz. Lokalne biuro nie ma tam czego szukać — i nie musi.</li>
+      <li><strong>Frazy cenowe i proceduralne</strong> („ile kosztuje adaptacja projektu”, „kierownik budowy cena”, „ile kosztuje projekt indywidualny 2026”, „dom do 70 m² bez pozwolenia”, „warunki zabudowy 2026”) — SERP mieszany: portale, blogi firm wykonawczych, kancelarie… <em>i lokalne biura z dobrym blogiem</em> (np. architekt-krakow.eu rankuje na „ile kosztuje indywidualny projekt domu 2026” tekstem na 3 000 słów z cenami 250–350 zł/m² dla Krakowa). To jest osiągalne.</li>
+      <li><strong>Frazy lokalne z miastem</strong> — katalogi (Oferteo: „adaptacja projektu Bochnia — 112 firm”, „Limanowa — 164 firmy”; Fixly, Daibau, Panorama Firm, Archon „sieć sprzedaży Bochnia”) plus pojedyncze biura. Tu decyduje treść per miasto + wizytówka Google + obecność w tych katalogach.</li>
+      <li><strong>Rynkowe widełki cen 2026</strong> (do użycia na stronach i w cenniku): adaptacja 2 500–6 000 zł (średnia krajowa ~5 200 zł), projekt indywidualny 150–350 zł/m² PU (Kraków/Małopolska 250–350), kierownik budowy 4 000–7 000 zł ryczałt za dom do 300 m², stan surowy zamknięty 3 700–4 500 zł/m², pod klucz 6 000–6 500 zł/m². Nikt lokalnie nie publikuje takich liczb.</li>
+    </ul>
+
+    <h4>Przepisy, które inwestorzy googlują teraz — i o których trzeba pisać</h4>
+  </div>
+  <div class="callout crit">
+    <p><strong>31 sierpnia 2026 — za 12 dni:</strong> w gminach bez planu ogólnego to ostatni dzień na złożenie wniosku o warunki zabudowy na dotychczasowych zasadach (Dz.U. 2026 poz. 781). Od 1 września WZ tylko tam, gdzie plan ogólny już obowiązuje, i tylko na obszarach uzupełnienia zabudowy. <strong>Gmina Limanowa dopiero wchodzi w konsultacje (26.08–25.09)</strong> — po 1.09 nowe WZ będą tam zablokowane do uchwalenia planu. Brzesko konsultowało w maju–czerwcu, miasto Bochnia wyłożyło projekt w maju, Wieliczka ma dedykowaną podstronę gminną. To gotowy, pilny temat na wpis + post w GBP + Facebook w tym tygodniu („Masz działkę bez planu? Złóż wniosek o WZ do 31 sierpnia — pomożemy”).</p>
+  </div>
+  <div class="prose">
+    <ul>
+      <li><strong>Plan ogólny gminy:</strong> termin przesunięty na 31.08.2026; w kraju 519 gmin uchwaliło, 1 160 ma projekt (12.08.2026). Ważność nowych WZ: 5 lat (decyzje prawomocne po 1.01.2026). Od 1.01.2027 wniosek o WZ tylko dla mającego prawo do dysponowania nieruchomością — koniec „WZ przed zakupem działki” → rośnie rola <strong>analizy działki przed zakupem</strong> (Wasza usługa!).</li>
+      <li><strong>Prawo budowlane od 7.01.2026</strong> (Dz.U. 2025 poz. 1847): tarasy do 35 m² bez formalności, zbiorniki na deszczówkę, magazyny energii, „żółta kartka” zamiast wstrzymania budowy, papierowy dziennik budowy do 2031; od 20.09.2026 nowe definicje budynków i planowane nowe Warunki Techniczne (klasy energetyczne). Limit domów na zgłoszenie <strong>bez zmian: 70 m²</strong> (w 2025 tylko 1 938 zgłoszeń w kraju — nisza; inwestorzy mylą trzy tryby: zgłoszenie do 70 m², zgłoszenie z projektem, pozwolenie — dobry temat).</li>
+      <li><strong>Czas wydania pozwolenia:</strong> mediana 65 dni, tylko 11% decyzji w ustawowym terminie (GUNB 2025) — Wasz argument „składamy komplet za pierwszym razem”.</li>
+      <li><strong>Osuwiska</strong> (powiat bocheński prowadzi rejestr w BIP, SOPO PIG) i <strong>tereny pogórnicze</strong> (Wieliczka) — tematy lokalne bez konkurencji treściowej.</li>
+    </ul>
+
+    <h4>AI Overviews i lokalne SEO — co to zmienia</h4>
+    <ul>
+      <li>Senuto (XI 2025): AI Overviews przy 29% fraz w Polsce, ale tylko 4–6% zapytań lokalnych; spadek kliknięć −20% dla fraz informacyjnych. AIO cytuje w 49% strony z TOP10 — ranking nadal jest warunkiem, a treści prawno-cenowe będą częściowo „zjadane”. Cel takich treści: cytowanie, autorytet, wsparcie stron usługowych — nie sam klik.</li>
+      <li>Od stycznia 2026 Google testuje zastępowanie local packu podsumowaniem AI z 1–2 firmami. Firmy spoza TOP3 w Mapach tracą najwięcej. <strong>Wizytówka Google z opiniami i kompletem danych staje się ważniejsza, nie mniej ważna.</strong></li>
+      <li>Co AIO lubi cytować: odpowiedź w pierwszych 2–3 zdaniach sekcji, nagłówki-pytania, liczby i daty, FAQ ze schemą, autor z imieniem i uprawnieniami, data aktualizacji. Dokładnie taki format rekomenduję dla poradników (sekcja 6).</li>
+    </ul>
+  </div>
+
+  <h3 id="rynek-bochnia">Bochnia i Brzesko</h3>
+  <div class="prose">
+    <p><strong>Wzorzec SERP jest ten sam w obu miastach:</strong> frazy „biuro projektowe / projektant / projekt budynku usługowego + miasto” zajmują lokalne strony firmowe, a frazy z największym wolumenem — „projekt domu”, „projekty domów”, „adaptacja projektu”, „kierownik budowy + miasto” — niemal w całości portale (Oferteo, Fixly, Muratordom, Archon, Z500, Panorama Firm). Tam lokalnych biur prawie nie ma. <strong>projekty-arkon.pl nie pojawił się na żadną z 18 fraz</strong>; nie ma go też w rankingach Oferteo (Bochnia/Brzesko) ani Daibau.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h4>Bochnia — 4 domeny trzymają rynek</h4><div class="sub">projektybochniabrzesko.pl · archtech.eu · 3punkty.pl · j2sbiuroprojektowe.pl</div>
+      <ul>
+        <li><strong>Gembarzewscy (projektybochniabrzesko.pl, Rzezawa)</strong> — najważniejszy konkurent: 10 podstron usług, strona „Biuro projektowe Bochnia” ~2 000 słów z FAQ, strona „Kierownik budowy Bochnia, Brzesko” ~1 200 słów, 8 realizacji z nazwami miejscowości w URL, Oferteo 5,0/39 opinii, „17 lat, 600 projektów”. Słabości: baza wiedzy pusta, brak stron per miasto, brak wnętrz/geodezji, Joomla z duplikatami URL, słaby H1 na głównej.</li>
+        <li><strong>ArchTech (od 1991)</strong> — wiek domeny i EMD w H1, ale serwis statyczny z ~350 słowami na usługę, zero opinii, zero bloga.</li>
+        <li><strong>3punkty</strong> — najlepsza treść poradnikowa w mieście (WZ, plan ogólny, ~2 000 słów na „projekt budowlany Bochnia”), ale bez kierownika budowy, blog o ogrodach.</li>
+        <li><strong>J2S</strong> — 3 długie poradniki (pozwolenie na budowę 2 800 słów, przebudowa, dokumentacja) ciągną na „adaptacja projektu Bochnia”; brak KB, jeden wpis to lorem ipsum.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Brzesko — rynek praktycznie pusty</h4><div class="sub">bp-projekt.com · arteonbrzesko.pl · proarchidom.pl · il-bud.com · esproject.eu</div>
+      <ul>
+        <li>Lokalne strony to słabe/stare serwisy: <strong>BP-Projekt</strong> ~175 słów, błędy kodowania, zły certyfikat; <strong>Arteon</strong> bez treści i opinii; <strong>ProArchiDOM</strong> (Wojnicz) — 5 podstron, ale jako jedyny ma <strong>cennik</strong>; <strong>IL-BUD</strong> (Gosprzydowa) ~900 słów, nr 1 na Oferteo „architekt Brzesko” z 4 opiniami.</li>
+        <li>Na „architekt Brzesko” i „projekty domów Brzesko” rankuje <strong>esproject.eu z Pruszcza Gdańskiego</strong> — programatyczne strony per miasto (szablon ~2 500 słów + FAQ + 10 opinii). Google wpuszcza szablon z drugiego końca Polski, bo nie ma lokalnych treści. Wasza unikalna strona Brzeska ma realną szansę na TOP5 po rozbudowie i kilku cytowaniach.</li>
+        <li>Jedyny „mocny” gracz to znowu Gembarzewscy (KB Brzesko).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Serwis</th><th>Miasto</th><th>Podstrony usług</th><th>Strony per miasto</th><th>Blog / poradnik</th><th>Realizacje z opisem</th><th>Cennik</th><th>FAQ</th><th>Opinie</th><th>Treść</th></tr></thead>
+      <tbody>
+        <tr><td>projektybochniabrzesko.pl</td><td>Rzezawa</td><td class="c">10</td><td class="c no">nie</td><td class="c">2 wpisy</td><td class="c ok">8, z miejscowością</td><td class="c no">nie</td><td class="c ok">5</td><td class="c">Oferteo 5,0/39</td><td>1 200–2 500 sł./usługa</td></tr>
+        <tr><td>archtech.eu</td><td>Bochnia</td><td class="c">4</td><td class="c no">nie</td><td class="c no">nie</td><td class="c mid">15, krótkie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">~0</td><td>cienka</td></tr>
+        <tr><td>3punkty.pl</td><td>Bochnia</td><td class="c">3</td><td class="c no">nie</td><td class="c">3 (ogród)</td><td class="c mid">portfolio</td><td class="c no">nie</td><td class="c ok">tak</td><td class="c">referencje</td><td>dobra (WZ, plan ogólny)</td></tr>
+        <tr><td>j2sbiuroprojektowe.pl</td><td>Bochnia</td><td class="c">5</td><td class="c no">nie</td><td class="c ok">3 długie</td><td class="c mid">galeria IG</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">brak</td><td>dobre poradniki</td></tr>
+        <tr><td>archital.eu</td><td>Bochnia</td><td class="c">one-page</td><td class="c mid">sekcje</td><td class="c no">nie</td><td class="c mid">kategorie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">0</td><td>ogólnikowa</td></tr>
+        <tr><td>bp-projekt.com</td><td>Brzesko</td><td class="c">4</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">0</td><td>~175 słów</td></tr>
+        <tr><td>arteonbrzesko.pl</td><td>Brzesko</td><td class="c">8</td><td class="c no">nie</td><td class="c no">nie</td><td class="c mid">bez opisów</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">Daibau 9,2</td><td>ogólnikowa</td></tr>
+        <tr><td>proarchidom.pl</td><td>Wojnicz</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c ok">tak</td><td class="c no">nie</td><td class="c">0</td><td>ogólnikowa</td></tr>
+        <tr><td>esproject.eu</td><td>Pruszcz Gd.</td><td class="c">14</td><td class="c ok">setki (szablon)</td><td class="c ok">tak</td><td class="c mid">wizualizacje</td><td class="c no">nie</td><td class="c ok">tak</td><td class="c">10–12</td><td>szablon 2 500 sł.</td></tr>
+        <tr><td><strong>projekty-arkon.pl</strong></td><td>Żegocina</td><td class="c mid">3 z 9</td><td class="c ok">4 unikalne (~330 sł.)</td><td class="c mid">38 newsów, 0 poradników</td><td class="c no">24 bez opisu</td><td class="c no">nie</td><td class="c ok">19 + per strona</td><td class="c ok">Google 5,0/74</td><td>usługi 500–650 sł.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="rynek-limanowa">Limanowa i Wieliczka</h3>
+  <div class="prose">
+    <p>Dwa skrajnie różne rynki. <strong>Limanowa: konkurencja technicznie słaba</strong> — w TOP10 siedzą strony na Wix i Google Sites, „strona w trakcie tworzenia” (ARproKON) i martwa domena projekteam.pl (parking hostingu), która wciąż rankuje na 4 frazy. Jedyny poważny gracz to B&amp;A Group z Mszany Dolnej. <strong>Wieliczka: rynek podkrakowski</strong> — na „biuro projektowe Wieliczka” 100% wyników to strony firmowe, w tym pracownie z Krakowa i aglomeracji z landingami per gmina (DMC, BAUTAM, 2M2, 3DK) plus 5 punktów sieci ARCHON+. Ale „kierownik budowy Wieliczka” i „adaptacja projektu Wieliczka” nie mają ani jednej lokalnej strony firmowej — tylko portale. <strong>projekty-arkon.pl nie pojawił się w żadnym z 20 SERP-ów</strong>; strony Limanowej i Wieliczki mają lastmod 19.08 — są świeże i prawdopodobnie jeszcze nie rankują.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h4>Limanowa — trudność niska</h4><div class="sub">bagroup.pl · proarcon.pl · conkret-kaim.pl · padprojekt.pl · jtprojekty.pl · konstrukt76.pl</div>
+      <ul>
+        <li><strong>B&amp;A Group (Mszana Dolna)</strong> — główny konkurent strukturalny: 10+ podstron usług, landingi dla 9 miast + kombinacje usługa×miasto (<em>adaptacja-projektow-gotowych-limanowa</em>), strona o Starostwie w Limanowej, ~10 poradników prawnych, realizacje z m² i kubaturą. Słabości: tekst spinowany (na landingu Wieliczki pisze o „mieszkaniach w stylu stodoła”), brak FAQ, zero o osuwiskach/SOPO, 404 w linkach wewnętrznych.</li>
+        <li><strong>Proarcon</strong> — następca projekteam.pl: 230 słów na głównej, pusta zakładka realizacji, 1 wpis na blogu, FAQ z 6 pytań. <strong>Conkret</strong> — biuro konstrukcyjne, lorem ipsum w stopce. <strong>PAD Projekt</strong> — Google Sites, ~100 słów, rankuje na „architekt Limanowa” wyłącznie dzięki title — dowód, że próg wejścia jest niski.</li>
+        <li>Na „kierownik budowy Limanowa”: 8 portali + masowy landing WS Budownictwo (150 miast). Na „projekt domu na działce ze spadkiem Limanowa” i „dom w górach Limanowa”: <strong>zero wyników lokalnych</strong> — same katalogi ogólnopolskie.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Wieliczka — trudność średnia/wyższa na frazach głównych</h4><div class="sub">2m2studio.pl · ambprojekty.pl · adaptacjeprojektowkrakow.pl · 3dkprojekt.com · arche-styl.pl · architekt-wieliczka.pl</div>
+      <ul>
+        <li><strong>2M2 Studio (Zabierzów Bocheński)</strong> — najlepszy landing: ~1 300 słów, menu „Lokalizacje” (Wieliczka, Niepołomice, Kłaj, Igołomia), podstrony usługa×miasto (projekty-domow-wieliczka, budynków usługowych, gospodarczych…), <strong>15 opinii Google w widżecie</strong>, obsługiwane przez agencję SEO. Brak bloga, FAQ, kierownika budowy.</li>
+        <li><strong>AMB Projekty (fizycznie w Wieliczce, partner ARCHON+)</strong> — rzeczowa strona ~1 370 słów, „Porady” = FAQ 1 175 słów, lista gmin, cytaty opinii; brak H1/meta, bloga, landingów.</li>
+        <li><strong>DMC Projekty (Kraków)</strong> — landing Wieliczka ma 290 słów, a mimo to jest #1 na „biuro projektowe Wieliczka”; poradnik 1 900 słów (MPZP ×14). <strong>3DK Projekt (Kraków, premium)</strong> — specjalizacja „domy na skarpie”, 2 realizacje w Wieliczce, podstrony usługa×miasto — realny rywal o klienta z wyższym budżetem.</li>
+        <li>„kierownik budowy Wieliczka” — 100% portale/ogłoszenia; „adaptacja projektu Wieliczka” — tylko B&amp;A (Mszana) i BAUTAM (Kraków); „projekt budynku usługowego Wieliczka” — bez dobrej odpowiedzi.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Serwis</th><th>Siedziba</th><th>Podstrony usług</th><th>Landingi lokalne</th><th>Blog / poradnik</th><th>Realizacje z opisem</th><th>FAQ</th><th>Cennik</th><th>Góry / spadki</th><th>Opinie</th><th>Treść</th></tr></thead>
+      <tbody>
+        <tr><td>bagroup.pl</td><td>Mszana Dolna</td><td class="c">10+</td><td class="c ok">9 miast + usługa×miasto</td><td class="c ok">~10 art.</td><td class="c ok">m², kubatura</td><td class="c no">nie</td><td class="c no">nie</td><td class="c mid">ogólnie</td><td class="c">b.d.</td><td>900–1 500 sł., spinowane</td></tr>
+        <tr><td>proarcon.pl</td><td>Limanowa/Mszana</td><td class="c">5</td><td class="c no">nie</td><td class="c">1 wpis</td><td class="c no">pusta</td><td class="c ok">6</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">b.d.</td><td>~230 słów</td></tr>
+        <tr><td>padprojekt.pl</td><td>Limanowa/Jurków</td><td class="c">4 (Google Sites)</td><td class="c no">nie</td><td class="c no">nie</td><td class="c mid">galeria</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c">Oferteo 1</td><td>~100 słów</td></tr>
+        <tr><td>2m2studio.pl</td><td>Zabierzów Boch.</td><td class="c">6 × Wieliczka</td><td class="c ok">4 gminy</td><td class="c no">nie</td><td class="c ok">tak</td><td class="c no">nie</td><td class="c no">nie</td><td class="c no">nie</td><td class="c ok">15 Google</td><td>~1 300 sł., ogólna</td></tr>
+        <tr><td>ambprojekty.pl</td><td>Wieliczka</td><td class="c">1</td><td class="c no">nie</td><td class="c mid">FAQ 1 175 sł.</td><td class="c mid">portfolio 9</td><td class="c ok">tak</td><td class="c no">nie</td><td class="c mid">„spadki” ×6</td><td class="c">cytaty</td><td>rzeczowa</td></tr>
+        <tr><td>adaptacjeprojektowkrakow.pl</td><td>Kraków</td><td class="c">1</td><td class="c ok">Wieliczka, Niepołomice</td><td class="c ok">poradnik 1 900 sł.</td><td class="c mid">galeria</td><td class="c no">nie</td><td class="c no">nie</td><td class="c mid">1 wzmianka</td><td class="c">b.d.</td><td>landing 290 sł.</td></tr>
+        <tr><td>3dkprojekt.com</td><td>Kraków</td><td class="c">10+ usługa×miasto</td><td class="c mid">Kraków (+Wieliczka w treści)</td><td class="c ok">tak</td><td class="c ok">nazwane</td><td class="c ok">tak</td><td class="c no">nie</td><td class="c ok">specjalizacja</td><td class="c">b.d.</td><td>~1 000 sł., dobra</td></tr>
+        <tr><td><strong>projekty-arkon.pl</strong></td><td>Żegocina</td><td class="c mid">3 z 9</td><td class="c ok">4 unikalne (~330 sł.)</td><td class="c mid">38 newsów</td><td class="c no">24 bez opisu</td><td class="c ok">per strona</td><td class="c no">nie</td><td class="c ok">SOPO, spadki, śnieg</td><td class="c ok">74 Google</td><td>konkretna, za krótka</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout good">
+    <p><strong>Dwie frazy do wzięcia od ręki:</strong> „projekt domu na działce ze spadkiem / tereny osuwiskowe — Limanowa” (zero lokalnych wyników, a Wasza strona Limanowej już o tym mówi — trzeba z tego zrobić osobny poradnik + podstronę) i „kierownik budowy Limanowa / Wieliczka” (same portale). W Wieliczce analogiczna nisza: „tereny pogórnicze / szkody górnicze a budowa domu” — macie to w FAQ, warto rozwinąć.</p>
+  </div>
+
+  <h3>Pięć luk, które ArKon może zająć jako pierwszy</h3>
+  <div class="prose">
+    <ol>
+      <li><strong>Usługa × miasto.</strong> Nikt nie ma osobnej strony „adaptacja projektu Bochnia/Brzesko” ani „kierownik budowy Brzesko/Limanowa”. Macie już obie warstwy (usługi + miasta) — brakuje połączenia: sekcje usługowe na stronach miast z linkami krzyżowymi, a dla 2–3 najmocniejszych kombinacji osobne strony.</li>
+      <li><strong>Opinie.</strong> 74 × 5,0 w Google vs 0–65 u lokalnych (ARCH ESTATE 65, Gembarzewscy 60, Archital 34 — tylko w Bochni; w Brzesku i Limanowej prawie nikt nie ma opinii). Nikt nie eksponuje opinii na stronach usług i miast. Do tego brak Was na Oferteo/Daibau/Fixly, które są w TOP3 dla ~70% fraz — profil tam to najtańsza widoczność na frazy, których strona sama szybko nie zdobędzie.</li>
+      <li><strong>Realizacje z nazwą miejscowości.</strong> Jedyna realna przewaga Gembarzewskich i ArchTechu. Wy macie 24 realizacje + ok. 20 wpisów, które są de facto case studies (osiedla w Bochni, baza piłkarska Limanowa, szkoła Bytomsko, dom z widokiem na Kraków, Brzezie) — ale bez własnych URL i opisów. Powiaty bocheński, brzeski, limanowski i wielicki to ponad 200 miejscowości, każda to long-tail bez konkurencji.</li>
+      <li><strong>Poradniki o formalnościach lokalnych.</strong> Tylko 3punkty (WZ) i J2S (pozwolenie) mają cokolwiek, i to nie per miasto. „Pozwolenie na budowę w Starostwie Bochnia krok po kroku”, „MPZP vs WZ w gminach powiatu”, „ile kosztuje adaptacja w okolicach Bochni” — wolne.</li>
+      <li><strong>Szerokość oferty + cennik.</strong> Geodezja, projekty branżowe, analizy działek, wnętrza, ekspertyzy, wizualizacje 3D — nikt lokalnie nie ma tego wszystkiego, a u Was 6 z 9 usług nie ma URL-a. Cennik „od…” ma jeden konkurent (ProArchiDOM) — widełki cenowe podnoszą CTR w wynikach i filtrują leady.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="tresc">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Diagnoza treści</h2></div>
+  <div class="prose">
+    <p>Poniżej liczby z prerenderowanego HTML (treść główna bez nawigacji i stopki). Słowa kluczowe liczone w całym tekście strony.</p>
+  </div>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Strona</th><th>H1 (dziś)</th><th>Słów w treści</th><th>„projekt(y) dom…”</th><th>„usługow…”</th><th>Miasta docelowe</th><th>Ocena</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>Biuro Projektowe ArKon</td><td class="num">594</td><td class="num">1</td><td class="num">0</td><td>po 1× (stopka)</td><td><span class="chip crit">przepisać hero + intro</span></td></tr>
+        <tr><td><code>/o-nas</code></td><td>Za kulisami Firmy</td><td class="num">353</td><td class="num">0</td><td class="num">0</td><td>po 1×</td><td><span class="chip warn">H1 + E-E-A-T</span></td></tr>
+        <tr><td><code>/uslugi</code></td><td>Co możemy Wam zaoferować?</td><td class="num">1 229</td><td class="num">3</td><td class="num">1</td><td>po 1×</td><td><span class="chip warn">H1, nagłówki, linki</span></td></tr>
+        <tr><td><code>/uslugi/kierownik-budowy</code></td><td>Kierownik budowy – Bochnia, Limanowa, Wieliczka i okolice</td><td class="num">517</td><td class="num">—</td><td class="num">0</td><td>Limanowa 8×, Bochnia 5×, Wieliczka 5×, Brzesko 3×</td><td><span class="chip good">dobra baza</span> rozbudować do 900+</td></tr>
+        <tr><td><code>/uslugi/adaptacja-projektu</code></td><td>Adaptacja projektu gotowego – od katalogu do pozwolenia</td><td class="num">~500</td><td class="num">—</td><td class="num">0</td><td>po 2×</td><td><span class="chip good">dobra baza</span> + ceny, zdjęcia</td></tr>
+        <tr><td><code>/uslugi/projekty-indywidualne</code></td><td>Projekty indywidualne – dom zaprojektowany pod Waszą działkę…</td><td class="num">~560</td><td class="num">8</td><td class="num">0</td><td>po 1–2×</td><td><span class="chip good">dobra baza</span> + realizacje</td></tr>
+        <tr><td><code>/biuro-projektowe-*</code> (4)</td><td>Biuro projektowe dla &lt;miasto&gt; i powiatu…</td><td class="num">~330</td><td class="num">1–2</td><td class="num">0</td><td>miasto 11–23×</td><td><span class="chip warn">cienkie</span> cel 900–1 200</td></tr>
+        <tr><td><code>/galeria</code></td><td>Nasze realizacje</td><td class="num">&lt; 250</td><td class="num">0</td><td class="num">5</td><td>Bochnia 4×</td><td><span class="chip crit">opisy, alty, podstrony</span></td></tr>
+        <tr><td><code>/blog</code> (38 wpisów)</td><td>Aktualności i nowości</td><td class="num">śr. 95 / wpis</td><td class="num">—</td><td class="num">—</td><td>—</td><td><span class="chip crit">brak poradników</span></td></tr>
+        <tr><td><code>/faq</code></td><td>Najczęstsze pytania</td><td class="num">~370 (akordeon)</td><td class="num">2</td><td class="num">0</td><td>po 1×</td><td><span class="chip good">ok</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Co konkretnie nie działa w treści</h3>
+  <div class="cards">
+    <div class="card"><h4>Strona główna: hero bez tezy</h4>
+      <ul>
+        <li>Mobile: H1 = brand, tagline „Zrealizujemy Twoje projekty”, CTA „Poznaj nasze usługi” (scroll). Brak telefonu/„sprawdź działkę” nad zgięciem; tekst na jasnym fragmencie zdjęcia.</li>
+        <li>Użytkownik i Google nie dowiadują się z hero: <em>co</em> (domy, budynki usługowe), <em>gdzie</em> (4 miasta), <em>dlaczego Wy</em> (71 opinii, KB z uprawnieniami, geodeta w zespole).</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Blog: kronika, nie poradnik</h4>
+      <ul>
+        <li>38 wpisów, 2019–2026, śr. 95 słów, max 254; bez H2, linków wewnętrznych, zdjęć w treści. Jedyny „poradnikowy”: „Plan ogólny” (340 słów).</li>
+        <li>CMS trzyma <code>tresc</code> jako czysty tekst dzielony po pustej linii → nie da się napisać poradnika z nagłówkami i linkami. To blokada strukturalna.</li>
+        <li>Tagi: 5/38 wpisów ma tag. H1 „Aktualności i nowości” zamiast „Poradnik”.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Realizacje: 24 obiekty, zero historii</h4>
+      <ul>
+        <li>19 z 24 bez opisu; tytuł = miejscowość; alt = miejscowość. Kategorie: 22 domy, 6 osiedli, 4 publiczne, 4 usługowe, 12 wnętrz (zdjęcia).</li>
+        <li>Brak informacji, które czyta inwestor: metraż, technologia, co robiliście (projekt / adaptacja / KB), ile trwało, co było trudne (spadek, MPZP, A4).</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Strony usług: dobre, ale „bez twarzy”</h4>
+      <ul>
+        <li>Brak: zdjęć realizacji z podpisem, cytatu opinii z danej usługi, widełek cen (poza FAQ), osoby odpowiedzialnej (kierownik budowy z numerem uprawnień — E-E-A-T), linków do konkretnych realizacji i wpisów.</li>
+        <li>6 z 9 usług (geodezja, branżowe, analizy działek, wnętrza, ekspertyzy, obsługa inwestycji) żyje tylko jako akordeon na <code>/uslugi</code>.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Strony lokalne: dobry pomysł, za mało mięsa</h4>
+      <ul>
+        <li>~330 słów treści głównej; konkurencyjne landingi 1 200–2 500. Brakuje: sekcji usługa po usłudze z lokalnym kontekstem, budynków usługowych, opinii inwestora z okolicy, 2–3 case studies z linkami, listy gmin/miejscowości z realizacjami, dojazdu w minutach (jest w CTA), linków do pozostałych miast.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>E-E-A-T: zespół jest, uprawnień nie widać</h4>
+      <ul>
+        <li>13 osób ze zdjęciami, ale bez: numerów uprawnień, izby (MOIIB/MPOIA), lat doświadczenia, specjalizacji, bio. Schema <code>founder</code> bez <code>hasCredential</code>, brak <code>Person</code> per autor, wpisy mają autora bez strony autora.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="strategia">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Strategia i architektura docelowa</h2></div>
+  <div class="prose">
+    <p>Trzy filary: <strong>(1) serwis, który odpowiada na każdą intencję lokalną</strong> (usługa × miasto × realizacja), <strong>(2) treść ekspercka o formalnościach</strong> (to, czego Google i AI Overviews szukają), <strong>(3) dowody</strong> (opinie, uprawnienia, realizacje publiczne). Architektura poniżej — na zielono nowe elementy.</p>
+  </div>
+<div class="tree">/                                  <span class="cm">← „projekty domów i budynków usługowych” + 4 miasta + dowody</span>
+/uslugi                            <span class="cm">← hub: każda usługa = H2 + link do podstrony</span>
+  /uslugi/projekty-indywidualne
+  /uslugi/adaptacja-projektu
+  /uslugi/kierownik-budowy
+  <span class="new">/uslugi/projekty-budynkow-uslugowych</span>   <span class="cm">← NOWA, priorytet 1 (cel biznesowy)</span>
+  <span class="new">/uslugi/geodezja</span>                       <span class="cm">← mapa do celów projektowych, tyczenie, podziały</span>
+  <span class="new">/uslugi/analiza-dzialki</span>                <span class="cm">← „sprawdź działkę przed zakupem” (lead magnet)</span>
+  <span class="new">/uslugi/projekty-branzowe</span>              <span class="cm">← przyłącza, zjazdy, oczyszczalnie, kolizje sieci</span>
+  <span class="new">/uslugi/projekty-wnetrz-wizualizacje</span>
+  <span class="new">/uslugi/nadzor-i-obsluga-inwestycji</span>    <span class="cm">← nadzór inwestorski, ekspertyzy, odbiory</span>
+/biuro-projektowe-bochnia          <span class="cm">← rozbudowa do 900–1 200 słów + sekcje usług + usługowe</span>
+/biuro-projektowe-limanowa
+/biuro-projektowe-brzesko
+/biuro-projektowe-wieliczka
+  <span class="new">/kierownik-budowy-brzesko</span>              <span class="cm">← opcjonalnie 2–3 strony usługa×miasto o najwyższym potencjale</span>
+  <span class="new">/adaptacja-projektu-bochnia</span>
+<span class="new">/realizacje</span>                        <span class="cm">← dawna /galeria (301), filtr: typ × powiat</span>
+  <span class="new">/realizacje/dom-jednorodzinny-sobolow</span>  <span class="cm">← 24 case studies z CMS (tytuł = typ + miejscowość)</span>
+  <span class="new">/realizacje/osiedle-domow-szeregowych-bochnia</span>
+  <span class="new">/realizacje/baza-pilkarska-limanowa</span>
+/blog                              <span class="cm">← „Poradnik inwestora” + kategoria „Z życia biura”</span>
+  /blog/plan-ogolny-…              <span class="cm">← rozbudować istniejące do 1 200+ słów</span>
+  <span class="new">/blog/ile-kosztuje-adaptacja-projektu-2026</span>
+  <span class="new">/blog/kierownik-budowy-obowiazki-cena</span>
+  <span class="new">/blog/pozwolenie-na-budowe-starostwo-bochnia-krok-po-kroku</span>
+<span class="new">/cennik</span>                            <span class="cm">← widełki „od…” dla 6 usług + co wpływa na cenę (jedyny konkurent z cennikiem: ProArchiDOM)</span>
+<span class="new">/o-nas/lukasz-matlega</span>              <span class="cm">← strony autorów/ekspertów z uprawnieniami (E-E-A-T)</span>
+/faq · /kontakt · /o-nas</div>
+
+  <h3>Mapa słów kluczowych → strona</h3>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Strona</th><th>Fraza główna</th><th>Frazy wspierające / long-tail</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>biuro projektowe Bochnia · projekty domów Małopolska</td><td>projekty domów jednorodzinnych, projekty budynków usługowych, architekt Bochnia/Limanowa/Brzesko/Wieliczka, ArKon</td></tr>
+        <tr><td><code>/uslugi/projekty-indywidualne</code></td><td>projekt domu indywidualny</td><td>projekt domu jednorodzinnego, architekt dom jednorodzinny, projekt domu na działce ze spadkiem, projekt domu z widokiem</td></tr>
+        <tr><td><code>/uslugi/adaptacja-projektu</code></td><td>adaptacja projektu gotowego</td><td>adaptacja projektu cena, adaptacja projektu Archon/Murator/Z500, adaptacja projektu Bochnia/Wieliczka</td></tr>
+        <tr><td><code>/uslugi/kierownik-budowy</code></td><td>kierownik budowy Bochnia</td><td>kierownik budowy Limanowa/Brzesko/Wieliczka, kierownik budowy cena, obowiązki kierownika budowy, odbiór budynku</td></tr>
+        <tr><td><code>/uslugi/projekty-budynkow-uslugowych</code> <span class="chip good">nowa</span></td><td>projekt budynku usługowego</td><td>projekt budynku handlowo-usługowego, projekt domu z częścią usługową, projekt warsztatu/hali/pensjonatu/przedszkola, zmiana sposobu użytkowania, projekt budynku usługowego Bochnia/Wieliczka</td></tr>
+        <tr><td><code>/uslugi/geodezja</code> <span class="chip good">nowa</span></td><td>geodeta Bochnia · mapa do celów projektowych</td><td>geodeta Żegocina/Limanowa/Łapanów, tyczenie budynku cena, podział działki</td></tr>
+        <tr><td><code>/uslugi/analiza-dzialki</code> <span class="chip good">nowa</span></td><td>analiza działki przed zakupem</td><td>jak sprawdzić działkę budowlaną, MPZP działka, czy na działce można budować</td></tr>
+        <tr><td><code>/uslugi/projekty-branzowe</code> <span class="chip good">nowa</span></td><td>projekt przyłącza wodociągowego</td><td>projekt zjazdu z drogi, projekt przydomowej oczyszczalni, projekt przyłącza gazu, przebudowa kolizji sieci</td></tr>
+        <tr><td><code>/biuro-projektowe-&lt;miasto&gt;</code></td><td>biuro projektowe &lt;miasto&gt;</td><td>architekt &lt;miasto&gt;, projektant &lt;miasto&gt;, projekt domu &lt;miasto&gt;, projekt budynku usługowego &lt;miasto&gt;, adaptacja projektu &lt;miasto&gt;</td></tr>
+        <tr><td><code>/realizacje/&lt;slug&gt;</code> <span class="chip good">nowe</span></td><td>dom jednorodzinny &lt;miejscowość&gt; projekt</td><td>osiedle domów Bochnia, adaptacja projektu &lt;gmina&gt;, dom na działce ze spadkiem Limanowa</td></tr>
+        <tr><td><code>/blog/&lt;poradnik&gt;</code></td><td>informacyjne</td><td>plan ogólny gminy, warunki zabudowy 2026, ile kosztuje adaptacja, dom do 70 m², pozwolenie na budowę krok po kroku, badania geotechniczne</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Strona główna — nowe otwarcie</h3>
+  <div class="prose">
+    <ul>
+      <li><strong>H1:</strong> „Projekty domów jednorodzinnych i budynków usługowych — Bochnia, Limanowa, Brzesko, Wieliczka” (brand w podtytule: „Biuro Projektowe ArKon, Żegocina”).</li>
+      <li><strong>Lead (2 zdania):</strong> co robicie (projekt indywidualny, adaptacja, kierownik budowy, geodezja — „wszystko w jednym biurze”), gdzie (4 powiaty, 25–45 min dojazdu), dowód (74 opinie 5,0 w Google).</li>
+      <li><strong>Dwa CTA:</strong> „Zadzwoń: 888 899 366” + „Wyślij numer działki — sprawdzimy, co można wybudować” (formularz z polem „numer działki / gmina”).</li>
+      <li><strong>Pasek zaufania</strong> pod hero: 5,0 ★ 74 opinie Google · od 2018 · 70+ projektów rocznie · Orły Architektury 2026 · uprawnienia konstrukcyjno-budowlane.</li>
+      <li><strong>Sekcja „Gdzie działamy”</strong> z 4 kafelkami miast (link do stron lokalnych, 1 zdanie lokalne + zdjęcie realizacji) i <strong>„Co projektujemy”</strong> z 2 filarami: domy jednorodzinne / budynki usługowe i inwestycyjne (osiedla, obiekty publiczne).</li>
+      <li><strong>3 najnowsze realizacje</strong> z tytułem „typ + miejscowość” i <strong>3 poradniki</strong> z bloga; opinie z miejscowością inwestora („Sobolów, projekt indywidualny + KB”).</li>
+    </ul>
+  </div>
+
+  <h3>Plan treści: blog jako poradnik inwestora</h3>
+  <div class="prose">
+    <p>Warunek wstępny: CMS z treścią w Markdown (H2/H3, listy, linki, obrazy z altem, ramka „Powiązana usługa”). Bez tego poradniki nie powstaną. Format wpisu: 1 000–1 500 słów, H2 w formie pytań, 3–5 FAQ (schema), 2–3 linki do usług/miast/realizacji, autor z uprawnieniami, data aktualizacji. Tempo: 2 poradniki + 2 case studies miesięcznie.</p>
+  </div>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>#</th><th>Temat (robocze H1)</th><th>Intencja / fraza</th><th>Linkuje do</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Plan ogólny gminy — co zmienia dla właścicieli działek w gminach Bochnia, Limanowa, Brzesko, Wieliczka (rozbudowa istniejącego wpisu)</td><td>plan ogólny gminy, koniec WZ</td><td>analiza działki, strony miast</td></tr>
+        <tr><td class="num">2</td><td>Warunki zabudowy w 2026 — gdzie, jak i ile trwa (Starostwo vs gmina)</td><td>warunki zabudowy wniosek</td><td>analiza działki, FAQ</td></tr>
+        <tr><td class="num">3</td><td>Ile kosztuje adaptacja projektu gotowego — widełki i co wchodzi w cenę</td><td>adaptacja projektu cena</td><td>adaptacja, cennik</td></tr>
+        <tr><td class="num">4</td><td>Kierownik budowy — obowiązki, koszt, jak wybrać (powiaty bocheński, limanowski, wielicki)</td><td>kierownik budowy cena/obowiązki</td><td>kierownik budowy, miasta</td></tr>
+        <tr><td class="num">5</td><td>Dom do 70 m² na zgłoszenie — czy warto w 2026 (z Waszego FAQ)</td><td>dom do 70 m2 bez pozwolenia</td><td>projekty indywidualne, adaptacja</td></tr>
+        <tr><td class="num">6</td><td>Projekt indywidualny czy gotowy — koszty i czas na przykładzie 2 realizacji ArKon</td><td>projekt indywidualny czy gotowy</td><td>obie usługi, realizacje</td></tr>
+        <tr><td class="num">7</td><td>Działka ze spadkiem i tereny osuwiskowe (SOPO) — jak sprawdzić, jak projektować</td><td>dom na działce ze spadkiem, osuwiska</td><td>Limanowa, projekty indywidualne</td></tr>
+        <tr><td class="num">8</td><td>Budynek usługowy lub dom z częścią usługową — formalności, MPZP, parkingi, dostępność</td><td>projekt budynku usługowego formalności</td><td>budynki usługowe (nowa)</td></tr>
+        <tr><td class="num">9</td><td>Zmiana sposobu użytkowania budynku — kiedy potrzebna i jak przebiega</td><td>zmiana sposobu użytkowania</td><td>budynki usługowe, ekspertyzy</td></tr>
+        <tr><td class="num">10</td><td>Analiza działki przed zakupem — checklista 12 punktów (PDF do pobrania = lead magnet)</td><td>jak sprawdzić działkę przed zakupem</td><td>analiza działki</td></tr>
+        <tr><td class="num">11</td><td>Pozwolenie na budowę krok po kroku w Starostwie w Bochni / Brzesku / Limanowej / Wieliczce (4 wersje lub 1 z sekcjami)</td><td>pozwolenie na budowę &lt;miasto&gt;</td><td>strony miast</td></tr>
+        <tr><td class="num">12</td><td>Mapa do celów projektowych i badania gruntu — kolejność, koszty, ile trwa</td><td>mapa do celów projektowych cena</td><td>geodezja</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <p><strong>Istniejące 38 wpisów:</strong> przenieść do kategorii „Z życia biura” (noindex nie jest konieczny, ale nie eksponować w sitemapie priorytetem), a 8–10 z nich (osiedla w Bochni, baza piłkarska, szkoła Bytomsko, dom z widokiem na Kraków, Brzezie, „ponad 70 projektów w roku”) przerobić na case studies w <code>/realizacje</code>.</p>
+  </div>
+
+  <h3>Realizacje jako strony (case studies)</h3>
+  <div class="prose">
+    <p>Szablon <code>/realizacje/&lt;slug&gt;</code>: H1 „Dom jednorodzinny w Sobolowie — projekt indywidualny i kierownik budowy”; parametry (gmina, powiat, powierzchnia, technologia, rok, zakres); 150–400 słów: wyzwanie → rozwiązanie → formalności; 4–8 zdjęć z altami; opinia inwestora (jeśli jest); linki: usługa + strona miasta; schema <code>CreativeWork</code>/<code>ImageObject</code> + BreadcrumbList. W CMS dochodzą pola: slug, typ, miejscowość, gmina, powiat, zakres[], powierzchnia, rok, opis (Markdown). Lista <code>/realizacje</code> filtrowana po typie i powiecie, z linkami do stron miast.</p>
+  </div>
+
+  <h3>E-E-A-T i konwersja</h3>
+  <div class="prose">
+    <ul>
+      <li>Strony ekspertów (min. Łukasz Matlęga + kierownik budowy + geodeta): uprawnienia z numerem, izba, lata praktyki, specjalizacje, 3 realizacje, linki do wpisów. Schema <code>Person</code> z <code>hasCredential</code>, <code>memberOf</code>, <code>worksFor</code>; <code>author</code> wpisów wskazuje na te strony.</li>
+      <li>Opinie: 3–4 cytaty z miejscowością inwestora na każdej stronie usługi i miasta (z linkiem do GBP); ocena zbiorcza w <code>aggregateRating</code> LocalBusiness tylko jeśli opinie są widoczne na stronie (wytyczne Google dot. self-serving reviews — gwiazdki w SERP raczej się nie pojawią, ale dane są poprawne).</li>
+      <li>Cennik „od…” dla adaptacji, KB, mapy d.c.p., analizy działki; kalkulator „orientacyjny koszt adaptacji” jako prosty formularz — wyróżnik w SERP i filtr leadów.</li>
+      <li>Formularz „Wyślij numer działki” na każdej stronie miasta i usługi; kliknięcia w telefon i wysyłki formularza jako zdarzenia GA4 (konwersje).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="offsite">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Local SEO poza stroną</h2></div>
+  <div class="prose">
+    <p>Sprawdzone 19.08.2026: wyniki brandowe, wizytówka Google, 20+ katalogów, wzmianki i linki, social, historia domeny. Tu leży najtańsza i najszybsza część wzrostu — większość punktów nie wymaga dewelopera.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h4>Wizytówka Google (GBP)</h4><div class="sub">Biuro projektowe ArKon · 5,0 / <strong>74 opinie</strong> (+8 od marca) · kategoria: Projektant architektoniczny</div>
+      <ul>
+        <li><span class="chip good">atut</span> Panel wiedzy na każde zapytanie brandowe; local pack: <strong>#1 „biuro projektowe Łapanów”</strong>, #2 Lipnica Murowana, #3 (drugi pack) Nowy Wiśnicz.</li>
+        <li><span class="chip crit">brak</span> W packu dla <strong>Bochni</strong> nie ma Was wcale (ARCH ESTATE 4,9/65, 3Punkty 5,0/11, MS Projektownia; w drugim packu Gembarzewscy 5,0/60, Archital 5,0/34). Dla Limanowej, Brzeska i Wieliczki odległość od Żegociny to bariera, którą częściowo pokonują: obszar obsługi, opinie wspominające te miasta i strony lokalne linkowane z GBP.</li>
+        <li><span class="chip warn">uzupełnić</span> Tylko <strong>3 zdjęcia</strong>, brak widocznych wpisów, sekcji „Usługi” i Q&amp;A; jedna kategoria. Na stronie stała „71 opinii” — zaktualizować (dziś 74) i pokazywać liczbę dynamicznie lub przeglądać co miesiąc.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>NAP: trzy adresy, trzy e-maile, dwie nazwy, dwie firmy</h4><div class="sub">wzorzec: Biuro Projektowe ArKon · Żegocina 149 · 888 899 366 · biuro@projekty-arkon.pl</div>
+      <ul>
+        <li>W katalogach krążą: <strong>Bytomsko</strong> (stare CEIDG), <strong>Żegocina 246/5</strong> (Panorama Firm, archon.pl, pkt.pl, BiznesFinder, krs-online) i 149; e-maile <em>projektymatlega@gmail.com</em> (archon.pl), <em>biuro.arkon.projekty@gmail.com</em> (pro-arte.pl) i biuro@; nazwa „Łukasz Matlęga Budownictwo” (pkt.pl, BiznesFinder).</li>
+        <li>Druga działalność <strong>„Biuro Projektowe ArKon Anna Matlęga”</strong> (od 03/2024, ten sam adres) tworzy duplikaty w Panorama Firm, GoWork, Aleo — rozmywa cytowania. Jedna marka = jeden zestaw NAP (ten sam telefon i WWW we wszystkich wpisach, albo scalenie duplikatów).</li>
+        <li>Panorama Firm: kategoria „Nadzór budowlany”, brak WWW i e-maila; Aleo: dwa martwe URL-e w indeksie; GoWork: profil „nieoficjalny”; Orły Architektury: profil laureata 2026 <strong>bez linku do strony</strong>.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Katalogi, w których Was nie ma</h4><div class="sub">a które zajmują TOP3 dla ~70% fraz lokalnych</div>
+      <ul>
+        <li><strong>Oferteo</strong> (w Żegocinie są 4 inne firmy), <strong>Fixly</strong>, <strong>Daibau</strong>, cylex, firmy.net, Targeo, Orły Branży Budowlanej, baza-firm, StarOfService, <strong>Bing Places</strong>, Apple Maps / Mapy.cz (do sprawdzenia).</li>
+        <li>Profil na Oferteo/Fixly to nie tylko cytowanie — to źródło zleceń (na „kierownik budowy Limanowa” Oferteo ma 159 firm i TOP3).</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Linki: zero dofollow, wzmianki są</h4><div class="sub">najłatwiejsze linki, jakie można zdobyć</div>
+      <ul>
+        <li><strong>zegocina.pl</strong> ×3 (łącznik w SP Bytomsko 2023 i 2024: „projekt: Biuro Projektowe ArKon”, inspektor nadzoru; darczyńcy) — bez linku → prośba do UG o podlinkowanie.</li>
+        <li><strong>instalstudio.pl</strong> (partner z Łąkty Dolnej) — logo ArKon bez <code>&lt;a&gt;</code>; stary link do martwego FB <em>matlegabudownictwo</em> → prośba o link.</li>
+        <li><strong>Beskid Żegocina</strong> (sponsoring, FB) → link ze strony klubu; <strong>APMT Limanowa</strong> (baza piłkarska — Wasz projekt) nie wymienia projektanta na /sponsorzy ani w artykule limanowa.in z 16.08.2026 → wzmianka + link + materiał do limanowa.in.</li>
+        <li><strong>@projekt_skarpa</strong> (Instagram klienta, 1 600 obs., „stodoła z piwnicą na skarpie”) poleca ArKon w rolkach — collab post, link w bio, case study na Waszej stronie.</li>
+        <li>Do zdobycia: partnerzy ARCHON+ / PRO-ARTE (aktualizacja danych + link), MOIIB/IARP, katalogi powiatowe, media lokalne (bochnianin, mojabochnia, bochniazbliska — rankuje na „kierownik budowy Bochnia”, brzesko.pl, wieliczka24), Orły Architektury (badge na stronie = link zwrotny).</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Marka i osoba</h4><div class="sub">„arkon” ≠ ArKon</div>
+      <ul>
+        <li>„arkon projekty” → Google pokazuje <strong>ARCHON+</strong> (panel, sitelinki, reklamy) — kolizja fonetyczna z Waszym partnerem; „arkon” → Arkon Grupa Deweloperska (Kraków); „projekty-arkon.pl” w cudzysłowie → #1 <strong>projektyarkon.pl</strong> (Lubartów). W Polsce jest 7+ biur „Arkon”.</li>
+        <li>Działanie: wszędzie pełna forma „Biuro Projektowe ArKon Żegocina”; tanie Google Ads brandowe na „arkon projekty / arkon żegocina / arkon bochnia”; sprawdzić dostępność <code>arkon-projekty.pl</code>; <code>sameAs</code> w schema rozszerzyć o GBP, LinkedIn, Instagram (dziś tylko FB).</li>
+        <li>„Łukasz Matlęga” → prywatny FB, sędzia piłkarski, lekarz weterynarii z Łapanowa; brak LinkedIn. Dla E-E-A-T: LinkedIn (osobisty + firma), strona autora na stronie, podpis „— Biuro Projektowe ArKon” w mediach.</li>
+      </ul>
+    </div>
+    <div class="card"><h4>Social i domena</h4><div class="sub">Facebook 1,2–1,3 tys. obs., 100% poleca (9)</div>
+      <ul>
+        <li>Ostatni post 7.08.2026 (97 reakcji) — treść jest, ale żyje tylko na FB. Brak <strong>Instagrama</strong> (przy wizualizacjach 3D i aktywnych klientach to strata), LinkedIn, YouTube. Stary handle <em>facebook.com/matlegabudownictwo</em> martwy, a wciąż linkowany.</li>
+        <li>Domena: Wayback od 2021, ale WHOIS „utworzona 13.07.2023” — prawdopodobnie wygasła i została ponownie zarejestrowana (luka w archiwum VI–XII 2023). Wiek rejestracyjny 3 lata; auto-odnowienie (do 07/2027) pilnować.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Kolejność działań off-site (bez dewelopera)</h3>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>#</th><th>Działanie</th><th>Efekt</th><th>Czas</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>GBP: 20–30 zdjęć z podpisami (biuro, zespół, realizacje z miejscowością), sekcja „Usługi” (9 usług z opisami), 2. i 3. kategoria (Architekt, Biuro projektowe, Inżynier budowlany / Geodeta), obszar działania (max 20: powiaty i miasta), cotygodniowy wpis (linki do poradników/realizacji), odpowiedzi na wszystkie opinie &lt; 48 h, Q&amp;A z 5 pytaniami z FAQ</td><td>local pack Bochnia/Limanowa, CTR, konwersja</td><td>1 dzień + 30 min/tydz.</td></tr>
+        <tr><td class="num">2</td><td>Opinie: prośba po każdym odbiorze/pozwoleniu (QR + krótki link), z sugestią wymienienia miejscowości i usługi; cel 4/mies.; ujednolicić tekst na stronie (74, dynamicznie)</td><td>pack + zaufanie + semantyka lokalna</td><td>ciągłe</td></tr>
+        <tr><td class="num">3</td><td>NAP: jeden plik wzorcowy → poprawić Panorama Firm (×2), archon.pl, pro-arte.pl, pkt.pl, BiznesFinder, GoWork, egospodarka, Aleo, Orły Architektury (dodać WWW), Infobel; usunąć/scalić duplikaty „Anna Matlęga”</td><td>spójność cytowań = czynnik rankingowy map</td><td>1 dzień</td></tr>
+        <tr><td class="num">4</td><td>Nowe profile: Oferteo, Fixly, Daibau, Bing Places, Apple Business Connect, cylex, firmy.net, Targeo, Orły Branży Budowlanej, MOIIB — identyczny NAP + link + opis z miastami</td><td>widoczność w TOP3 katalogów + leady</td><td>1 dzień</td></tr>
+        <tr><td class="num">5</td><td>Linki z istniejących wzmianek: zegocina.pl, instalstudio.pl, Beskid Żegocina, APMT Limanowa, @projekt_skarpa; ARCHON+/PRO-ARTE; badge Orły Architektury; LinkedIn firmy</td><td>pierwsze 8–10 linków z domen lokalnych</td><td>2–3 h maili + follow-up</td></tr>
+        <tr><td class="num">6</td><td>PR lokalny kwartalnie: materiał o realizacji publicznej (baza piłkarska, szkoła, osiedle) do limanowa.in, bochnianin.pl, mojabochnia.pl, brzesko.pl, wieliczka24 + posty GBP/FB/IG</td><td>linki + brand + ruch</td><td>2 h/kwartał</td></tr>
+        <tr><td class="num">7</td><td>Instagram firmowy (wizualizacje, budowy, zespół; collab z klientami), LinkedIn; brandowe Google Ads (arkon projekty / arkon żegocina / arkon bochnia, 100–200 zł/mies.)</td><td>ochrona brandu, zasięg</td><td>0,5 dnia + 1 h/tydz.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="plan">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Plan 90 dni i KPI</h2></div>
+  <div class="prose"><p>Dwie ścieżki równolegle: <strong>dev</strong> (Mateusz) i <strong>treść/lokalne</strong> (zespół ArKon, 2–3 h tygodniowo + 1 dzień na start). Każdy tydzień ma wynik, który da się sprawdzić.</p></div>
+  <ol class="plan">
+    <li><span class="when">Tydz. 1</span><div><b>Naprawy P1 (dev)</b><p>301 w <code>.htaccess</code> (gdow + 5 slugów + <code>/index.html</code>), usunięcie starego katalogu Gdów z serwera, ticket do SEOHOST ws. limitera, hydratacja + LCP (Stats, dane CMS, framer-motion), kompresja obrazów w panelu + migracja istniejących, nowe H1/title/meta z załącznika A, CMP + Consent Mode. Kontrola: GSC → sprawdzenie adresu URL dla 6 stron, Lighthouse mobile ≥ 85, konsola bez błędów React.</p></div></li>
+    <li><span class="when">Tydz. 1</span><div><b>Start lokalny (ArKon)</b><p>GBP: uzupełnić kategorie, usługi, obszar działania, opis, godziny i atrybuty, 20 zdjęć z podpisami, pierwszy post; zebrać NAP do jednego pliku; założyć Oferteo, Daibau, Fixly; poprawić Panorama Firm; link z profilu Orły Architektury i z Facebooka. Zacząć prosić o opinie po każdym odbiorze (QR na dokumentach) — cel 4/mies. <strong>Pilne (do 25.08):</strong> wpis „Wniosek o warunki zabudowy do 31 sierpnia — co zrobić, jeśli działka nie ma planu” + post GBP + Facebook + mailing do klientów z działkami bez MPZP.</p></div></li>
+    <li><span class="when">Tydz. 2–3</span><div><b>CMS i nawigacja (dev)</b><p>Markdown w treści wpisów i realizacji (H2, linki, obrazy z altem, ramka CTA), pola realizacji, szablon <code>/realizacje/&lt;slug&gt;</code> + lista z filtrami (301 z <code>/galeria</code>), rozwijane menu Usługi/Gdzie działamy, hierarchia nagłówków, schema FAQ bez duplikatów, strony autorów (Person), a11y.</p></div></li>
+    <li><span class="when">Tydz. 2–4</span><div><b>Treść filarowa (ArKon + copy)</b><p>Strona „Projekty budynków usługowych” (1 200+ słów), rozbudowa 4 stron miast do 900–1 200 słów (sekcje usług, usługowe, opinie z okolicy, 3 realizacje, gminy), 8 pierwszych case studies (po 2 na powiat), nowy hero i intro strony głównej, cennik „od…”.</p></div></li>
+    <li><span class="when">Tydz. 5–8</span><div><b>Nowe podstrony usług + poradniki</b><p>Geodezja, analiza działki (+ checklista PDF), projekty branżowe, wnętrza/wizualizacje, nadzór/obsługa; poradniki 1–4 z planu treści; rozbudowa <code>/uslugi/kierownik-budowy</code> i <code>/uslugi/adaptacja-projektu</code> do 900+ słów z cenami i zdjęciami; 8 kolejnych case studies. Linkowanie krzyżowe: każda realizacja → usługa + miasto; każde miasto → 3 realizacje + 2 poradniki.</p></div></li>
+    <li><span class="when">Tydz. 5–12</span><div><b>Linki i cytowania (ArKon)</b><p>Wpisy/wzmianki z realizacji publicznych (baza piłkarska Limanowa — fundacja/klub, gmina; szkoła Bytomsko — gmina Żegocina; osiedla — deweloper), media lokalne (bochnianin, mojabochnia, bochniazbliska, limanowa.in, brzesko.pl, wieliczka24), listy partnerów Archon/Z500/Murator, MOIIB, katalogi powiatowe; 1–2 posty GBP tygodniowo z linkiem do poradnika/realizacji.</p></div></li>
+    <li><span class="when">Tydz. 9–12</span><div><b>Poradniki 5–8, strony usługa×miasto, pomiar</b><p>„Kierownik budowy Brzesko”, „Adaptacja projektu Bochnia” jako osobne strony (jeśli dane z GSC pokażą zapytania); poradniki 5–8; przegląd GSC (zapytania, pozycje, CTR), poprawa title/meta tam, gdzie CTR &lt; 2%; raport miesięczny.</p></div></li>
+  </ol>
+
+  <h3>KPI i punkty kontrolne</h3>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Wskaźnik</th><th>Dziś</th><th>3 miesiące</th><th>6 miesięcy</th><th>12 miesięcy</th></tr></thead>
+      <tbody>
+        <tr><td>Frazy lokalne w TOP10 (z 36 śledzonych)</td><td class="num">0</td><td class="num">8–12 (Brzesko, Limanowa)</td><td class="num">18–22 (+Bochnia)</td><td class="num">28+ (+Wieliczka)</td></tr>
+        <tr><td>„biuro projektowe &lt;miasto&gt;” — pozycja</td><td class="num">poza TOP50</td><td class="num">Brzesko/Limanowa TOP10</td><td class="num">Brzesko/Limanowa TOP3, Bochnia TOP5, Wieliczka TOP10</td><td class="num">Bochnia TOP3, Wieliczka TOP5</td></tr>
+        <tr><td>Zaindeksowane URL (GSC)</td><td class="num">~20 (stare + nowe)</td><td class="num">70+ (z realizacjami)</td><td class="num">100+</td><td class="num">130+</td></tr>
+        <tr><td>Błędy 429/5xx w statystykach indeksowania</td><td class="num">występują</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr><td>LCP mobile (Lighthouse / CrUX)</td><td class="num">7,7 s</td><td class="num">&lt; 2,5 s</td><td class="num">&lt; 2,5 s</td><td class="num">&lt; 2,5 s</td></tr>
+        <tr><td>Opinie Google</td><td class="num">74</td><td class="num">86</td><td class="num">100</td><td class="num">120+</td></tr>
+        <tr><td>Poradniki ≥ 1 000 słów / case studies</td><td class="num">0 / 0</td><td class="num">4 / 16</td><td class="num">10 / 24</td><td class="num">20 / 35</td></tr>
+        <tr><td>Leady z organiku (tel + formularz, GA4)</td><td class="num">niemierzone</td><td class="num">mierzone, baza</td><td class="num">×2 vs baza</td><td class="num">×3–4 vs baza</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout info"><p><strong>Narzędzia:</strong> Google Search Console (już być powinna — sprawdzić własność domeny i raport „Statystyki indeksowania”), GA4 z konwersjami, darmowy rank-tracker dla ~40 fraz (np. SerpRobot/Sheets) lub Senuto/Semstorm w wersji podstawowej, Google Business Profile Insights. Przegląd raz w miesiącu, 30 minut.</p></div>
+</section>
+
+<section class="sec" id="zalaczniki">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Załączniki</h2></div>
+
+  <h3>A. Propozycje title, meta description i H1</h3>
+  <div class="tbl compact">
+    <table>
+      <thead><tr><th>Strona</th><th>Title (≤ 60 zn.)</th><th>Meta description (≤ 155 zn.)</th><th>H1</th></tr></thead>
+      <tbody>
+        <tr><td><code>/</code></td><td>Projekty domów i budynków usługowych | ArKon Bochnia</td><td>Biuro projektowe ArKon: projekty indywidualne, adaptacje, kierownik budowy, geodezja. 74 opinie 5,0. Bochnia, Limanowa, Brzesko, Wieliczka. Tel. 888 899 366.</td><td>Projekty domów jednorodzinnych i budynków usługowych — Bochnia, Limanowa, Brzesko, Wieliczka</td></tr>
+        <tr><td><code>/o-nas</code></td><td>O nas – zespół biura projektowego ArKon | Żegocina k. Bochni</td><td>13-osobowy zespół: architekci, konstruktor, kierownik budowy z uprawnieniami, geodeta. Od 2018 r. ponad 300 projektów w Małopolsce. Poznajcie nas.</td><td>Biuro projektowe ArKon — zespół, uprawnienia, doświadczenie</td></tr>
+        <tr><td><code>/uslugi</code></td><td>Usługi: projekty, adaptacje, kierownik budowy, geodezja | ArKon</td><td>Pełna obsługa inwestycji w jednym biurze: projekt indywidualny lub adaptacja, geodezja, projekty branżowe, kierownik budowy, nadzór. Bochnia, Limanowa, Brzesko, Wieliczka.</td><td>Usługi biura projektowego ArKon — od analizy działki po odbiór budynku</td></tr>
+        <tr><td><code>/uslugi/projekty-budynkow-uslugowych</code></td><td>Projekty budynków usługowych – Bochnia, Wieliczka | ArKon</td><td>Projektujemy budynki usługowe, handlowo-usługowe, domy z częścią usługową, warsztaty i pensjonaty. Formalności, MPZP, parkingi, dostępność. Małopolska. Tel. 888 899 366.</td><td>Projekty budynków usługowych i komercyjnych — Bochnia, Limanowa, Brzesko, Wieliczka</td></tr>
+        <tr><td><code>/realizacje</code></td><td>Realizacje – domy, osiedla, budynki usługowe | ArKon</td><td>Ponad 20 realizacji z opisem: domy jednorodzinne, osiedla, obiekty usługowe i publiczne w powiatach bocheńskim, limanowskim, brzeskim i wielickim.</td><td>Nasze realizacje — domy jednorodzinne, osiedla i budynki usługowe w Małopolsce</td></tr>
+        <tr><td><code>/blog</code></td><td>Poradnik inwestora: formalności, projekty, budowa | ArKon</td><td>Plan ogólny, warunki zabudowy, koszty adaptacji, kierownik budowy, działka ze spadkiem — praktyczne poradniki biura projektowego z Małopolski.</td><td>Poradnik inwestora i aktualności biura ArKon</td></tr>
+        <tr><td><code>/kontakt</code></td><td>Kontakt – Biuro Projektowe ArKon, Żegocina | 888 899 366</td><td>Żegocina 149, 25 min od Bochni. Tel. 888 899 366, biuro@projekty-arkon.pl. Wyślijcie numer działki — sprawdzimy, co można na niej wybudować.</td><td>Kontakt — porozmawiajmy o Waszej działce</td></tr>
+        <tr><td><code>/biuro-projektowe-bochnia</code> (przykład)</td><td>Biuro projektowe Bochnia – projekty domów i usługowych | ArKon</td><td>Architekt, kierownik budowy i geodeta dla Bochni i powiatu — 25 min od centrum. Projekty indywidualne, adaptacje, budynki usługowe. 74 opinie 5,0. Tel. 888 899 366.</td><td>Biuro projektowe dla Bochni i powiatu bocheńskiego (bez zmian)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>B. Checklista techniczna dla deweloperów (repo)</h3>
+  <div class="prose">
+    <ul>
+      <li><code>public/.htaccess</code>: 301 dla <code>^biuro-projektowe-gdow/?$</code> → <code>/biuro-projektowe-wieliczka</code>; 5 starych slugów bloga (z <code>vercel.json</code>); <code>^index\.html$</code> → <code>/</code>; <code>^(.+)/index\.html$</code> → <code>/$1</code>. Usunąć <code>vercel.json</code> albo wpisać w README, że nieużywany.</li>
+      <li>Deploy: czyścić katalog docelowy (rsync <code>--delete</code> z wyłączeniem <code>.htaccess</code>) — inaczej stare trasy zostają na serwerze.</li>
+      <li><code>src/components/StatsSection.tsx</code>: wartość początkowa = docelowa (lub <code>suppressHydrationWarning</code> + animacja po mount). <code>scripts/prerender.mjs</code>: zapis danych CMS do <code>window.__ARKON__</code>; <code>src/lib/cms.ts</code>/React Query: <code>initialData</code> z tego obiektu. Framer-motion: <code>initial={false}</code> gdy <code>rootEl.hasChildNodes()</code> (flaga z <code>main.tsx</code>) albo <code>useReducedMotion</code>. Test: <code>npm run build</code> + dev-build bez ostrzeżeń hydratacji.</li>
+      <li><code>index.html</code>: 2 rodziny fontów self-hosted (subset latin-ext) z <code>preload</code>; GTM po interakcji/3 s; Consent Mode v2 + CMP przed GTM; <code>&lt;meta name="theme-color"&gt;</code>.</li>
+      <li>Panel admina: kompresja obrazów przed uploadem (max 1 920 px, WebP, miniatura 480 px), pole alt wymagane; skrypt migracji istniejących plików w Storage.</li>
+      <li>CMS: <code>tresc</code> w Markdown (react-markdown + rehype-sanitize), pola realizacji (slug, typ, miejscowość, gmina, powiat, zakres[], powierzchnia, rok, opis), tabela <code>autorzy</code> (imię, uprawnienia, bio, zdjęcie).</li>
+      <li>Nowe trasy w <code>App.tsx</code> i <code>ROUTES</code> w prerenderze: <code>/realizacje</code>, <code>/realizacje/:slug</code> (z linków listy, jak blog), nowe <code>/uslugi/*</code>, <code>/cennik</code>, <code>/o-nas/:osoba</code>; 301 <code>/galeria</code> → <code>/realizacje</code>.</li>
+      <li>Schema: FAQPage tylko tam, gdzie pytania unikalne; <code>Person</code> z <code>hasCredential</code>; <code>ImageObject</code> z <code>contentLocation</code> dla realizacji; <code>areaServed</code> LocalBusiness jako lista miast (dziś „Małopolska”).</li>
+      <li>Nagłówki: <code>/uslugi</code> H2 per usługa; <code>/galeria|/realizacje</code> H2 per kategoria; blog H2 sekcji. Navbar: rozwijane Usługi / Gdzie działamy. Stopka: anchory „Biuro projektowe Bochnia”.</li>
+      <li>Alty z CMS: generować domyślnie „&lt;typ&gt; w &lt;miejscowość&gt; – &lt;zakres&gt; ArKon”, jeśli puste.</li>
+    </ul>
+  </div>
+
+  <h3>C. Frazy do śledzenia (36 + długi ogon)</h3>
+  <div class="prose twocol small">
+    <p><strong>Bochnia:</strong> biuro projektowe Bochnia · architekt Bochnia · projektant Bochnia · projekt domu Bochnia · projekty domów Bochnia · adaptacja projektu Bochnia · kierownik budowy Bochnia · projekt budynku usługowego Bochnia · geodeta Bochnia</p>
+    <p><strong>Brzesko:</strong> biuro projektowe Brzesko · architekt Brzesko · projektant Brzesko · projekt domu Brzesko · projekty domów Brzesko · adaptacja projektu Brzesko · kierownik budowy Brzesko · projekt budynku usługowego Brzesko · geodeta Brzesko</p>
+    <p><strong>Limanowa:</strong> biuro projektowe Limanowa · architekt Limanowa · projektant Limanowa · projekt domu Limanowa · projekty domów Limanowa · adaptacja projektu Limanowa · kierownik budowy Limanowa · projekt domu na działce ze spadkiem Limanowa · geodeta Limanowa</p>
+    <p><strong>Wieliczka:</strong> biuro projektowe Wieliczka · architekt Wieliczka · projektant Wieliczka · projekt domu Wieliczka · projekty domów Wieliczka · adaptacja projektu Wieliczka · kierownik budowy Wieliczka · projekt budynku usługowego Wieliczka · geodeta Wieliczka</p>
+    <p><strong>Długi ogon / gminy:</strong> biuro projektowe Żegocina · Łapanów · Lipnica Murowana · Nowy Wiśnicz · Rzezawa · Niepołomice · Gdów · Dobra · Tymbark · Czchów · Dębno · kierownik budowy powiat bocheński · adaptacja projektu Archon Małopolska · projekt domu z częścią usługową Małopolska</p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon">
+  <div class="wrap">Audyt wykonany 19 sierpnia 2026 na wersji live projekty-arkon.pl (wdrożenie z 19.08, 20:10) i kodzie w repozytorium (gałąź master, commit 8da77ec). Pomiary: Lighthouse 12.8 (mobile, symulowane 4G), curl, analiza prerenderowanego HTML, WebSearch/WebFetch dla SERP i konkurencji. Pozycje w Google podane orientacyjnie (wyszukiwanie spoza PL); do weryfikacji w Google Search Console.</div>
+</footer>
