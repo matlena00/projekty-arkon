@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useRef } from "react";
-import heroImg from "@/assets/hero-night.webp";
-import heroImgMobile from "@/assets/hero-night-mobile.webp";
+import heroImg from "@/assets/hero-home.webp";
+import heroImgMobile from "@/assets/hero-home-mobile.webp";
 
 const HeroSection = () => {
   const ref = useRef(null);
@@ -23,17 +23,24 @@ const HeroSection = () => {
           <source media="(max-width: 640px)" srcSet={heroImgMobile} />
           <img
             src={heroImg}
-            width={1536}
-            height={1022}
+            width={1920}
+            height={1080}
             decoding="async"
             loading="eager"
             fetchPriority="high"
-            alt="Nowoczesny dom zaprojektowany przez ArKon"
-            className="w-full h-full object-cover"
+            alt="Nowoczesny dom jednorodzinny z tarasem i basenem - wizualizacja projektu ArKon"
+            className="w-full h-full object-cover object-[60%_50%]"
           />
         </picture>
       </div>
       <motion.div className="absolute inset-0 overlay-gradient" style={{ opacity: overlayOpacity }} />
+      {/* Zdjęcie jest jasne (dzienny render z białą elewacją) — dodatkowe przyciemnienie skupione
+          pod tekstem zapewnia czytelność nagłówka, a taras i basen przy krawędziach zostają widoczne. */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 75% 65% at 50% 48%, hsl(var(--charcoal) / 0.6), transparent 100%)" }}
+        aria-hidden
+      />
 
       <motion.div className="relative z-10 section-padding max-w-5xl mx-auto text-center" style={{ y: contentY, opacity: contentOpacity }}>
         <motion.div
@@ -50,7 +57,7 @@ const HeroSection = () => {
             Biuro Projektowe{" "}
             <span className="text-gold-gradient">ArKon</span>
           </h1>
-          <p className="heading-serif-italic text-primary-foreground/50 text-2xl md:text-4xl mb-2">
+          <p className="heading-serif-italic text-primary-foreground/70 text-2xl md:text-4xl mb-2">
             Zrealizujemy Twoje projekty
           </p>
         </motion.div>
@@ -59,7 +66,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-primary-foreground/60 text-sm md:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed mb-10 font-light"
+          className="text-primary-foreground/75 text-sm md:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed mb-10 font-light"
         >
           Poprowadzimy Cię przez cały proces inwestycji od wyboru idealnego projektu
           i uzyskania pozwolenia na budowę, poprzez właściwą realizację i nadzór budowy,

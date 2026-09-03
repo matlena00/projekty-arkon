@@ -196,17 +196,11 @@ async function main() {
 
         let html = await page.content();
 
-        // Preload hero dotyczy tylko strony głównej (i nagłówka /uslugi, który używa
-        // pełnego wariantu niezależnie od szerokości) — na pozostałych trasach usuwamy,
-        // żeby nie pobierać ~90KB nieużywanego obrazu.
-        const heroPreloadRe = /\s*<link rel="preload" as="image"[^>]*hero-night[^>]*>/g;
-        if (route === "/uslugi") {
-          const full = (html.match(heroPreloadRe) || []).find((l) => !l.includes("hero-night-mobile"));
-          html = html.replace(heroPreloadRe, "");
-          if (full) html = html.replace("</title>", `</title>${full.replace(/ media="[^"]*"/, "")}`);
-        } else if (route !== "/") {
-          html = html.replace(heroPreloadRe, "");
-        }
+        // Preload hero (hero-home*) dotyczy tylko strony głównej — na pozostałych trasach
+        // usuwamy, żeby nie pobierać ~180KB nieużywanego obrazu. Nagłówek /uslugi używa
+        // innego zdjęcia (hero-night), więc nie ma czego tam preloadować.
+        const heroPreloadRe = /\s*<link rel="preload" as="image"[^>]*hero-home[^>]*>/g;
+        if (route !== "/") html = html.replace(heroPreloadRe, "");
 
         writeFileSync(outPath(route), html, "utf8");
         sitemapPages.set(route, route.startsWith("/blog/") ? publishedDate(html) : buildDate);
