@@ -40,6 +40,7 @@ const ROUTES = [
   "/blog",
   "/faq",
   "/kontakt",
+  "/polityka-prywatnosci",
   "/404", // trasa nie istnieje → renderuje NotFound; zapisywana jako dist/404.html (ErrorDocument)
 ];
 
@@ -52,6 +53,7 @@ function priorityFor(route) {
   if (route.startsWith("/blog/")) return "0.5";
   if (route === "/blog" || route === "/kontakt") return "0.6";
   if (route === "/faq") return "0.7";
+  if (route === "/polityka-prywatnosci") return "0.2";
   return "0.8";
 }
 

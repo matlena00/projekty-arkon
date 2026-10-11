@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logoWhite from "@/assets/logo-white.png";
+import { openCookieSettings } from "@/lib/cookieConsent";
 
 const Footer = () => (
   <footer className="bg-charcoal py-16">
@@ -68,10 +69,20 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="border-t border-concrete/20 pt-8 text-center">
+      <div className="border-t border-concrete/20 pt-8 flex flex-col md:flex-row items-center justify-center gap-x-6 gap-y-3 text-center">
         <p className="text-concrete/60 text-xs tracking-wider">
           Wszelkie prawa zastrzeżone © Biuro Projektowe ArKon
         </p>
+        <Link to="/polityka-prywatnosci" className="text-concrete/60 text-xs tracking-wider hover:text-accent transition-colors">
+          Polityka prywatności
+        </Link>
+        <button
+          type="button"
+          onClick={openCookieSettings}
+          className="text-concrete/60 text-xs tracking-wider hover:text-accent transition-colors"
+        >
+          Ustawienia cookies
+        </button>
       </div>
     </div>
   </footer>

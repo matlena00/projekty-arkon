@@ -20,6 +20,7 @@ const BlogPostPage = lazy(() => import("./pages/BlogPostPage.tsx"));
 const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage.tsx"));
 const FaqPage = lazy(() => import("./pages/FaqPage.tsx"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Admin = lazy(() => import("./pages/Admin.tsx"));
 
@@ -62,6 +63,7 @@ const App = () => (
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
           <Route path="/galeria" element={<GalleryPage />} />
+          <Route path="/polityka-prywatnosci" element={<PrivacyPolicyPage />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
