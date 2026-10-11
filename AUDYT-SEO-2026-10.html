@@ -1,0 +1,369 @@
+<title>Audyt SEO ArKon 10/2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,600;87.5,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: jedna kolumna raportu (maks. 920px), nagłówek z wynikiem, sekcje z tabelami ustaleń; kolor niesie wyłącznie status. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --fg:#16202e; --muted:#566377; --line:#d5dbe4;
+  --accent:#1f4e8c; --accent-soft:#e3ecf8;
+  --ok:#1d6b46; --ok-soft:#dff1e7; --warn:#8a5a00; --warn-soft:#fbeed0; --bad:#a3271f; --bad-soft:#fae1de;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#10151d; --surface:#18202b; --fg:#e6ebf2; --muted:#9aa7b9; --line:#2c3746;
+  --accent:#8db8f0; --accent-soft:#1d2c42;
+  --ok:#7fd3a6; --ok-soft:#16301f; --warn:#f0c264; --warn-soft:#3a2c0c; --bad:#f29a92; --bad-soft:#3d1b18; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#10151d; --surface:#18202b; --fg:#e6ebf2; --muted:#9aa7b9; --line:#2c3746;
+  --accent:#8db8f0; --accent-soft:#1d2c42;
+  --ok:#7fd3a6; --ok-soft:#16301f; --warn:#f0c264; --warn-soft:#3a2c0c; --bad:#f29a92; --bad-soft:#3d1b18; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);padding-inline:20px;padding-block:40px 80px}
+.wrap{max-width:920px;margin-inline:auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);font-stretch:87.5%;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,44px);font-weight:700}
+h2{font-size:26px;font-weight:700;padding-bottom:10px;border-bottom:2px solid var(--fg)}
+h3{font-size:18px;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+code{font:0.88em var(--mono);background:var(--accent-soft);padding:1px 5px;border-radius:3px;overflow-wrap:anywhere}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:14px}
+.meta{color:var(--muted);font-size:14px}
+section{display:flex;flex-direction:column;gap:18px}
+.score{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--surface);border:1px solid var(--line);padding:24px}
+.score .big{font:700 64px/1 var(--display);font-stretch:87.5%}
+.score .big small{font-size:22px;color:var(--muted);font-weight:600}
+.bars{display:grid;gap:7px;min-width:0}
+.bar{display:grid;grid-template-columns:130px 1fr 44px;gap:10px;align-items:center;font-size:13.5px}
+.bar i{display:block;height:9px;background:var(--line)}
+.bar i b{display:block;height:100%;background:var(--accent)}
+.bar span:last-child{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--surface)}
+.kpis div{padding:16px;border-right:1px solid var(--line);min-width:0}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font:700 28px/1.1 var(--display);font-stretch:87.5%;font-variant-numeric:tabular-nums}
+.kpis span{font-size:13px;color:var(--muted)}
+ol.top,ul.plain{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
+th,td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:500 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font:500 11.5px var(--mono);padding:2px 7px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .bad{background:var(--bad-soft);color:var(--bad)}
+.finding{background:var(--surface);border:1px solid var(--line);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.finding .head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;justify-content:space-between}
+.finding dl{margin:0;display:grid;grid-template-columns:86px 1fr;gap:6px 14px;font-size:14.5px}
+.finding dt{font:500 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.finding dd{margin:0;min-width:0}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--muted);font-size:14.5px;max-width:72ch}
+.plan{display:grid;gap:14px}
+.plan h3{display:flex;gap:10px;align-items:center}
+@media (max-width:640px){
+  .score{grid-template-columns:1fr} .kpis{grid-template-columns:1fr 1fr} .kpis div:nth-child(2){border-right:0} .kpis div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .bar{grid-template-columns:96px 1fr 40px} .finding dl{grid-template-columns:1fr}
+}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Audyt SEO · projekty-arkon.pl · 4 października 2026</span>
+  <h1>Strona jest technicznie gotowa, ale Google indeksuje 18 z 52 adresów i zna ją głównie z nazwy</h1>
+  <p class="meta">Źródła: crawl 52 adresów z sitemapy na wersji live, Google Search Console (15.07–29.09.2026), Google Analytics 4 (6.09–3.10.2026), Lighthouse mobile uruchomiony lokalnie, kod repozytorium. To kontynuacja audytu z 19 sierpnia; analiza konkurencji i rynku z tamtego raportu pozostaje aktualna i nie była powtarzana.</p>
+</header>
+
+<section>
+  <div class="score">
+    <div><span class="eyebrow">Wynik zdrowia SEO (profil: firma lokalna)</span><div class="big">50,5<small> / 100</small></div></div>
+    <div class="bars">
+      <div class="bar"><span>Dane strukturalne</span><i><b style="width:75%"></b></i><span>75</span></div>
+      <div class="bar"><span>Gotowość pod AI</span><i><b style="width:67%"></b></i><span>67</span></div>
+      <div class="bar"><span>Wydajność</span><i><b style="width:60%"></b></i><span>60</span></div>
+      <div class="bar"><span>Technika</span><i><b style="width:56%"></b></i><span>56</span></div>
+      <div class="bar"><span>Obrazy</span><i><b style="width:50%"></b></i><span>50</span></div>
+      <div class="bar"><span>Treść</span><i><b style="width:42%"></b></i><span>42</span></div>
+      <div class="bar"><span>On-page</span><i><b style="width:33%"></b></i><span>33</span></div>
+    </div>
+  </div>
+  <div class="kpis">
+    <div><b>369</b><span>kliknięć z Google w 2,5 miesiąca (5,85 tys. wyświetleń, CTR 6,3%)</span></div>
+    <div><b>18 / 52</b><span>adresów w indeksie Google; 34 wpisy bloga poza indeksem</span></div>
+    <div><b>2</b><span>domeny linkujące do serwisu według GSC</span></div>
+    <div><b>9,5 s</b><span>LCP na mobile (Lighthouse), cel to 2,5 s</span></div>
+  </div>
+  <h3>Pięć najważniejszych ustaleń</h3>
+  <ol class="top">
+    <li><strong>Ruch jest niemal wyłącznie brandowy.</strong> Z kliknięć, dla których GSC pokazuje zapytanie, ok. 93% to frazy z nazwą ArKon. Frazy lokalne bez nazwy dały łącznie 11 kliknięć.</li>
+    <li><strong>Strony lokalne zaczęły się wyświetlać, ale poza pierwszą stroną wyników.</strong> „biuro projektowe bochnia” ma 179 wyświetleń na pozycji 15,3; Wieliczka 13,0; Brzesko 8,8. W sierpniu serwis nie był widoczny na żadną z tych fraz.</li>
+    <li><strong>Google nie indeksuje bloga.</strong> 34 z 38 wpisów ma status „Strona wykryta – obecnie niezindeksowana”. Wpisy mają średnio ok. 170 słów, a Googlebot odwiedza serwis ok. 6 razy dziennie.</li>
+    <li><strong>Prawie nic z sierpniowej listy pilnych poprawek nie zostało wdrożone.</strong> Błędy hydratacji, H1 i title strony głównej, strona budynków usługowych, przekierowania w <code>.htaccess</code>, zdjęcia w CMS – stan bez zmian (szczegóły w sekcji 2).</li>
+    <li><strong>Serwis nie ma profilu linków.</strong> GSC widzi 12 linków z 2 domen (matly.dev i infobel.com). Przy tak słabym autorytecie Google nie ma powodu, żeby crawlować i indeksować głębiej.</li>
+  </ol>
+  <h3>Szybkie wygrane (do 1 dnia pracy łącznie)</h3>
+  <ul class="plain">
+    <li>Nowy title i H1 strony głównej z frazą „projekty domów” i nazwami miast.</li>
+    <li>Przekierowania 301 starych adresów w <code>public/.htaccess</code> i prawdziwe 404 dla nieistniejących wpisów bloga.</li>
+    <li>Skrócenie meta description wpisów bloga do 150–160 znaków (dziś 36 z 38 ma 250–600).</li>
+    <li>Linki do stron usług i miast w głównym menu, z anchorami „Biuro projektowe Bochnia” zamiast „Bochnia”.</li>
+    <li>Aktualizacja liczby opinii na stronie (wciąż „71”) i dodanie profilu Google do <code>sameAs</code>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>1. Co mówi Google Search Console</h2>
+  <p>Okres 15 lipca – 29 września 2026. Średnia pozycja 9,0. Mobile: 208 kliknięć, pozycja 5,4. Komputery: 160 kliknięć, pozycja 13,7.</p>
+  <p>Wyświetlenia rosną: w drugiej połowie lipca było ich średnio 51 dziennie, w drugiej połowie września 95 (+88%). Kliknięcia wzrosły z 4,5 do 5,6 dziennie (+26%). Rośnie więc widoczność na frazy, na które serwis jest jeszcze za nisko, żeby zbierać kliknięcia.</p>
+
+  <h3>Zapytania brandowe i ogólne</h3>
+  <div class="tw"><table>
+    <tr><th>Zapytanie</th><th class="n">Kliknięcia</th><th class="n">Wyświetlenia</th><th class="n">CTR</th><th class="n">Pozycja</th></tr>
+    <tr><td>arkon</td><td class="n">62</td><td class="n">1 091</td><td class="n">5,7%</td><td class="n">5,4</td></tr>
+    <tr><td>arkon żegocina / arkon zegocina</td><td class="n">50</td><td class="n">139</td><td class="n">36%</td><td class="n">1,0</td></tr>
+    <tr><td>arkon biuro projektowe</td><td class="n">21</td><td class="n">56</td><td class="n">37,5%</td><td class="n">3,8</td></tr>
+    <tr><td>biuro projektowe arkon</td><td class="n">20</td><td class="n">126</td><td class="n">15,9%</td><td class="n">2,1</td></tr>
+    <tr><td>biuro projektowe arkon opinie</td><td class="n">3</td><td class="n">46</td><td class="n">6,5%</td><td class="n">3,9</td></tr>
+    <tr><td>archon (i literówki: archin, archon projekty…)</td><td class="n">0</td><td class="n">ok. 900</td><td class="n">0%</td><td class="n">6–9</td></tr>
+    <tr><td>biuro projektowe / biuro architektoniczne (bez miasta)</td><td class="n">1</td><td class="n">226</td><td class="n">0,4%</td><td class="n">1,7–1,9</td></tr>
+  </table></div>
+  <p class="note">„arkon” na pozycji 5,4 i „biuro projektowe arkon” na 2,1 oznaczają, że serwis nie zawsze jest pierwszy nawet na własną nazwę. Zapytania „archon” to osoby szukające pracowni Archon+; te wyświetlenia zaniżają średni CTR i nie wymagają działań. Pozycje 1–2 na „biuro projektowe” bez miasta to wyniki spersonalizowane lokalizacją użytkownika.</p>
+
+  <h3>Frazy lokalne – tu jest potencjał</h3>
+  <div class="tw"><table>
+    <tr><th>Zapytanie</th><th class="n">Klik.</th><th class="n">Wyśw.</th><th class="n">Pozycja</th><th>Wniosek</th></tr>
+    <tr><td>biuro projektowe bochnia</td><td class="n">4</td><td class="n">179</td><td class="n">15,3</td><td>Najważniejsza fraza. Do TOP 5 brakuje treści i linków.</td></tr>
+    <tr><td>projekt / projektowanie elewacji (domu) bochnia – 4 warianty</td><td class="n">0</td><td class="n">138</td><td class="n">29–31</td><td>Popyt, na który nie ma strony. Kandydat na podstronę usługi.</td></tr>
+    <tr><td>usługi projektowe bochnia</td><td class="n">0</td><td class="n">53</td><td class="n">24,0</td><td>Synonim; dopisać w treści strony Bochni.</td></tr>
+    <tr><td>budowa domów jednorodzinnych brzesko</td><td class="n">0</td><td class="n">49</td><td class="n">12,2</td><td>Intencja „wykonawca”; odpowiedzieć sekcją o obsłudze inwestycji.</td></tr>
+    <tr><td>pracownia projektowa / firma projektowa bochnia</td><td class="n">0</td><td class="n">73</td><td class="n">32–35</td><td>Synonimy do użycia w nagłówkach H2.</td></tr>
+    <tr><td>budowa domu / budowa domów bochnia</td><td class="n">0</td><td class="n">43</td><td class="n">15–17</td><td>Jak wyżej dla Brzeska.</td></tr>
+    <tr><td>projekty budowlane wieliczka</td><td class="n">0</td><td class="n">38</td><td class="n">14,1</td><td>Blisko pierwszej strony.</td></tr>
+    <tr><td>kierownik budowy wieliczka</td><td class="n">0</td><td class="n">38</td><td class="n">15,5</td><td>Blisko pierwszej strony.</td></tr>
+    <tr><td>biuro projektowe wieliczka</td><td class="n">0</td><td class="n">25</td><td class="n">13,0</td><td>Blisko pierwszej strony.</td></tr>
+    <tr><td>biuro projektowe brzesko</td><td class="n">1</td><td class="n">22</td><td class="n">8,8</td><td>Już w TOP 10; najłatwiejsze miasto.</td></tr>
+    <tr><td>kierownik budowy bochnia</td><td class="n">2</td><td class="n">15</td><td class="n">8,2</td><td>TOP 10, CTR 13%.</td></tr>
+    <tr><td>architekt bochnia / wieliczka / limanowa</td><td class="n">1</td><td class="n">29</td><td class="n">35–49</td><td>Słowo „architekt” prawie nie występuje w treści.</td></tr>
+    <tr><td>biuro projektowe limanowa</td><td class="n">0</td><td class="n">2</td><td class="n">11,5</td><td>Limanowa jest praktycznie niewidoczna (cała strona: 38 wyświetleń).</td></tr>
+  </table></div>
+
+  <h3>Strony</h3>
+  <div class="tw"><table>
+    <tr><th>Adres</th><th class="n">Klik.</th><th class="n">Wyśw.</th><th class="n">CTR</th><th class="n">Pozycja</th></tr>
+    <tr><td>/</td><td class="n">300</td><td class="n">4 059</td><td class="n">7,4%</td><td class="n">5,4</td></tr>
+    <tr><td>/biuro-projektowe-bochnia</td><td class="n">15</td><td class="n">823</td><td class="n">1,8%</td><td class="n">17,2</td></tr>
+    <tr><td>/kontakt</td><td class="n">12</td><td class="n">515</td><td class="n">2,3%</td><td class="n">6,2</td></tr>
+    <tr><td>/o-nas</td><td class="n">11</td><td class="n">699</td><td class="n">1,6%</td><td class="n">7,9</td></tr>
+    <tr><td>/biuro-projektowe-brzesko</td><td class="n">7</td><td class="n">349</td><td class="n">2,0%</td><td class="n">8,9</td></tr>
+    <tr><td>/galeria</td><td class="n">5</td><td class="n">205</td><td class="n">2,4%</td><td class="n">4,6</td></tr>
+    <tr><td>/kolejne-uslugi-dostepne/ (stary adres, 301)</td><td class="n">5</td><td class="n">163</td><td class="n">3,1%</td><td class="n">6,7</td></tr>
+    <tr><td>/uslugi</td><td class="n">4</td><td class="n">250</td><td class="n">1,6%</td><td class="n">5,8</td></tr>
+    <tr><td>/uslugi/kierownik-budowy</td><td class="n">4</td><td class="n">142</td><td class="n">2,8%</td><td class="n">9,5</td></tr>
+    <tr><td>/uslugi/adaptacja-projektu</td><td class="n">3</td><td class="n">53</td><td class="n">5,7%</td><td class="n">17,7</td></tr>
+    <tr><td>/uslugi/projekty-indywidualne</td><td class="n">2</td><td class="n">119</td><td class="n">1,7%</td><td class="n">28,5</td></tr>
+    <tr><td>/biuro-projektowe-limanowa</td><td class="n">1</td><td class="n">38</td><td class="n">2,6%</td><td class="n">24,4</td></tr>
+    <tr><td>/biuro-projektowe-wieliczka</td><td class="n">0</td><td class="n">131</td><td class="n">0%</td><td class="n">25,5</td></tr>
+    <tr><td>cały blog (strona listy + 5 wpisów)</td><td class="n">0</td><td class="n">66</td><td class="n">0%</td><td class="n">–</td></tr>
+  </table></div>
+
+  <h3>Indeksowanie i crawl</h3>
+  <div class="tw"><table>
+    <tr><th>Stan w GSC</th><th class="n">Adresy</th><th>Co to jest</th></tr>
+    <tr><td>Zindeksowano</td><td class="n">18</td><td>14 stron głównych i 4 wpisy</td></tr>
+    <tr><td>Strona wykryta – obecnie niezindeksowana</td><td class="n">34</td><td>Wyłącznie wpisy <code>/blog/…</code>. Google zna adresy z sitemapy, ale nie uznał ich za warte pobrania.</td></tr>
+    <tr><td>Strona zawiera przekierowanie</td><td class="n">3</td><td><code>http://</code>, <code>/projekty/</code>, <code>/kolejne-uslugi-dostepne/</code> – poprawne 301</td></tr>
+    <tr><td>Nie znaleziono (404)</td><td class="n">2</td><td>Adresy ze starego WordPressa: <code>/category/nowosci/</code>, <code>/600-m-n-p-m-i-widok-na-tatry/</code></td></tr>
+    <tr><td>Błąd serwera (5xx)</td><td class="n">1</td><td><code>/wyruszamy-w-teren-po-zimie/</code> (stary adres, skan z 6 lipca)</td></tr>
+  </table></div>
+  <p>Statystyki indeksowania z 90 dni: 557 żądań Googlebota (ok. 6 dziennie), z czego 96% to odświeżanie znanych stron, a tylko 4% wykrywanie nowych. Odpowiedzi: 89% kodów 200, 7% 301, 3% 404, poniżej 1% nieudanych. GSC nie zgłasza problemów z hostem.</p>
+  <p class="note">To zmienia ocenę z sierpnia: limiter 429 na SEOHOST nie blokuje dziś Googlebota. Mój crawl 63 żądań w odstępach 5 s też nie dostał ani jednego 429. Temat zostaje do obserwacji, ale przestaje być pilny.</p>
+</section>
+
+<section>
+  <h2>2. Stan zaleceń z sierpnia</h2>
+  <div class="tw"><table>
+    <tr><th>Zalecenie</th><th>Stan</th><th>Dowód z dzisiejszego pomiaru</th></tr>
+    <tr><td>Przekierowania z <code>vercel.json</code> przenieść do <code>.htaccess</code></td><td><span class="tag bad">nie zrobione</span></td><td><code>/blog/piekna-jesienna-aura</code>, <code>/blog/nowosci</code>, <code>/blog/600-mnpm-i-widok-na-tatry</code> zwracają 200: na serwerze leżą stare, osierocone kopie tych wpisów z poprzednich deployów</td></tr>
+    <tr><td>Usunąć starą stronę Gdowa</td><td><span class="tag warn">częściowo</span></td><td><code>/biuro-projektowe-gdow</code> zwraca 404. Katalog usunięty, ale brak 301 na stronę Wieliczki</td></tr>
+    <tr><td>Limiter 429</td><td><span class="tag ok">nie szkodzi</span></td><td>GSC: brak problemów z hostem, &lt;1% nieudanych żądań</td></tr>
+    <tr><td>Błędy hydratacji React</td><td><span class="tag bad">nie zrobione</span></td><td>Konsola: React #418 i #423. LCP 9,5 s (w sierpniu 7,7 s), Performance 64</td></tr>
+    <tr><td>Title i H1 strony głównej, /o-nas, /uslugi</td><td><span class="tag bad">nie zrobione</span></td><td>H1: „Biuro Projektowe ArKon”, „Za kulisami Firmy”, „Co możemy Wam zaoferować?”</td></tr>
+    <tr><td>Strona budynków usługowych</td><td><span class="tag bad">nie zrobione</span></td><td>Brak adresu w sitemapie; „usługow…” w treści strony głównej: 0 wystąpień</td></tr>
+    <tr><td>Kompresja zdjęć z CMS</td><td><span class="tag bad">nie zrobione</span></td><td>Galeria: 24 pliki, łącznie 94,8 MB; 20 plików powyżej 1 MB, największy PNG 7,35 MB</td></tr>
+    <tr><td>Zgoda na cookies</td><td><span class="tag warn">do potwierdzenia</span></td><td>Commit z 4.09 wdraża CookieYes przez GTM; działania banera nie weryfikowałem</td></tr>
+    <tr><td>Hierarchia nagłówków</td><td><span class="tag bad">nie zrobione</span></td><td><code>/uslugi</code>: 2×H2 i 46×H4; <code>/galeria</code>: H1 i same H5; wpisy bloga: bez H2</td></tr>
+    <tr><td>FAQPage tylko na jednej stronie</td><td><span class="tag bad">nie zrobione</span></td><td>Schema FAQPage na <code>/</code>, <code>/uslugi</code> i <code>/faq</code></td></tr>
+    <tr><td>301 dla <code>/index.html</code></td><td><span class="tag bad">nie zrobione</span></td><td><code>/index.html</code> i <code>/uslugi/index.html</code> zwracają 200</td></tr>
+    <tr><td>Usługi i miasta w menu głównym</td><td><span class="tag bad">nie zrobione</span></td><td>Menu: 6 linków. Usługi i miasta tylko w stopce, anchory „Bochnia”, „Limanowa”…</td></tr>
+    <tr><td>Opisy realizacji w galerii</td><td><span class="tag bad">nie zrobione</span></td><td>241 słów na 24 realizacje; alt = nazwa miejscowości („Sobolów”, „Żegocina”)</td></tr>
+  </table></div>
+  <p>Po sierpniowym audycie do repozytorium trafił jeden commit (GTM i CookieYes, 4 września). Wzrost wyświetleń z sekcji 1 to efekt wdrożeń z lipca i sierpnia, które Google dopiero przetwarza.</p>
+</section>
+
+<section>
+  <h2>3. Ustalenia techniczne</h2>
+
+  <div class="finding"><div class="head"><h3>Każdy adres <code>/blog/cokolwiek</code> zwraca 200</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Problem</dt><dd>Reguła <code>RewriteRule ^blog/.+$ index.html</code> w <code>.htaccess</code> serwuje dla nieistniejących wpisów HTML strony głównej ze statusem 200 (soft-404 w nieskończonej liczbie). Osobno na serwerze zostały stare katalogi wpisów z poprzednich deployów, z canonicalem wskazującym na siebie.</dd>
+  <dt>Dowód</dt><dd><code>/blog/nie-ma-takiego-wpisu</code> → 200 z treścią strony głównej; <code>/blog/nowosci</code> → 200 z pełnym starym wpisem „Nowości!!! | Blog ArKon”, którego nie ma już w CMS ani w sitemapie.</dd>
+  <dt>Naprawa</dt><dd>Usunąć fallback dla <code>/blog/*</code> (wpisy i tak są prerenderowane przy buildzie) i czyścić katalog na serwerze przy każdym deployu. Dodać 301 dla 5 starych slugów z <code>vercel.json</code>, dla Gdowa oraz dla adresów WordPressa: <code>/category/nowosci/</code> → <code>/blog</code>, <code>/600-m-n-p-m-i-widok-na-tatry/</code> i <code>/wyruszamy-w-teren-po-zimie/</code> → odpowiednie wpisy. Usunąć <code>vercel.json</code>.</dd>
+  <dt>Priorytet</dt><dd>1 · ok. 1 godziny</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Hydratacja Reacta wywraca się na stronie głównej</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Problem</dt><dd>React odrzuca prerenderowany HTML i rysuje stronę od nowa, a animacje startują od przezroczystości. Użytkownik na telefonie czeka na treść ok. 9 sekund.</dd>
+  <dt>Dowód</dt><dd>Lighthouse mobile: Performance 64, FCP 4,4 s, LCP 9,5 s, TBT 40 ms, CLS 0. Konsola: „Minified React error #418” (2×) i „#423”. Zasoby blokujące render: szacunkowo 2,35 s; nieużywany JS: 445 KB. TTFB serwera to 40–100 ms, więc problem leży w kodzie frontu.</dd>
+  <dt>Naprawa</dt><dd>Jak w sierpniu: licznik w <code>StatsSection</code> renderowany od wartości końcowej, dane CMS przekazane z prerenderu jako <code>initialData</code>, <code>initial={false}</code> dla framer-motion przy hydratacji. Fonty Google hostowane lokalnie (dziś 3 rodziny z zewnętrznego CSS).</dd>
+  <dt>Priorytet</dt><dd>1 · 1–2 dni. Brak danych CrUX w GSC (za mały ruch), więc jedynym miernikiem jest Lighthouse.</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Zdjęcia realizacji ważą 94,8 MB</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Problem</dt><dd>Pliki z Supabase Storage trafiają na stronę w oryginale: PNG po 5–7 MB, bez wariantów rozmiaru i bez WebP.</dd>
+  <dt>Dowód</dt><dd>Nagłówki <code>content-length</code> 24 obrazów z <code>/galeria</code>: 20 powyżej 1 MB, sześć największych 5,4–7,35 MB. Lazy loading jest włączony (25 obrazów), więc nie wszystko ładuje się naraz, ale przewinięcie galerii na telefonie pobiera dziesiątki megabajtów.</dd>
+  <dt>Naprawa</dt><dd>Kompresja przy uploadzie w panelu (maks. 1920 px, WebP, osobna miniatura) i jednorazowa migracja istniejących plików.</dd>
+  <dt>Priorytet</dt><dd>2 · 1 dzień</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Duplikaty <code>/index.html</code></h3><span class="tag warn">wpływ: niski</span></div>
+  <dl><dt>Dowód</dt><dd><code>/index.html</code> i <code>/uslugi/index.html</code> → 200. Canonical wskazuje wersję bez pliku, więc ryzyko jest małe.</dd>
+  <dt>Naprawa</dt><dd>Dwie reguły 301 w <code>.htaccess</code>.</dd><dt>Priorytet</dt><dd>3 · 15 minut</dd></dl></div>
+
+  <p><strong>Co działa i czego nie ruszać:</strong> robots.txt i sitemap (52 adresy, wszystkie 200), prerender każdej trasy, canonicale, przekierowania http/www/slash jednym skokiem, prawdziwe 404 poza blogiem, schema LocalBusiness, Service, BreadcrumbList, BlogPosting i FAQPage, Lighthouse SEO 100, unikalne title na wszystkich 52 stronach, Open Graph.</p>
+</section>
+
+<section>
+  <h2>4. Ustalenia on-page</h2>
+
+  <div class="finding"><div class="head"><h3>Strona główna nie mówi, co i gdzie projektujecie</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>Title: „ArKon - Biuro Projektowe | Architektura i Konstrukcja | Żegocina”. H1: „Biuro Projektowe ArKon”. W treści (bez menu i stopki): „projekty domów” 0×, „projekt domu” 1×, Bochnia, Limanowa, Brzesko i Wieliczka po 0×. Strona główna zbiera 81% wszystkich kliknięć, a rankuje tylko na nazwę.</dd>
+  <dt>Naprawa</dt><dd>Title: „Biuro projektowe ArKon – projekty domów i budynków usługowych | Bochnia, Limanowa, Brzesko, Wieliczka”. H1: „Biuro projektowe – projekty domów i budynków usługowych w Małopolsce”. Pod hero akapit z miastami i linkami do stron lokalnych.</dd>
+  <dt>Priorytet</dt><dd>1 · 2 godziny</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Strony docelowe są podlinkowane tylko ze stopki</h3><span class="tag warn">wpływ: średni</span></div>
+  <dl><dt>Dowód</dt><dd>Menu główne: Home, O nas, Usługi, Galeria, Blog, Kontakt. Strony usług i miast mają po 52 linki wewnętrzne, ale wszystkie ze stopki i z anchorem w rodzaju „Bochnia”. W treści stron nie ma linków kontekstowych między miastami, usługami i wpisami.</dd>
+  <dt>Naprawa</dt><dd>Rozwijane „Usługi” i „Gdzie działamy” w menu. Anchory z frazą. Na stronach lokalnych linki do usług i do realizacji z danego powiatu, na stronach usług linki do miast.</dd>
+  <dt>Priorytet</dt><dd>2 · pół dnia</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Meta description wpisów bloga to wklejona treść wpisu</h3><span class="tag warn">wpływ: niski</span></div>
+  <dl><dt>Dowód</dt><dd>36 z 38 wpisów ma description o długości 250–604 znaków. Trzy wpisy mają title poniżej 30 znaków („Biuro”, „Start”, „Dom z widokiem”).</dd>
+  <dt>Naprawa</dt><dd>W <code>BlogPostPage</code> przycinać opis do ok. 155 znaków na granicy zdania; dodać w CMS pole „opis SEO”.</dd>
+  <dt>Priorytet</dt><dd>3 · 1 godzina</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Nagłówki nie oddają struktury</h3><span class="tag warn">wpływ: średni</span></div>
+  <dl><dt>Dowód</dt><dd><code>/uslugi</code>: H1, 2×H2, 16×H3, 46×H4. <code>/galeria</code>: H1 i 4×H5 (stopka). Wpisy bloga: H1 i nic więcej. H1 na <code>/o-nas</code> i <code>/uslugi</code> bez słów kluczowych. Stopka używa H5 na każdej stronie.</dd>
+  <dt>Naprawa</dt><dd>Każda usługa na <code>/uslugi</code> jako H2. Kategorie galerii jako H2. Nagłówki stopki jako zwykły tekst. H1 <code>/uslugi</code>: „Usługi biura projektowego – projekty, adaptacje, nadzór”.</dd>
+  <dt>Priorytet</dt><dd>3 · 2 godziny</dd></dl></div>
+
+  <p class="note">Skrypt oceny on-page z zestawu audytowego dał: strona główna 80, Bochnia 88, /uslugi 84, projekty indywidualne 90, wpis bloga 77. Mierzy on obecność elementów, nie ich trafność, więc te wyniki są wyższe niż ocena ogólna.</p>
+</section>
+
+<section>
+  <h2>5. Ustalenia dotyczące treści i autorytetu</h2>
+
+  <div class="finding"><div class="head"><h3>Blog jest za cienki, żeby Google go indeksował</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>38 wpisów, średnio ok. 170 słów na stronie (od 34 do 345), tylko jeden przekracza 300 słów. Brak śródtytułów i linków w treści. 34 wpisy poza indeksem, cały blog: 0 kliknięć w 2,5 miesiąca.</dd>
+  <dt>Naprawa</dt><dd>Nie dopisywać kolejnych krótkich aktualności. Dodać do CMS edytor z nagłówkami, linkami i zdjęciami. Napisać 6–8 poradników po 800–1200 słów pod pytania inwestorów z regionu (plan ogólny i WZ w konkretnych gminach, osuwiska w powiecie limanowskim, koszt i czas adaptacji projektu, kierownik budowy – obowiązki i cena). Krótkie wpisy kronikarskie połączyć w kilka dłuższych albo oznaczyć <code>noindex</code> i wyjąć z sitemapy, żeby nie rozmywały budżetu crawla.</dd>
+  <dt>Priorytet</dt><dd>2 · praca ciągła, 2–3 godziny tygodniowo po stronie zespołu ArKon</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Strony lokalne mają po ok. 380 słów</h3><span class="tag warn">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>Bochnia 374, Brzesko 382, Limanowa 383, Wieliczka 393 słowa. Bochnia stoi na pozycji 15–17 mimo 823 wyświetleń; Wieliczka na 25,5; Limanowa na 24,4.</dd>
+  <dt>Naprawa</dt><dd>Rozbudować każdą do 900–1200 słów: realizacje z powiatu ze zdjęciami i opisem, lokalne procedury (starostwo, MPZP, plan ogólny gminy), opinie klientów z tej okolicy, sekcja o budynkach usługowych, synonimy z GSC („pracownia projektowa”, „architekt”, „usługi projektowe”, „projekty budowlane”). Zacząć od Bochni i Brzeska, bo są najbliżej TOP 10.</dd>
+  <dt>Priorytet</dt><dd>1 · pół dnia na miasto</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Brakuje stron dla usług, których ludzie szukają</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>Budynki usługowe (cel biznesowy) nie mają adresu. GSC pokazuje też 138 wyświetleń na frazy o projektowaniu elewacji w Bochni oraz pojedyncze na projekty instalacji w Wieliczce i Limanowej, a serwis odpowiada na nie stroną ogólną z pozycji 24–48.</dd>
+  <dt>Naprawa</dt><dd>Nowe podstrony: <code>/uslugi/projekty-budynkow-uslugowych</code> (najpierw), potem elewacje i termomodernizacje oraz projekty branżowe, o ile biuro chce takie zlecenia. Docelowo podstrony realizacji <code>/realizacje/…</code> zamiast samej galerii.</dd>
+  <dt>Priorytet</dt><dd>1 dla budynków usługowych · 2 dni</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Dwie domeny linkujące</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>GSC → Linki: 12 linków zewnętrznych, wszystkie do strony głównej, z matly.dev (11) i infobel.com (1). W <code>sameAs</code> schemy jest tylko Facebook.</dd>
+  <dt>Naprawa</dt><dd>Ujednolicony NAP i wpisy w katalogach branżowych i lokalnych (Oferteo, Daibau, Fixly, Panorama Firm, pkt.pl, izba inżynierów i architektów), linki od partnerów (Archon+, homekoncept, wykonawcy), od inwestorów publicznych (szkoła w Bytomsku, baza piłkarska w Limanowej) i z lokalnych mediów przy okazji nagrody Orły Architektury. Link ze strony do profilu Google i profil w <code>sameAs</code>.</dd>
+  <dt>Priorytet</dt><dd>1 · 1 dzień na start, potem 1–2 linki miesięcznie</dd></dl></div>
+
+  <div class="finding"><div class="head"><h3>Opinie Google są pokazane tylko na stronie głównej i z nieaktualną liczbą</h3><span class="tag warn">wpływ: średni</span></div>
+  <dl><dt>Dowód</dt><dd>Na stronie „5,0 na podstawie 71 opinii”; w sierpniu w Google było ich 74. Zapytanie „biuro projektowe arkon opinie” ma 46 wyświetleń i CTR 6,5% na pozycji 3,9.</dd>
+  <dt>Naprawa</dt><dd>Zaktualizować liczbę, dodać blok opinii na stronach lokalnych i usługowych, rozważyć podstronę <code>/opinie</code>.</dd>
+  <dt>Priorytet</dt><dd>3 · 2 godziny</dd></dl></div>
+</section>
+
+<section>
+  <h2>6. Plan działań</h2>
+  <p>Każdy punkt planu jest rozpisany jako osobne zadanie wdrożeniowe w repozytorium, w katalogu <code>docs/seo-2026-10/</code>.</p>
+  <div class="plan">
+    <h3><span class="tag bad">1</span> Krytyczne – ten tydzień (dev, ok. 3 dni)</h3>
+    <ol class="top">
+      <li><code>.htaccess</code>: 301 dla starych slugów bloga, Gdowa, adresów WordPressa i <code>index.html</code>; usunięcie fallbacku 200 dla <code>/blog/*</code>; usunięcie <code>vercel.json</code>.</li>
+      <li>Title, H1 i akapit wprowadzający strony głównej; H1 na <code>/o-nas</code> i <code>/uslugi</code>.</li>
+      <li>Naprawa hydratacji do zera błędów w konsoli; cel LCP poniżej 2,5 s.</li>
+      <li>Po wdrożeniu: w GSC „Sprawdź poprawkę” dla 404 i 5xx oraz prośba o indeksację strony głównej i 4 stron lokalnych.</li>
+      <li>Pomiar leadów w GA4: wysłanie formularza, kliknięcie w telefon i e-mail jako kluczowe zdarzenia.</li>
+    </ol>
+    <h3><span class="tag warn">2</span> Duży wpływ – 2 do 4 tygodni</h3>
+    <ol class="top">
+      <li>Podstrona budynków usługowych.</li>
+      <li>Rozbudowa stron Bochni i Brzeska, potem Wieliczki i Limanowej.</li>
+      <li>Menu z usługami i miastami, linki kontekstowe.</li>
+      <li>Katalogi, NAP i pierwsze linki zewnętrzne.</li>
+      <li>Kompresja zdjęć w CMS i migracja istniejących.</li>
+    </ol>
+    <h3><span class="tag ok">3</span> Szybkie wygrane – po 1–2 godziny</h3>
+    <ol class="top">
+      <li>Meta description wpisów bloga.</li>
+      <li>Liczba opinii, <code>sameAs</code> z profilem Google.</li>
+      <li>FAQPage tylko na <code>/faq</code>; porządek w nagłówkach.</li>
+      <li>Alty w galerii w formie „Dom jednorodzinny w Sobolowie – projekt ArKon”.</li>
+    </ol>
+    <h3><span class="tag">4</span> Długofalowo</h3>
+    <ol class="top">
+      <li>Edytor treści w CMS i 6–8 poradników; decyzja o losie krótkich wpisów.</li>
+      <li>Podstrony realizacji z opisem, powiatem i zakresem prac.</li>
+      <li>Podstrony elewacji i projektów branżowych, jeśli pasują do oferty.</li>
+      <li>Comiesięczny przegląd GSC: pozycje 4 fraz „biuro projektowe + miasto”, liczba zindeksowanych stron, domeny linkujące.</li>
+    </ol>
+  </div>
+  <h3>Mierniki na koniec roku</h3>
+  <div class="tw"><table>
+    <tr><th>Miernik</th><th class="n">Dziś</th><th class="n">Cel 31.12.2026</th></tr>
+    <tr><td>Kliknięcia z fraz niebrandowych (miesięcznie)</td><td class="n">ok. 5</td><td class="n">40+</td></tr>
+    <tr><td>„biuro projektowe bochnia” – pozycja</td><td class="n">15,3</td><td class="n">≤ 7</td></tr>
+    <tr><td>„biuro projektowe brzesko” – pozycja</td><td class="n">8,8</td><td class="n">≤ 3</td></tr>
+    <tr><td>Strony w indeksie</td><td class="n">18</td><td class="n">wszystkie, które zostaną w sitemapie</td></tr>
+    <tr><td>Domeny linkujące</td><td class="n">2</td><td class="n">15+</td></tr>
+    <tr><td>LCP mobile (Lighthouse)</td><td class="n">9,5 s</td><td class="n">≤ 2,5 s</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2>7. Co mówi Google Analytics</h2>
+  <p>Okres 6 września – 3 października 2026 (28 dni): 411 aktywnych użytkowników, 404 nowych, średni czas zaangażowania 1 min 39 s, ok. 1,3 tys. odsłon.</p>
+  <div class="tw"><table>
+    <tr><th>Źródło sesji</th><th class="n">Sesje</th><th class="n">Udział</th></tr>
+    <tr><td>Facebook (4 warianty odesłań)</td><td class="n">311</td><td class="n">57%</td></tr>
+    <tr><td>Google – wyniki organiczne</td><td class="n">128</td><td class="n">24%</td></tr>
+    <tr><td>Wejścia bezpośrednie</td><td class="n">96</td><td class="n">18%</td></tr>
+    <tr><td>matly.dev</td><td class="n">6</td><td class="n">1%</td></tr>
+  </table></div>
+  <div class="tw"><table>
+    <tr><th>Strona</th><th class="n">Odsłony</th><th class="n">Użytkownicy</th></tr>
+    <tr><td>Strona główna</td><td class="n">609</td><td class="n">387</td></tr>
+    <tr><td>O nas</td><td class="n">238</td><td class="n">191</td></tr>
+    <tr><td>Realizacje</td><td class="n">159</td><td class="n">117</td></tr>
+    <tr><td>Kontakt</td><td class="n">62</td><td class="n">48</td></tr>
+    <tr><td>Usługi</td><td class="n">62</td><td class="n">48</td></tr>
+    <tr><td>Blog</td><td class="n">53</td><td class="n">29</td></tr>
+    <tr><td>Projekty indywidualne</td><td class="n">19</td><td class="n">13</td></tr>
+  </table></div>
+  <div class="finding"><div class="head"><h3>Analityka nie mierzy ani jednego leada</h3><span class="tag bad">wpływ: wysoki</span></div>
+  <dl><dt>Dowód</dt><dd>Karta „Najważniejsze wydarzenia”: brak danych. Lista zdarzeń zawiera tylko automatyczne: <code>page_view</code>, <code>user_engagement</code>, <code>session_start</code>, <code>first_visit</code>, <code>scroll</code> i <code>form_start</code> (6). Nie ma zdarzenia wysłania formularza ani kliknięcia w telefon, a w kodzie nie ma żadnego <code>dataLayer.push</code>.</dd>
+  <dt>Skutek</dt><dd>Nie da się powiedzieć, ile zapytań przynosi Google, a ile Facebook, ani czy poprawki SEO przekładają się na kontakty.</dd>
+  <dt>Naprawa</dt><dd>Zdarzenia <code>generate_lead</code> (wysłany formularz), <code>phone_click</code> i <code>email_click</code> wysyłane do <code>dataLayer</code>, tagi w GTM, oznaczenie jako kluczowe zdarzenia w GA4.</dd>
+  <dt>Priorytet</dt><dd>1 · 2–3 godziny</dd></dl></div>
+  <p class="note">Wyszukiwarka daje dziś jedną czwartą ruchu; ponad połowę przynosi Facebook. Strony lokalne i usługowe prawie nie mają odsłon (żadna strona miasta nie weszła do pierwszej siódemki), co potwierdza obraz z GSC. Miasta użytkowników: Kraków 142, Bochnia 73, Rzeszów 31; GA4 przypisuje je po adresie IP, więc „Kraków” obejmuje też okolice.</p>
+</section>
+
+<section>
+  <h2>8. Czego ten audyt nie obejmuje</h2>
+  <ul class="plain">
+    <li><strong>Core Web Vitals z realnych użytkowników.</strong> GSC nie ma wystarczającej próby; wyniki wydajności pochodzą z jednego przebiegu Lighthouse i mogą się wahać.</li>
+    <li><strong>Profil Firmy w Google i pakiet map.</strong> Nie mierzyłem pozycji w mapach ani aktualnej liczby opinii.</li>
+    <li><strong>Konkurencja.</strong> Analiza SERP-ów i konkurentów jest w raporcie z 19 sierpnia.</li>
+    <li><strong>Dane GSC.</strong> Raport zaczyna się 15 lipca, a część kliknięć (ok. połowa) nie ma przypisanego zapytania, bo Google ukrywa rzadkie frazy.</li>
+  </ul>
+</section>
+</div>
