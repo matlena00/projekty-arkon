@@ -73,6 +73,7 @@ const Footer = () => (
         <p className="text-concrete/60 text-xs tracking-wider">
           Wszelkie prawa zastrzeżone © Biuro Projektowe ArKon
         </p>
+        <p className="text-concrete/60 text-xs tracking-wider">NIP: 8681860801</p>
         <Link to="/polityka-prywatnosci" className="text-concrete/60 text-xs tracking-wider hover:text-accent transition-colors">
           Polityka prywatności
         </Link>
