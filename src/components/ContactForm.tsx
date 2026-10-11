@@ -112,7 +112,7 @@ const ContactForm = () => {
 
       {/* Klauzula informacyjna (art. 13 RODO) - pełna treść na /polityka-prywatnosci */}
       <p className="text-muted-foreground text-xs leading-relaxed">
-        Administratorem danych z formularza jest Biuro Projektowe ArKon, Żegocina 149. Przetwarzamy je, aby odpowiedzieć
+        Administratorem danych z formularza jest Biuro Projektowe ArKon Łukasz Matlęga, Żegocina 149. Przetwarzamy je, aby odpowiedzieć
         na wiadomość i przygotować ofertę (art. 6 ust. 1 lit. b i f RODO). Masz prawo dostępu do danych, ich sprostowania,
         usunięcia i innych praw opisanych w{" "}
         <Link to="/polityka-prywatnosci" className="text-accent hover:underline underline-offset-4">

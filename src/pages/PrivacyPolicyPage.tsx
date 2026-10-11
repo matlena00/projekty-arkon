@@ -11,15 +11,13 @@ import { openCookieSettings } from "@/lib/cookieConsent";
 
 const LAST_UPDATED = "11 października 2026 r.";
 
-// Dane administratora. Forma prawna (jednoosobowa działalność, właściciel Łukasz Matlęga) przyjęta na podstawie
-// treści strony - przed publikacją porównać pełną nazwę firmy z wpisem w CEIDG.
-// NIP i REGON nie występują w kodzie ani na stronie: uzupełnić z CEIDG (puste pola nie są wyświetlane).
+// Dane administratora (pełna nazwa firmy, NIP i REGON potwierdzone przez właściciela).
 const ADMIN = {
-  owner: "Łukasz Matlęga",
+  legalName: "Biuro Projektowe ArKon Łukasz Matlęga",
   businessName: "Biuro Projektowe ArKon",
   address: "Żegocina 149, 32-731 Żegocina",
-  nip: "",
-  regon: "",
+  nip: "8681860801",
+  regon: "369736985",
   email: "biuro@projekty-arkon.pl",
   phones: [
     { label: "+48 888 899 366", href: "tel:+48888899366" },
@@ -286,12 +284,8 @@ const PrivacyPolicyPage = () => (
         <Section id="administrator" n="01" title="Administrator danych">
           <p>
             Administratorem Twoich danych osobowych jest{" "}
-            <strong className="text-foreground">
-              {ADMIN.businessName} {ADMIN.owner}
-            </strong>
-            , {ADMIN.address}
-            {ADMIN.nip && `, NIP: ${ADMIN.nip}`}
-            {ADMIN.regon && `, REGON: ${ADMIN.regon}`} (dalej: „ArKon”, „my”).
+            <strong className="text-foreground">{ADMIN.legalName}</strong>, {ADMIN.address}, NIP: {ADMIN.nip}, REGON:{" "}
+            {ADMIN.regon} (dalej: „ArKon”, „my”).
           </p>
           <p>Możesz się z nami skontaktować:</p>
           <Bullets
