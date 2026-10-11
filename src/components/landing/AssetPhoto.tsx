@@ -56,14 +56,28 @@ const AssetPhoto = ({
 
   if (!src) return <PhotoPlaceholder caption={caption} className={className} dark={dark} />;
 
-  return (
+  // Hero (eager) to element LCP podstrony: na telefonie wystarcza wariant -thumb (900 px),
+  // kilkukrotnie lżejszy od pełnego pliku 1920 px.
+  const mobileSrc = eager && !thumb && name ? files[`${prefix}${name}-thumb.webp`] : undefined;
+
+  const img = (
     <img
       src={src}
       alt={alt}
       className={`object-cover ${className}`}
       loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : undefined}
       decoding="async"
     />
+  );
+
+  if (!mobileSrc) return img;
+
+  return (
+    <picture className="contents">
+      <source media="(max-width: 640px)" srcSet={mobileSrc} />
+      {img}
+    </picture>
   );
 };
 

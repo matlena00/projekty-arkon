@@ -1,5 +1,4 @@
-/* Fonty ładowane w index.html (preconnect + link) zamiast @import,
-   żeby nie blokować renderowania łańcuchem CSS -> Google CSS -> font. */
+/* Fonty są hostowane lokalnie: importy @fontsource w src/main.tsx (bez Google Fonts). */
 
 @tailwind base;
 @tailwind components;
@@ -180,4 +179,17 @@
     font-style: italic;
     color: hsl(var(--accent) / 0.25);
   }
+}
+
+/* Osłona prerenderu (patrz src/lib/prerender.ts): dopóki aplikacja nie zakończy hydratacji,
+   style początkowe framer-motion z prerenderowanego HTML-u (opacity:0, przesunięcia) są
+   neutralizowane, żeby treść była widoczna od pierwszej klatki i bez JavaScriptu. */
+html:not(.arkon-live) [style*="opacity:0;"],
+html:not(.arkon-live) [style$="opacity:0"],
+html:not(.arkon-live) [style*="opacity: 0;"],
+[data-arkon-shown] {
+  opacity: 1 !important;
+}
+html:not(.arkon-live) [style*="transform:"] {
+  transform: none !important;
 }

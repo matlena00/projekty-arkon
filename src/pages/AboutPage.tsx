@@ -97,8 +97,8 @@ const AboutPage = () => (
     <Navbar />
 
     <PageHeader
-      label="O nas"
-      title="Za kulisami Firmy"
+      label="Za kulisami firmy"
+      title="O biurze projektowym ArKon"
       bgImage={officeReception}
       accentWord="zespół"
       sectionNumber="01"

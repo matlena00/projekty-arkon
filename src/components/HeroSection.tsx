@@ -1,8 +1,17 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-home.webp";
 import heroImgMobile from "@/assets/hero-home-mobile.webp";
+
+// Miasta w miejscowniku ("w Bochni…") - linki do stron lokalnych.
+const cities = [
+  { label: "Bochni", to: "/biuro-projektowe-bochnia" },
+  { label: "Limanowej", to: "/biuro-projektowe-limanowa" },
+  { label: "Brzesku", to: "/biuro-projektowe-brzesko" },
+  { label: "Wieliczce", to: "/biuro-projektowe-wieliczka" },
+];
 
 const HeroSection = () => {
   const ref = useRef(null);
@@ -53,13 +62,17 @@ const HeroSection = () => {
             Architektura i Konstrukcja
             <span className="gold-line-wide scale-x-[-1]" />
           </p>
-          <h1 className="heading-display text-primary-foreground text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-4">
-            Biuro Projektowe{" "}
-            <span className="text-gold-gradient">ArKon</span>
+          {/* Jeden H1 w dwóch wierszach: nazwa + to, co projektujemy (fraza kluczowa strony głównej). */}
+          <h1 className="mb-6">
+            <span className="block heading-display text-primary-foreground text-3xl md:text-5xl lg:text-6xl xl:text-7xl mb-4">
+              Biuro Projektowe{" "}
+              <span className="text-gold-gradient">ArKon</span>
+            </span>
+            <span className="sr-only"> - </span>
+            <span className="block heading-serif-italic text-primary-foreground/80 text-2xl md:text-4xl">
+              Projekty domów i budynków usługowych
+            </span>
           </h1>
-          <p className="heading-serif-italic text-primary-foreground/70 text-2xl md:text-4xl mb-2">
-            Zrealizujemy Twoje projekty
-          </p>
         </motion.div>
 
         <motion.p
@@ -68,9 +81,17 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-primary-foreground/75 text-sm md:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed mb-10 font-light"
         >
-          Poprowadzimy Cię przez cały proces inwestycji od wyboru idealnego projektu
-          i uzyskania pozwolenia na budowę, poprzez właściwą realizację i nadzór budowy,
-          aż po uzyskanie pozwolenia na użytkowanie.
+          Projektujemy domy jednorodzinne i budynki usługowe w{" "}
+          {cities.map((c, i) => (
+            <span key={c.to}>
+              <Link to={c.to} className="underline decoration-accent/60 underline-offset-4 hover:text-accent transition-colors">
+                {c.label}
+              </Link>
+              {i < cities.length - 2 ? ", " : i === cities.length - 2 ? " i " : ""}
+            </span>
+          ))}
+          . Prowadzimy inwestycję od analizy działki i pozwolenia na budowę,
+          przez nadzór kierownika budowy, po odbiór.
         </motion.p>
 
         <motion.button

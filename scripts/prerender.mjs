@@ -168,6 +168,16 @@ async function main() {
 
       const page = await browser.newPage();
       try {
+        // Aplikacja wystawia window.__arkonSnapshot tylko w trybie prerenderu.
+        await page.evaluateOnNewDocument(() => {
+          window.__PRERENDER__ = true;
+        });
+        // Analityka nie może działać w trakcie builda: GTM wstrzykiwał do <head> kolejne
+        // skrypty (gtag, CookieYes), które trafiały do zapisanego HTML-u i ładowały się podwójnie.
+        await page.setRequestInterception(true);
+        page.on("request", (req) =>
+          /googletagmanager\.com|google-analytics\.com|cookieyes\.com/.test(req.url()) ? req.abort() : req.continue()
+        );
         await page.goto(`${ORIGIN}${route}`, { waitUntil: "networkidle0", timeout: 30000 }).catch(() => {});
         await new Promise((r) => setTimeout(r, 400)); // bufor na helmet/render
 
@@ -179,22 +189,43 @@ async function main() {
           for (const s of slugs) if (!done.has(s) && !queue.includes(s)) queue.push(s);
         }
 
-        // Zdejmij "zamrożone" stany animacji framer-motion (opacity<1 + transform),
-        // żeby treść w snapshotcie była widoczna bez JS. Po hydracji animacje i tak
-        // odpalą się od nowa po stronie klienta.
-        await page.evaluate(() => {
-          document.querySelectorAll("[style]").forEach((el) => {
-            const st = el.style;
-            const op = parseFloat(st.opacity);
-            if (!Number.isNaN(op) && op < 1) {
-              st.removeProperty("opacity");
-              st.removeProperty("transform");
-              if (!el.getAttribute("style")) el.removeAttribute("style");
-            }
-          });
+        // Treść #root pochodzi z renderToString (window.__arkonSnapshot w src/main.tsx),
+        // a nie ze zrzutu DOM-u: zrzut nie ma znaczników Suspense ani separatorów tekstu,
+        // więc React odrzucał hydratację (błędy #418/#423) i rysował stronę od nowa.
+        // Style początkowe animacji zostają w HTML-u; widoczność treści przed hydratacją
+        // zapewnia reguła CSS "osłona prerenderu" w src/index.css.
+        const state = await page.evaluate(async () => {
+          const snap = await window.__arkonSnapshot();
+          document.getElementById("root").innerHTML = snap.html;
+          return snap.state;
         });
 
         let html = await page.content();
+
+        // Skrypt GTM dopisany do <head> przez snippet w trakcie renderu - u użytkownika
+        // snippet wstawi go sam; zostawiony w HTML-u ładowałby GTM dwa razy.
+        html = html.replace(/<script[^>]*src="https:\/\/www\.googletagmanager\.com\/[^"]*"[^>]*><\/script>/g, "");
+
+        // renderToString jest potrzebny tylko w prerenderze - bez tego preloadu użytkownik
+        // pobierałby ~23 KB nieużywanego kodu (link dopisał loader Vite przy imporcie).
+        html = html.replace(/<link rel="modulepreload"[^>]*server\.browser[^>]*>/g, "");
+
+        // Stan zapytań CMS dla hydratacji (pierwszy render klienta = ten sam HTML).
+        if (state && state.queries && state.queries.length) {
+          // Strona wpisu renderuje treść tylko własnego wpisu - z pozostałych zostawiamy
+          // metadane (nawigacja poprzedni/następny), bez treści, żeby nie doklejać całego
+          // bloga do każdej podstrony. Pełne dane dociąga zapytanie po hydratacji.
+          if (route.startsWith("/blog/")) {
+            const slug = route.slice("/blog/".length);
+            for (const q of state.queries) {
+              if (q.queryKey[0] === "public-posts" && Array.isArray(q.state.data)) {
+                q.state.data = q.state.data.map((p) => (p.slug === slug ? p : { ...p, tresc: null }));
+              }
+            }
+          }
+          const json = JSON.stringify(state).replace(/</g, "\\u003c");
+          html = html.replace("</body>", `<script>window.__ARKON_STATE__=${json}</script></body>`);
+        }
 
         // Preload hero (hero-home*) dotyczy tylko strony głównej — na pozostałych trasach
         // usuwamy, żeby nie pobierać ~180KB nieużywanego obrazu. Nagłówek /uslugi używa

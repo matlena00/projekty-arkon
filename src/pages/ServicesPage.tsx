@@ -223,8 +223,8 @@ const ServicesPage = () => (
 
     <PageHeader
       label="Usługi"
-      title="Co możemy Wam zaoferować?"
-      subtitle="Powiedz nam czego potrzebujesz, a my zrobimy całą resztę za Ciebie. Oferujemy kompleksową obsługę - od projektu, przez nadzór, aż po oddanie budynku."
+      title="Usługi biura projektowego - projekty, adaptacje, nadzór"
+      subtitle="Co możemy Wam zaoferować? Powiedz nam czego potrzebujesz, a my zrobimy całą resztę za Ciebie. Oferujemy kompleksową obsługę - od projektu, przez nadzór, aż po oddanie budynku."
       bgImage={heroImg}
       accentWord="usługi"
       sectionNumber="06"

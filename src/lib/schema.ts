@@ -30,7 +30,7 @@ export const webPageLd = (opts: { type?: string; name: string; path: string; des
 });
 
 /** Miejscowości obsługiwane przez biuro — używane w areaServed stron usługowych/lokalnych. */
-export const AREA_CITIES = ["Bochnia", "Limanowa", "Brzesko", "Wieliczka", "Gdów", "Żegocina"];
+export const AREA_CITIES = ["Bochnia", "Limanowa", "Brzesko", "Wieliczka", "Żegocina"];
 
 export const serviceLd = (opts: {
   name: string;

@@ -9,10 +9,15 @@ const stats = [
 ];
 
 const AnimatedNumber = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
-  const [display, setDisplay] = useState(0);
+  // Stan początkowy = wartość docelowa: taka trafia do prerenderowanego HTML-u (roboty,
+  // brak JS). Po zamontowaniu, zanim sekcja wejdzie w widok, zerujemy licznik pod animację.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) {
+      setDisplay(0);
+      return;
+    }
     const controls = animate(0, value, {
       duration: 2,
       ease: "easeOut",

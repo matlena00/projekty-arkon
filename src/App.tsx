@@ -1,5 +1,5 @@
-import { lazy, Suspense } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense, useEffect } from "react";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -8,6 +8,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import MobileContactBar from "@/components/MobileContactBar";
 import DesktopCallButton from "@/components/DesktopCallButton";
 import Index from "./pages/Index.tsx";
+import { queryClient } from "@/lib/queryClient";
+import { goLiveAfterHydration } from "@/lib/prerender";
 
 // Code-splitting per trasa — podstrony ładują się na żądanie,
 // dzięki czemu bundle strony głównej jest znacznie mniejszy.
@@ -29,7 +31,12 @@ const ProjektyIndywidualnePage = lazy(() => import("./pages/uslugi/ProjektyIndyw
 // Strony lokalne — wspólny szablon, treść per miasto w src/data/localPages.ts
 const LocalOfficePage = lazy(() => import("./pages/LocalOfficePage.tsx"));
 
-const queryClient = new QueryClient();
+// Montuje się razem z treścią trasy (ta sama granica Suspense), więc jego efekt
+// oznacza koniec hydratacji strony - także gdy kod trasy doładował się z opóźnieniem.
+const HydrationDone = () => {
+  useEffect(goLiveAfterHydration, []);
+  return null;
+};
 
 const App = () => (
   <HelmetProvider>
@@ -59,6 +66,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <HydrationDone />
         </Suspense>
         <MobileContactBar />
         <DesktopCallButton />

@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"DM Sans"', "sans-serif"],
-        body: ["Manrope", "sans-serif"],
+        display: ['"DM Sans Variable"', "sans-serif"],
+        body: ['"Manrope Variable"', "sans-serif"],
         serif: ['"Cormorant Garamond"', "serif"],
       },
       fontWeight: {

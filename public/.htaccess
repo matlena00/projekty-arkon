@@ -20,6 +20,29 @@ ErrorDocument 404 /404.html
   RewriteRule ^projekty/?$ /uslugi [R=301,L]
   RewriteRule ^kolejne-uslugi-dostepne/?$ /uslugi [R=301,L]
 
+  # --- 301: adresy ze starego WordPressa (wiszą w GSC jako 404/5xx) ---
+  RewriteRule ^category/ /blog [R=301,L]
+  RewriteRule ^600-m-n-p-m-i-widok-na-tatry/?$ /blog/budowa-z-widokiem-na-tatry [R=301,L]
+  RewriteRule ^wyruszamy-w-teren-po-zimie/?$ /blog/wiosna-start-sezonu-budowlanego [R=301,L]
+
+  # --- 301: strona Gdowa zdjęta w 08/2026 ---
+  RewriteRule ^biuro-projektowe-gdow/?$ /biuro-projektowe-wieliczka [R=301,L]
+
+  # --- 301: stare slugi bloga (wpisy przemianowane lub scalone w CMS) ---
+  RewriteRule ^blog/piekna-jesienna-aura/?$ /blog/jesien-sprzyja-budowom [R=301,L]
+  RewriteRule ^blog/poszerzamy-uslugi-o-wizualizacje/?$ /blog/nowosc-w-naszej-ofercie-wizualizacje-projektow [R=301,L]
+  RewriteRule ^blog/600-mnpm-i-widok-na-tatry/?$ /blog/budowa-z-widokiem-na-tatry [R=301,L]
+  RewriteRule ^blog/wyruszamy-w-teren-po-zimie/?$ /blog/wiosna-start-sezonu-budowlanego [R=301,L]
+  RewriteRule ^blog/nowosci/?$ /blog [R=301,L]
+
+  # --- 301: jawne /index.html -> adres kanoniczny (duplikat strony pod drugim URL) ---
+  # Warunek na THE_REQUEST jest konieczny: reguła (b) niżej przepisuje wewnętrznie
+  # na $1/index.html i bez niego powstałaby pętla przekierowań.
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/.+/index\.html[\s?]
+  RewriteRule ^(.+)/index\.html$ /$1 [R=301,L]
+
   # --- Kanonicznie BEZ końcowego slasha (sitemapa, canonicale i linki są bez) ---
   # Bez tych reguł mod_dir robił 301 /kontakt -> /kontakt/, przez co każdy adres
   # z sitemapy kosztował Googlebota 2 żądania (drugie często kończyło się 429
@@ -39,10 +62,10 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # --- SPA fallback TYLKO dla treści dynamicznych (status 200 jest tu zamierzony) ---
-  # /admin — panel CMS; /blog/* — wpisy dodane w CMS po ostatnim buildzie
+  # --- SPA fallback TYLKO dla panelu CMS (status 200 jest tu zamierzony) ---
+  # /blog/* celowo BEZ fallbacku: każdy nieistniejący adres wpisu dostawał 200 z treścią
+  # strony głównej (soft-404). Wpis dodany w CMS jest dostępny po kolejnym buildzie i deployu.
   RewriteRule ^admin(/.*)?$ index.html [L]
-  RewriteRule ^blog/.+$ index.html [L]
 
   # Cała reszta: brak pliku → Apache zwraca 404 + /404.html (ErrorDocument wyżej)
 </IfModule>

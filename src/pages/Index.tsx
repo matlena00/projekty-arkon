@@ -17,8 +17,8 @@ const Index = () => {
   return (
     <main className="overflow-x-hidden">
       <Seo
-        title="ArKon - Biuro Projektowe | Architektura i Konstrukcja | Żegocina"
-        description="Biuro Projektowe ArKon z Żegociny - projekty indywidualne, adaptacje, projekty wnętrz, nadzór budowy i kompleksowa obsługa inwestycji. Od projektu po klucze."
+        title="Biuro projektowe ArKon - projekty domów i budynków usługowych | Bochnia, Limanowa, Brzesko, Wieliczka"
+        description="Projekty domów jednorodzinnych i budynków usługowych, adaptacje projektów gotowych, kierownik budowy. Bochnia, Limanowa, Brzesko, Wieliczka. Tel. 888 899 366."
         path="/"
       />
       <Navbar />
